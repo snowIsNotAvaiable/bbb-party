@@ -1,0 +1,469 @@
+/* ══════════════════════════════════════════════════════════════
+   BBB: Design-Token und Basisstile.
+   Farben, Typo und Radien stammen aus dem Handoff (Nocturne plus die
+   vier gedämpften Akzente Rose, Gold, Mint, Blurple).
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Grund und Flächen */
+  --ground: #0f101a;
+  --screen: #14151f;
+  --surface: #1a1b26;
+  --surface-2: #1e1f2c;
+  --surface-3: #1c1d29;
+  --surface-elev: linear-gradient(155deg, #1e1f2c, #191a25);
+  --surface-accent: linear-gradient(160deg, #2b2741, #191a25);
+
+  /* Text */
+  --text: #e9e9ed;
+  --text-muted: #b2b6ca;
+  --text-dim: #9397ab;
+  --text-dim-2: #75798c;
+  --text-faint: #595d6c;
+  --text-soft: #cfd3e5;
+
+  /* Kanten */
+  --line: #292b31;
+  --line-2: #33364a;
+  --line-3: #3f424d;
+  --line-accent: #5d5294;
+  --line-accent-2: #796cbf;
+  --line-accent-3: #9184d9;
+  --line-accent-deep: #423a6a;
+  --line-rose: #7a4a60;
+  --line-gold: #6b5c3a;
+
+  /* Akzente */
+  --accent: #9184d9;
+  --accent-light: #b5abfc;
+  --accent-lighter: #d2cefd;
+  --rose: #c98fae;
+  --rose-dark: #7a4a60;
+  --rose-light: #e2c6d3;
+  --gold: #d9c08f;
+  --mint: #8fc9b4;
+
+  /* Radien */
+  --r-chip: 8px;
+  --r-sm: 11px;
+  --r-md: 14px;
+  --r-card: 18px;
+  --r-panel: 22px;
+  --r-pill: 999px;
+
+  /* Schatten */
+  --sh-card: 0 0 0 1px var(--line-2);
+  --sh-card-strong: 0 0 0 1px var(--line-accent-deep), 0 12px 34px rgba(0, 0, 0, 0.5);
+  --sh-panel: 0 0 0 1px var(--line-accent-2), 0 18px 44px rgba(0, 0, 0, 0.5);
+  --sh-overlay: 0 0 0 1px var(--line-accent), 0 14px 34px rgba(0, 0, 0, 0.55);
+  --sh-gold: 0 0 0 1px var(--gold), 0 0 60px rgba(217, 192, 143, 0.28), 0 20px 50px rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  background: var(--ground);
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+a { color: var(--accent-light); text-decoration: none; }
+a:hover { color: var(--accent-lighter); }
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(145, 132, 217, 0.32);
+}
+
+/* ── Animationen ─────────────────────────────────────────── */
+
+@keyframes bbbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes bbbGlow {
+  0%, 100% { text-shadow: 0 0 18px rgba(145, 132, 217, 0.55), 0 0 42px rgba(201, 143, 174, 0.25); }
+  50% { text-shadow: 0 0 34px rgba(201, 143, 174, 0.7), 0 0 70px rgba(145, 132, 217, 0.4); }
+}
+@keyframes bbbPop {
+  0% { transform: scale(0.72); opacity: 0; }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes bbbRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes bbbSpinIn { from { opacity: 0; transform: rotateY(90deg) scale(0.9); } to { opacity: 1; transform: none; } }
+@keyframes bbbShimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes bbbMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes bbbPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 143, 174, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(201, 143, 174, 0); }
+}
+@keyframes bbbDice {
+  0% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(90deg) scale(1.15); }
+  50% { transform: rotate(180deg) scale(0.92); }
+  75% { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes bbbRuleIn { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: none; } }
+@keyframes bbbBob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+@keyframes bbbFade { from { opacity: 0; } to { opacity: 1; } }
+
+.bbb-rule {
+  animation: bbbRuleIn linear both;
+  animation-timeline: view();
+  animation-range: entry 4% cover 30%;
+}
+
+/* Browser ohne scroll-driven animations lassen sie einmal beim Mount laufen. */
+@supports not (animation-timeline: view()) {
+  .bbb-rule { animation: bbbRuleIn 0.5s ease both; }
+}
+
+.bbb-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Rücksicht auf reduzierte Bewegung ───────────────────── */
+/* Endlosanimationen aus, Ein-/Ausblendungen nur noch als Opazität.
+   Der Pixel-Garten bewegt sich weiter, nur langsamer, er ist der Screen. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [style*="bbbPop"],
+  [style*="bbbRise"],
+  [style*="bbbSpinIn"],
+  .bbb-rule {
+    animation: bbbFade 0.2s ease both !important;
+  }
+  [style*="bbbFloat"],
+  [style*="bbbBob"],
+  [style*="bbbGlow"],
+  [style*="bbbPulse"],
+  [style*="bbbShimmer"],
+  [style*="bbbMarquee"] {
+    animation: none !important;
+  }
+}
+
+/* ── Wiederkehrende Bausteine ────────────────────────────── */
+
+.bbb-input {
+  width: 100%;
+  font-size: 17px;
+  padding: 13px 14px;
+  background: var(--surface-3);
+  border: 1px solid var(--line-3);
+  border-radius: 10px;
+  color: var(--text);
+}
+.bbb-input::placeholder { color: var(--text-faint); }
+.bbb-input:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 1px var(--accent); }
+
+.bbb-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.bbb-kicker {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+.bbb-title {
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.bbb-btn {
+  cursor: pointer;
+  border: 1px solid var(--line-3);
+  background: transparent;
+  color: var(--text);
+  border-radius: var(--r-md);
+  transition: filter 0.16s ease, transform 0.12s ease;
+}
+.bbb-btn:hover:not(:disabled) { filter: brightness(1.14); }
+.bbb-btn:active:not(:disabled) { transform: scale(0.985); }
+.bbb-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.bbb-primary {
+  border: 1px solid var(--accent);
+  background: linear-gradient(100deg, rgba(145, 132, 217, 0.2), rgba(201, 143, 174, 0.2));
+}
+
+.bbb-pixel {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* Lange Katalogtexte: 5 bis 300 Zeichen müssen gleich gut sitzen. */
+.bbb-prose {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+/* Verbindungsstreifen unter der Statusleiste */
+.bbb-offline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 6px 14px calc(6px + env(safe-area-inset-top));
+  background: rgba(201, 143, 174, 0.16);
+  border-bottom: 1px solid var(--line-rose);
+  backdrop-filter: blur(8px);
+  color: var(--rose-light);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  animation: bbbFade 0.3s ease both;
+}
+
+/* ── Zusätzliche Party-Animationen ───────────────────────── */
+
+@keyframes bbbLogoBreathe {
+  0%, 100% { transform: scale(1) rotate(-.6deg); }
+  50% { transform: scale(1.035) rotate(.6deg); }
+}
+@keyframes bbbSpark {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  40% { transform: scale(1) rotate(45deg); opacity: 1; }
+  70% { transform: scale(.5) rotate(90deg); opacity: .5; }
+}
+@keyframes bbbTabPop {
+  0% { transform: translateY(0) scale(1); }
+  45% { transform: translateY(-5px) scale(1.16); }
+  100% { transform: translateY(-2px) scale(1.06); }
+}
+@keyframes bbbWiggle {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+@keyframes bbbRuleIn3d {
+  from { opacity: 0; transform: perspective(700px) translateY(60px) rotateX(24deg) scale(.9); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bbbSlideUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bbbGlowRing {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,143,174,.5), 0 0 26px rgba(145,132,217,.25); }
+  70% { box-shadow: 0 0 0 16px rgba(201,143,174,0), 0 0 40px rgba(145,132,217,.4); }
+}
+@keyframes bbbSheen {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(320%) skewX(-18deg); }
+}
+
+/* Regelkarten: deutlich dramatischer als vorher, scroll-getrieben. */
+.bbb-rule {
+  animation: bbbRuleIn3d linear both;
+  animation-timeline: view();
+  animation-range: entry 2% cover 34%;
+}
+@supports not (animation-timeline: view()) {
+  .bbb-rule { animation: bbbRuleIn3d .6s cubic-bezier(.2,.9,.3,1) both; }
+}
+
+/* Seitenwechsel: die Tabs liegen auf einer Schiene und gleiten. */
+.bbb-track {
+  display: flex;
+  width: 600%;
+  height: 100%;
+  transition: transform .42s cubic-bezier(.32,.72,.24,1);
+  will-change: transform;
+}
+.bbb-track > * {
+  flex: 0 0 16.6667%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Ein heller Streifen, der einmal über Primäraktionen läuft. */
+.bbb-sheen { position: relative; overflow: hidden; }
+.bbb-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  animation: bbbSheen 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Karten mit Party-Kante */
+.bbb-card {
+  border-radius: 20px;
+  background: linear-gradient(155deg, rgba(37,34,58,.86), rgba(25,26,37,.86));
+  box-shadow: 0 0 0 1px var(--line-2), 0 14px 34px rgba(0,0,0,.4);
+  backdrop-filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bbb-sheen::after { animation: none; display: none; }
+  .bbb-track { transition: none; }
+  [style*="bbbLogoBreathe"], [style*="bbbSpark"], [style*="bbbWiggle"], [style*="bbbGlowRing"] {
+    animation: none !important;
+  }
+}
+
+/* ── Avatar-Editor: Auswahlfelder mit Pixel-Kante ─────────── */
+
+.bbb-pick {
+  position: relative;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  border-radius: 12px;
+  font-family: inherit;
+  transition:
+    transform 0.14s cubic-bezier(0.3, 1.4, 0.5, 1),
+    box-shadow 0.14s ease;
+  /* Oben eine helle Kante, unten eine dunkle: das gibt der Fläche Höhe. */
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.34),
+    0 0 0 1px var(--line-3),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.bbb-pick:hover {
+  transform: translateY(-2px);
+}
+
+.bbb-pick:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.bbb-pick[aria-pressed='true'] {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.34),
+    0 0 0 2px var(--screen),
+    0 0 0 4px var(--rose),
+    0 9px 20px rgba(201, 143, 174, 0.42);
+}
+
+/* Ein Haken auf der gewählten Farbe, damit die Wahl nicht nur am Ring hängt. */
+.bbb-pick[data-kind='color'][aria-pressed='true']::before {
+  content: '';
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 17px;
+  height: 17px;
+  border-radius: 6px;
+  background: var(--rose);
+  box-shadow: 0 0 0 2px rgba(20, 21, 31, 0.55);
+}
+
+.bbb-pick[data-kind='color'][aria-pressed='true']::after {
+  content: '';
+  position: absolute;
+  right: 9px;
+  bottom: 8px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--screen);
+  border-width: 0 2px 2px 0;
+  transform: rotate(42deg);
+}
+
+/* Gruppenkarte, die zusammengehörige Achsen einfasst. */
+.bbb-group {
+  flex: none;
+  padding: 16px 15px 6px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(32, 30, 50, 0.82), rgba(23, 24, 35, 0.82));
+  box-shadow: 0 0 0 1px var(--line-2), 0 12px 30px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(6px);
+}
+
+.bbb-axis-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim-2);
+  margin-bottom: 10px;
+}
+
+.bbb-axis-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  flex: none;
+}
+
+.bbb-axis-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--line-2), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bbb-pick,
+  .bbb-pick:hover,
+  .bbb-pick:active {
+    transform: none;
+    transition: none;
+  }
+}

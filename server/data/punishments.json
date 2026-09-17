@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pun-1",
+    "label": "Knapp vorbei",
+    "severity": 1,
+    "icon": "🫠",
+    "title": "Ein Shot auf Ansage",
+    "text": "Ein Shot, ausgesucht von Platz 1. Wer nichts trinkt, nimmt stattdessen das, was der Erste aus den alkoholfreien Sachen zusammenmischt.",
+    "enabled": true
+  },
+  {
+    "id": "pun-2",
+    "label": "Mitläufer",
+    "severity": 2,
+    "icon": "🤐",
+    "title": "Fünfzehn Minuten Funkstille",
+    "text": "Fünfzehn Minuten kein Wort. Nicken, zeigen und schreiben sind erlaubt, reden nicht.",
+    "enabled": true
+  },
+  {
+    "id": "pun-3",
+    "label": "Solide enttäuschend",
+    "severity": 3,
+    "icon": "🗣️",
+    "title": "Ajowa",
+    "text": "Eine Stunde lang endet jeder deiner Sätze mit „Ajowa“. Für jeden Satz ohne bestimmt der Erstplatzierte einen Schluck.",
+    "enabled": true
+  },
+  {
+    "id": "pun-4",
+    "label": "Endboss der Schande",
+    "severity": 4,
+    "icon": "💀",
+    "title": "Das Siegerpodest-Menü",
+    "text": "Die Top 3 mischen dir gemeinsam ein Getränk. Alles darin ist trinkbar und essbar, und du trinkst es vor allen aus. Danach zwanzig Hampelmänner.",
+    "enabled": true
+  }
+]

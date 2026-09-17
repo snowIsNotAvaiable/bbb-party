@@ -1,0 +1,122 @@
+[
+  {
+    "id": "wild-001",
+    "text": "Ab sofort ist jedes dritte Wort, das du sagst, „Pommes“. Zwanzig Minuten lang.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 1200,
+    "enabled": true
+  },
+  {
+    "id": "wild-002",
+    "text": "Sammel bei drei verschiedenen Leuten je eine Mini-Aufgabe ein und erledige alle drei hintereinander.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  },
+  {
+    "id": "wild-003",
+    "text": "Übernimm zehn Minuten lang die Rolle des Geburtstagskinds. Alle behandeln dich so, und du benimmst dich auch so.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  },
+  {
+    "id": "wild-004",
+    "text": "Halt eine Minute lang die Planke und trink in der Zeit ein Glas aus, das auf dem Boden steht.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 120,
+    "enabled": true
+  },
+  {
+    "id": "wild-005",
+    "text": "Bring jeden im Raum dazu, einmal deinen Namen zu rufen. Du darfst nicht verraten, warum.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  },
+  {
+    "id": "wild-006",
+    "text": "Sprich zehn Minuten lang ausschließlich in Fragen.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  },
+  {
+    "id": "wild-007",
+    "text": "Die Gruppe stellt dir fünf Fragen. Du beantwortest alle ehrlich, keine wird ausgelassen.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 300,
+    "enabled": true
+  },
+  {
+    "id": "wild-008",
+    "text": "Lass dich komplett schminken, von drei verschiedenen Leuten, jeder nimmt sich einen Bereich. Bleibt bis zum Schluss.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 300,
+    "enabled": true
+  },
+  {
+    "id": "wild-009",
+    "text": "Erfinde einen Tanz, bring ihn dem ganzen Raum bei, und alle tanzen ihn einmal gemeinsam.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  },
+  {
+    "id": "wild-010",
+    "text": "Zieh dir alles verkehrt herum an und bleib zwanzig Minuten so.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 1200,
+    "enabled": true
+  },
+  {
+    "id": "wild-011",
+    "text": "Sing das Geburtstagslied allein, im Stehen auf einem Stuhl, komplett. Niemand hilft dir.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 180,
+    "enabled": true
+  },
+  {
+    "id": "wild-012",
+    "text": "Sei fünfzehn Minuten lang Kellner. Du holst jedem alles, niemand steht selbst auf.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 900,
+    "enabled": true
+  },
+  {
+    "id": "wild-013",
+    "text": "Halt eine dreiminütige Lobrede auf die Person, die du am wenigsten kennst. Erfinden ist ausdrücklich erlaubt.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 180,
+    "enabled": true
+  },
+  {
+    "id": "wild-014",
+    "text": "Du darfst zwanzig Minuten lang nicht sitzen. Stehen, laufen, knien, alles außer sitzen.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 1200,
+    "enabled": true
+  },
+  {
+    "id": "wild-015",
+    "text": "Lass dich zehn Minuten lang von der Gruppe fernsteuern. Jede Anweisung, die niemandem wehtut, führst du aus.",
+    "points": 25,
+    "observerCount": 2,
+    "timerSec": 600,
+    "enabled": true
+  }
+]

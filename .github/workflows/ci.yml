@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Prüft die Karten gegen das, was der Code daraus macht.
+      - run: npm run lint:data
+
+      # Regeln ohne Server, dann die Verkabelung mit eigenem Server.
+      # Beide arbeiten über BBB_DATA_DIR auf einer Kopie von server/data.
+      - run: npm run test:engine
+      - run: npm run test:server
+
+      # Die Schriften liegen nicht im Repository, für den Build reicht das:
+      # sie werden nur als statische Datei ausgeliefert, nicht importiert.
+      - run: npm run build

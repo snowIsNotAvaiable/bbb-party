@@ -1,0 +1,2643 @@
+[
+  {
+    "id": "card-001",
+    "title": "Kompliment-Kette",
+    "category": "sozial",
+    "tags": [
+      "nett"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Mach der Person links von dir ein ehrliches Kompliment.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Mach drei Leuten nacheinander ein Kompliment. Jedes muss konkret sein, „du bist nett“ zählt nicht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Geh durch den Raum und sag jedem einzelnen Gast etwas, das du an ihm magst. Keine Wiederholungen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-002",
+    "title": "Umarmungspflicht",
+    "category": "sozial",
+    "tags": [
+      "nett"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Umarme die Person, die dir gerade am nächsten steht.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Umarme jemanden zwanzig Sekunden lang und sag danach völlig ernst: „Das hab ich jetzt gebraucht.“",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Umarme jeden im Raum einzeln, mindestens fünf Sekunden pro Person.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-003",
+    "title": "Fremdwissen",
+    "category": "sozial",
+    "tags": [
+      "persönlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Frag die Person, die du am wenigsten kennst, nach ihrem Lieblingsessen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Erzähl der Person, die du am wenigsten kennst, eine peinliche Geschichte über dich. Ohne Vorwarnung.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Lass dir von der Person, die du am wenigsten kennst, fünf Fragen stellen. Alle ehrlich beantworten.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-004",
+    "title": "Selfie-Pflicht",
+    "category": "sozial",
+    "tags": [
+      "handy"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Mach ein Selfie mit der Person links von dir.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Mach ein Selfie mit drei Leuten. Alle müssen dabei dasselbe Gesicht ziehen.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Gruppenfoto: hol alle im Raum vor die Kamera, du bestimmst die Pose.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Handy oder Kamera"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-005",
+    "title": "Der Roast",
+    "category": "sozial",
+    "tags": [
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lass dich von einer Person zwanzig Sekunden lang roasten. Du sagst nichts zurück.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Gruppe darf dich sechzig Sekunden lang roasten. Du darfst nicht kontern.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Jeder im Raum bekommt einen Satz über dich frei. Nach jedem bedankst du dich freundlich.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-006",
+    "title": "Profilbild-Demokratie",
+    "category": "sozial",
+    "tags": [
+      "handy"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zeig dein aktuelles Profilbild und erklär, warum genau das es geworden ist.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Gruppe sucht aus deiner Galerie dein nächstes Profilbild aus.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe wählt dein Profilbild aus, und es bleibt bis morgen früh online.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Handy"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-007",
+    "title": "Suchverlauf",
+    "category": "sozial",
+    "tags": [
+      "handy",
+      "peinlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lies deine letzten drei Suchbegriffe laut vor.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zeig deine letzten fünf Suchbegriffe herum. Ungefiltert.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe darf drei Fragen zu deinem Suchverlauf stellen. Ehrlich antworten.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Handy"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-008",
+    "title": "Schere Stein Papier",
+    "category": "sozial",
+    "tags": [
+      "spiel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Gewinn eine Runde Schere, Stein, Papier gegen irgendwen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Spiel gegen wechselnde Gegner, bis du drei Runden gewonnen hast.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Spiel weiter, bis du fünf Runden gewonnen hast. Gegen niemanden zweimal hintereinander.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-009",
+    "title": "Der Fakt",
+    "category": "sozial",
+    "tags": [
+      "bluff"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Erzähl einen Fakt über dich. Die Gruppe rät, ob er stimmt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Verkauf einer Person kompletten Unsinn als Wahrheit. Sie muss ihn dir wenigstens kurz glauben.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Bring drei Leute dazu, denselben erfundenen Fakt weiterzuerzählen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-010",
+    "title": "Tanzpartner",
+    "category": "sozial",
+    "tags": [
+      "tanzen"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Tanz fünfzehn Sekunden lang allein, egal was gerade läuft.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Tanz dreißig Sekunden mit der Person, die die Gruppe für dich aussucht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Bring drei Leute dazu, mit dir zu tanzen, ohne zu verraten, dass es eine Aufgabe ist.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-011",
+    "title": "Attraktiv",
+    "category": "sozial",
+    "tags": [
+      "persönlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag einer Person, welches Kleidungsstück von ihr du sofort klauen würdest.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sag einer Person ernsthaft, was du attraktiv an ihr findest.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sag drei Leuten je eine Sache, die du attraktiv an ihnen findest. Ohne dabei zu grinsen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-012",
+    "title": "Handschlag-Ritual",
+    "category": "sozial",
+    "tags": [
+      "ritual"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Denk dir mit einer Person einen eigenen Handschlag aus.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Bring den Handschlag drei Leuten bei. Alle müssen ihn fehlerfrei können.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ab jetzt begrüßt du den Rest des Abends jeden nur noch mit diesem Handschlag.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-013",
+    "title": "Backe backe Kuchen",
+    "category": "sozial",
+    "tags": [
+      "kindheit"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Spiel mit einer Person einmal „Backe backe Kuchen“ durch.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Spiel es mit drei Leuten nacheinander, jedes Mal schneller.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Spiel es vor allen im Stehen, mit vollem Text und todernstem Gesicht.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-014",
+    "title": "Der Diebstahl",
+    "category": "sozial",
+    "tags": [
+      "heimlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Klau dir unauffällig etwas Kleines von jemandem und gib es nach einer Minute zurück.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass einen Gegenstand einer Person fünf Minuten lang verschwinden, ohne dass sie es merkt.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Tausch die Gegenstände von zwei Personen, ohne dass eine der beiden es mitbekommt.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-015",
+    "title": "Der Shot",
+    "category": "trinken",
+    "tags": [
+      "alkohol"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink einen Schluck von deinem Getränk, während alle zuschauen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink einen Shot Korn.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Mach eine Shot-Runde mit mindestens vier Gästen. Alle gleichzeitig.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Shotgläser"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-016",
+    "title": "Fremdbestimmt",
+    "category": "trinken",
+    "tags": [
+      "alkohol"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Eine Person mit braunen Augen sucht dein nächstes Getränk aus.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Person links von dir mixt dir ein Getränk aus zwei Zutaten. Du trinkst es.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe einigt sich auf eine Mische aus drei Zutaten. Alles davon ist trinkbar, und du trinkst sie aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-017",
+    "title": "Milch und Elend",
+    "category": "trinken",
+    "tags": [
+      "eklig"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink ein halbes Glas Milch. Einfach so.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink ein Glas Milch mit Cola gemischt.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Trink ein Glas Milch mit Korn. In einem Zug.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Milch"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-018",
+    "title": "Das leere Glas",
+    "category": "trinken",
+    "tags": [
+      "alkohol"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink dein Glas zur Hälfte leer.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Ex dein Glas.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ex dein Glas und such dir eine Person, die mitzieht. Ihr zählt beide laut runter.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-019",
+    "title": "Drehwurm",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "schwindel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Dreh dich fünfmal im Kreis und lauf danach geradeaus durch den Raum.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink einen Shot und dreh dich danach zehnmal im Kreis.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Dreh dich zehnmal im Kreis und trink danach im Stehen ein halbes Glas aus, ohne etwas zu verschütten.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-020",
+    "title": "Anstoßen",
+    "category": "trinken",
+    "tags": [
+      "rede"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Stoß mit drei Leuten einzeln an.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Halt eine kurze Rede auf das Geburtstagskind, danach stoßen alle an.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Bring den ganzen Raum dazu, gleichzeitig auf dich anzustoßen. Den Trinkspruch bestimmst du.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-021",
+    "title": "Hausregel",
+    "category": "trinken",
+    "tags": [
+      "regel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Bestimm ein Wort, das für die nächsten fünf Minuten verboten ist.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Ab jetzt trinkt zehn Minuten lang jeder einen Schluck, der „ich“ sagt. Du passt auf.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Erfinde eine Trinkregel und setz sie zwanzig Minuten lang durch. Danach stimmt die Gruppe ab, ob sie bleibt.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-022",
+    "title": "Blind verkostet",
+    "category": "trinken",
+    "tags": [
+      "spiel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Errate mit geschlossenen Augen, was in deinem eigenen Glas ist.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir mit geschlossenen Augen drei Getränke reichen und errate zwei davon.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Verkoste blind fünf Getränke. Für jeden Fehler trinkst du davon noch einen Schluck.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-023",
+    "title": "Der Gegenzug",
+    "category": "trinken",
+    "tags": [
+      "alkohol"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Such dir eine Person, mit der du gemeinsam einen Schluck trinkst.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink mit dem Geburtstagskind einen Shot.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sammel drei Leute ein und trinkt gemeinsam einen Shot. Du gibst aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-024",
+    "title": "Eiskalt",
+    "category": "trinken",
+    "tags": [
+      "kalt"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Iss einen Eiswürfel, bis er weg ist.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir zwei Eiswürfel hinten ins Shirt werfen.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Fünf Eiswürfel, alle gleichzeitig, hinten ins Shirt. Das Shirt bleibt an, bis sie geschmolzen sind.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Eiswürfel"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-025",
+    "title": "Wasserstand",
+    "category": "trinken",
+    "tags": [
+      "fair"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink ein Glas Wasser. Ganz.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink ein Glas Wasser und sorg dafür, dass zwei andere das auch tun.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ab jetzt bekommt jeder, den du ansprichst, erst ein Glas Wasser. Zehn Leute oder alle im Raum.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Wasser"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-026",
+    "title": "Die Bestellung",
+    "category": "trinken",
+    "tags": [
+      "dienst"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Hol jemandem ein Getränk, ohne zu fragen, was er will.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sei fünf Minuten lang Kellner. Jeder darf bei dir bestellen.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sei fünfzehn Minuten lang Kellner. In der Zeit holt sich niemand außer dir etwas.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-027",
+    "title": "Karaoke-Katastrophe",
+    "category": "performance",
+    "tags": [
+      "laut",
+      "peinlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Summ zehn Sekunden lang ein Lied. Die Gruppe rät, welches.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sing eine Strophe von einem Song, den die Gruppe aussucht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sing einen kompletten Song im Stehen auf einem Stuhl. Ablesen ist erlaubt.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-028",
+    "title": "Catwalk",
+    "category": "performance",
+    "tags": [
+      "laut"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lauf einmal quer durch den Raum wie über einen Laufsteg.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Schrei so laut, dass dich alle anschauen, und leg dann einen Catwalk hin.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Catwalk mit Musik, Pose am Ende, und jemand filmt dich dabei.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-029",
+    "title": "Freestyle",
+    "category": "performance",
+    "tags": [
+      "musik"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Reim vier Zeilen auf den Namen des Geburtstagskinds.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass einen Beat anmachen und rapp dreißig Sekunden Freestyle.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Freestyle eine Minute lang über drei Wörter, die dir die Gruppe zuruft.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Musik"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-030",
+    "title": "Stöhnzählen",
+    "category": "performance",
+    "tags": [
+      "peinlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zähl von fünf runter, jede Zahl eine Tonlage höher.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zähl von zehn runter, aber stöhn dabei.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Trag das Geburtstagslied stöhnend vor. Komplett, ohne abzubrechen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-031",
+    "title": "Der Vortrag",
+    "category": "performance",
+    "tags": [
+      "reden"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Erklär dreißig Sekunden lang, wie ein Kühlschrank funktioniert.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Halt drei Minuten lang einen ernsten Vortrag über ein Thema, das dir die Gruppe gibt.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Fünf Minuten Vortrag über das Universum. Vor allen, ohne Pause, ohne Lachen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-032",
+    "title": "Stimmenimitator",
+    "category": "performance",
+    "tags": [
+      "imitieren"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag einen Satz in der Stimme von jemandem im Raum.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Imitier drei Leute im Raum. Die Gruppe muss zwei davon erraten.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Übernimm zehn Minuten lang komplett die Art einer Person: Stimme, Gestik, Lieblingssätze.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-033",
+    "title": "Standbild",
+    "category": "performance",
+    "tags": [
+      "gruppe"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Frier zwanzig Sekunden lang in deiner jetzigen Pose ein.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Stell mit zwei Leuten ein Standbild zu einem Begriff. Die anderen raten.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Stell die Party als Standbild nach. Du besetzt alle Rollen und erklärst es hinterher.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-034",
+    "title": "Der Ansager",
+    "category": "performance",
+    "tags": [
+      "reden"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Kündig die nächste Person an, die eine Karte zieht. Mit vollem Pathos.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Kommentier zwei Minuten lang alles im Raum wie ein Sportreporter.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Kommentier zehn Minuten lang. Jede Aufgabe, jede Abnahme, jeden Gang zum Kühlschrank.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-035",
+    "title": "Playback",
+    "category": "performance",
+    "tags": [
+      "musik"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Spiel zehn Sekunden Luftgitarre.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Playback eine halbe Strophe, voll mit Mimik.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Playback-Auftritt zu einem Song, den die Gruppe aussucht. Mit Tanz.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Musik"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-036",
+    "title": "Der Schauspieler",
+    "category": "performance",
+    "tags": [
+      "spiel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zeig ohne Worte, dass du dich gerade über etwas freust.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Spiel eine Szene: du bekommst ein Geschenk, das du hasst, und musst dich bedanken.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Spiel drei Gefühle nacheinander. Die Gruppe muss alle drei erraten.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-037",
+    "title": "Das Gedicht",
+    "category": "performance",
+    "tags": [
+      "reden"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag ein Gedicht auf, das du noch aus der Schule kennst. Zwei Zeilen reichen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Erfinde vier Zeilen über den heutigen Abend und trag sie vor.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Acht Zeilen über das Geburtstagskind, auswendig vorgetragen, und sie müssen sich reimen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-038",
+    "title": "Der Lacher",
+    "category": "performance",
+    "tags": [
+      "spiel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Bring eine Person zum Lachen. Du hast eine Minute.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Bring drei Leute zum Lachen, ohne sie zu berühren.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Bring den ganzen Raum gleichzeitig zum Lachen. Einmal reicht.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-039",
+    "title": "Katzenwäsche",
+    "category": "körperlich",
+    "tags": [
+      "tier"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Putz dich dreißig Sekunden lang wie eine Katze. Mit dem Handrücken.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Beweg dich zwei Minuten lang nur auf allen vieren.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sei fünf Minuten lang komplett Katze: laufen, sitzen, putzen, kein einziges Wort.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-040",
+    "title": "Rundenlauf",
+    "category": "körperlich",
+    "tags": [
+      "sport"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Renn eine Runde um den Tisch.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Fünf Runden um den Tisch, so schnell du kannst.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Renn einmal ums Haus und komm zurück. Jemand stoppt dabei die Zeit.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-041",
+    "title": "Hüpfen",
+    "category": "körperlich",
+    "tags": [
+      "sport"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Spring zehnmal auf und ab.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Dreißig Hampelmänner am Stück.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Halt eine Minute lang die Planke und trink in der Zeit ein Glas aus, das auf dem Boden steht.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-042",
+    "title": "Haarschaden",
+    "category": "körperlich",
+    "tags": [
+      "aussehen"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lass dir von einer Person die Haare zerwuscheln.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Eine Person deiner Wahl darf deine Haare komplett umgestalten.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe bestimmt deine Frisur, und sie bleibt bis zum Ende des Abends.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-043",
+    "title": "Gesichtstattoo",
+    "category": "körperlich",
+    "tags": [
+      "aussehen"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lass dir einen Punkt auf die Wange malen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir mit Schminke ein Gesichtstattoo verpassen. Du siehst es erst danach.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe schminkt dich komplett. Du hast kein Mitspracherecht und wischst nichts ab.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Schminke"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-044",
+    "title": "Lippenstift",
+    "category": "körperlich",
+    "tags": [
+      "aussehen"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lass dir von jemandem Lippenstift auftragen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir Lippenstift von einer Person auftragen, die selbst keinen trägt.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Schmink drei Leute mit Lippenstift und mach ein Gruppenfoto davon.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Lippenstift"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-045",
+    "title": "Rückwärts",
+    "category": "körperlich",
+    "tags": [
+      "dauer"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lauf rückwärts von einem Ende des Raums zum anderen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Beweg dich drei Minuten lang nur rückwärts.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zehn Minuten lang rückwärts. Jeder Weg, jeder Gang, jede Tür.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-046",
+    "title": "Gleichgewicht",
+    "category": "körperlich",
+    "tags": [
+      "geschick"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Steh zwanzig Sekunden auf einem Bein, Augen zu.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Balancier ein volles Glas auf dem Kopf und geh damit durch den Raum.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Balancier ein volles Glas auf dem Handrücken einmal um den Tisch, ohne etwas zu verschütten.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-047",
+    "title": "Der Stuhl",
+    "category": "körperlich",
+    "tags": [
+      "laut"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Setz dich dreißig Sekunden lang auf den Boden statt auf deinen Platz.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Steh auf einen Stuhl und sag laut, warum heute ein guter Tag ist.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Verbring die nächsten zehn Minuten stehend auf dem Stuhl. Reden, trinken, alles von da oben.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Stuhl"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-048",
+    "title": "Verkehrt herum",
+    "category": "körperlich",
+    "tags": [
+      "kleidung"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zieh dir ein Kleidungsstück verkehrt herum an.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zieh dir eine Jacke verkehrt herum an, nur mit einer Hand.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zieh zehn Minuten lang alles verkehrt herum: Shirt, Jacke, Socken. Bleibt so.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-049",
+    "title": "Ausgestopft",
+    "category": "körperlich",
+    "tags": [
+      "kleidung"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Stopf dir ein Kissen unter das Shirt und behalt es fünf Minuten.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir von einer Person die Klamotten mit allem ausstopfen, was sie findet.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ausgestopft bleibst du, bis du deine nächste Aufgabe abgeschlossen hast.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Kissen oder Decken"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-050",
+    "title": "Zungenbrecher",
+    "category": "wissen",
+    "tags": [
+      "sprache"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "„Blaukraut bleibt Blaukraut“ dreimal hintereinander, ohne Versprecher.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Ein Zungenbrecher, den die Gruppe aussucht, fünfmal in Folge.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Drei verschiedene Zungenbrecher, jeder dreimal, ohne einen einzigen Fehler.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-051",
+    "title": "Stummes ABC",
+    "category": "wissen",
+    "tags": [
+      "sprache"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag das ABC mit geschlossenem Mund. Die Gruppe muss mitkommen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sag das ABC rückwärts. Zwei Fehler sind erlaubt.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sag das ABC rückwärts mit geschlossenem Mund. Fehlerfrei.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-052",
+    "title": "Das kleine Einmaleins",
+    "category": "wissen",
+    "tags": [
+      "rechnen"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zähl die Zweierreihe bis zwanzig auf.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zähl die Siebenerreihe bis siebzig auf, ohne zu stocken.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zähl von hundert in Siebenerschritten rückwärts bis unter null.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Umfrage",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-053",
+    "title": "Namensgedächtnis",
+    "category": "wissen",
+    "tags": [
+      "gruppe"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zähl fünf Leute im Raum beim Namen auf, ohne hinzuschauen.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zähl alle im Raum beim Namen auf, in der Reihenfolge, in der sie angekommen sind.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Nenn zu jedem im Raum ein Detail, das er heute Abend erzählt hat.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-054",
+    "title": "Allgemeinbildung",
+    "category": "wissen",
+    "tags": [
+      "quiz"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Nenn drei Bundesländer mit ihren Hauptstädten.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Nenn zehn Bundesländer mit ihren Hauptstädten. Eine Minute Zeit.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Alle sechzehn Bundesländer mit Hauptstadt. Zwei Minuten, ein Fehler erlaubt.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-055",
+    "title": "Die Kategorie",
+    "category": "wissen",
+    "tags": [
+      "quiz"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Nenn fünf Dinge aus einer Kategorie, die die Gruppe vorgibt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Nenn zwanzig Dinge aus der Kategorie. Du hast eine Minute.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Kategorie-Duell gegen eine Person deiner Wahl: abwechselnd nennen, wer stockt, verliert. Du musst gewinnen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-056",
+    "title": "Buchstabensalat",
+    "category": "wissen",
+    "tags": [
+      "sprache"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sprich eine Minute lang ohne den Buchstaben „e“.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Drei Minuten ohne „e“. Jeder Fehler kostet einen Schluck.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zehn Minuten ohne „e“ und ohne „a“.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-057",
+    "title": "Geburtstagsquiz",
+    "category": "wissen",
+    "tags": [
+      "quiz"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Rate, wie alt das Geburtstagskind heute wird.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Beantworte drei Fragen über das Geburtstagskind. Sie stellt sie selbst.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Fünf Fragen über das Geburtstagskind. Unter vier richtigen gibt es nichts.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-058",
+    "title": "Gedächtnisprotokoll",
+    "category": "wissen",
+    "tags": [
+      "gruppe"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Nenn drei Dinge, die heute Abend schon passiert sind.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Erzähl den ganzen Abend in einer Minute nach, chronologisch.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Nenn für jeden im Raum die letzte Aufgabe, die er gemacht hat.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z"
+  },
+  {
+    "id": "card-059",
+    "title": "Hausrecht",
+    "category": "geburtstagskind",
+    "tags": [
+      "macht"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Bestimm ein Lied. Es läuft als Nächstes.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Bestimm für die nächsten zehn Minuten einen persönlichen Getränke-Boten.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Erklär eine Hausregel, die bis zum Ende des Abends gilt. Alle halten sich dran.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z",
+    "onlyRole": "birthday"
+  },
+  {
+    "id": "card-060",
+    "title": "Die Rede",
+    "category": "geburtstagskind",
+    "tags": [
+      "reden"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag in einem Satz, was heute dein Highlight war.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Halt eine kurze Dankesrede. Jeder im Raum kommt einmal darin vor.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Halt eine Rede, in der du über jeden im Raum eine Sache sagst, die du an ihm magst.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z",
+    "onlyRole": "birthday"
+  },
+  {
+    "id": "card-061",
+    "title": "Das Geschenk",
+    "category": "geburtstagskind",
+    "tags": [
+      "macht"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Such dir eine Person aus, die dir ihr Getränk überlässt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Such dir eine Person aus, die deine nächste Aufgabe mitmacht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Jeder im Raum macht gleichzeitig etwas, das du bestimmst. Zehn Sekunden, alle zusammen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T10:00:00Z",
+    "onlyRole": "birthday"
+  },
+  {
+    "id": "card-062",
+    "title": "Doppelstock",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zwei kräftige Schlucke auf Ex.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zwei Shots hintereinander, ohne Pause dazwischen.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Drei Shots in drei Minuten. Jeden sucht eine andere Person aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Shotgläser"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-063",
+    "title": "Das Kettenglied",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "gruppe"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Such dir einen Trinkpartner für einen Schluck.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Bau eine Kette aus vier Leuten. Alle trinken gleichzeitig auf dein Kommando.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Der ganze Raum trinkt gleichzeitig auf dein Kommando. Wer nicht mitmacht, sucht dir deinen nächsten Shot aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-064",
+    "title": "Der Bierlauf",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink ein Viertel Bier in einem Zug.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Ein halbes Bier auf Ex.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ein ganzes Bier auf Ex. Jemand stoppt die Zeit und ruft sie aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Bier"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-065",
+    "title": "Blindflug",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "spiel"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink, ohne hinzuschauen, was gerade vor dir steht.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Lass dir die Augen zuhalten und trink, was man dir reicht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Drei Gläser blind. Danach sagst du, was drin war. Für jeden Fehler kommt noch eins.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-066",
+    "title": "Ohne Hände",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "dauer"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Trink dein nächstes Glas nur mit der schwachen Hand.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Trink zehn Minuten lang alles ohne Hände.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zwanzig Minuten ohne Hände. Wer dir hilft, trinkt mit.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-067",
+    "title": "Ansage von oben",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "fremdbestimmt"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Die Person rechts von dir sagt dir, wie viel du als Nächstes trinkst.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Person rechts bestimmt dein Getränk und die Menge.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die ganze Gruppe stimmt ab, was du als Nächstes trinkst. Alles davon ist trinkbar, und du trinkst es aus.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-068",
+    "title": "Rückstand aufholen",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "punkte"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zieh mit der Person gleich, die gerade am meisten getrunken hat. Ein Schluck.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zwei Schlucke für jede Karte, die du heute schon geschafft hast. Höchstens acht.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ein Shot für jede Stufe 3, die du heute genommen hast. Höchstens vier.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-069",
+    "title": "Der Wortfilter",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "dauer"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag fünf Minuten lang nicht „nein“. Jeder Verstoß kostet einen Schluck.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Zehn Minuten kein „ich“, kein „nein“, kein Name. Jeder Verstoß ein Schluck.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zwanzig Minuten. Jeder Verstoß kostet einen Shot, höchstens fünf.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-070",
+    "title": "Trinkpate",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "dauer"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Such dir einen Paten, der die nächsten fünf Minuten jeden Schluck mit dir mittrinkt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sei zehn Minuten lang Pate für jemanden: was er trinkt, trinkst du auch.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zwanzig Minuten Pate für zwei Leute gleichzeitig. Du trinkst alles doppelt mit.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-071",
+    "title": "Die Strafrunde",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "gruppe"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Ein Schluck für jeden im Raum, dessen Namen du nicht sofort weißt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Ein Schluck für jede Person, die heute schon eine Aufgabe abgelehnt hat.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Ein Shot für jeden im Raum, der mehr Punkte hat als du. Höchstens fünf.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-072",
+    "title": "Das Mischpult",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "eklig"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Misch dir selbst zwei Zutaten zusammen und trink es aus.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Misch dem Geburtstagskind etwas, und trink genau dasselbe.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Jeder im Raum gibt eine Zutat dazu, alles davon trinkbar. Du und die Person mit den wenigsten Punkten teilt es euch.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-073",
+    "title": "Kopf an Kopf",
+    "category": "trinken",
+    "tags": [
+      "alkohol",
+      "duell"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Wettschlucken gegen eine Person. Ein Schluck jeder, wer langsamer ist, trinkt nochmal.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Wetttrinken gegen eine Person, ein halbes Glas. Der Verlierer trinkt nach.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Wetttrinken gegen die Person, die dich zuletzt abgenommen hat. Ein volles Glas. Der Verlierer nimmt zusätzlich einen Shot.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-074",
+    "title": "Beichtstuhl",
+    "category": "sozial",
+    "tags": [
+      "ehrlich",
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Erzähl eine Sache, die du heute noch niemandem erzählt hast.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Beantworte eine Frage der Gruppe ehrlich, egal welche. Oder zwei Shots.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Drei Fragen, alle ehrlich. Für jede, die du auslässt, ein Shot.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-075",
+    "title": "Das Ranking",
+    "category": "sozial",
+    "tags": [
+      "frech"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag, wer heute Abend am besten aussieht.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sortier drei Leute danach, wen du in einer Zombie-Apokalypse zuerst opfern würdest. Mit Begründung.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Sortier alle im Raum in eine Rangliste deiner Wahl und erklär jeden einzelnen Platz.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-076",
+    "title": "Handy in fremder Hand",
+    "category": "sozial",
+    "tags": [
+      "handy",
+      "peinlich"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Zeig dein letztes Foto herum.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Person links sucht aus deinen letzten zwanzig Fotos eins aus und zeigt es herum.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Die Gruppe stellt dir drei Fragen zu deinem Handy. Antworten, oder pro Frage ein Shot.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Handy"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-077",
+    "title": "Der Anmachspruch",
+    "category": "sozial",
+    "tags": [
+      "frech"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Wirf einen Anmachspruch in die Runde.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Probier einen Anmachspruch an einer Person aus, mit vollem Ernst.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Drei Leute, drei verschiedene Sprüche, alle ernst vorgetragen. Jedes Mal, wenn du selbst lachst, ein Shot.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-078",
+    "title": "Ehrliche Minute",
+    "category": "sozial",
+    "tags": [
+      "ehrlich",
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag einer Person etwas, das du ihr sonst nicht sagen würdest. Etwas Nettes.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Sag einer Person etwas Ehrliches, das nicht nur nett ist.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Eine Minute lang sagt dir die Gruppe ungefiltert die Meinung. Danach sagst du nur „danke“.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-079",
+    "title": "Vollmacht",
+    "category": "sozial",
+    "tags": [
+      "macht"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Eine Person deiner Wahl darf dir eine Mini-Aufgabe geben.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Die Person mit den wenigsten Punkten darf dir eine Aufgabe geben.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Das Geburtstagskind darf dir eine Aufgabe geben. Ablehnen kostet drei Shots.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-080",
+    "title": "Der Betrunkene",
+    "category": "performance",
+    "tags": [
+      "rolle"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lauf zehn Schritte, als wärst du deutlich betrunkener, als du bist.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Halt drei Minuten lang eine Rede im Zustand „zwei Stunden später“.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Bleib zehn Minuten komplett in der Rolle. Wer dich rausbringt, bekommt von dir einen Shot spendiert.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-081",
+    "title": "Die Werbepause",
+    "category": "performance",
+    "tags": [
+      "reden",
+      "frech"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Bewirb in zwanzig Sekunden einen Gegenstand, der gerade im Raum liegt.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Verkauf der Gruppe eine Sache, die niemand will. Mindestens einer muss ernsthaft überlegen.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Verkauf eine Person an die Gruppe. Sie steht daneben und darf nichts sagen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-082",
+    "title": "Duett",
+    "category": "performance",
+    "tags": [
+      "musik",
+      "laut"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sing zehn Sekunden gemeinsam mit jemandem.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Duett mit der Person, die die Gruppe aussucht. Eine ganze Strophe.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Duett zu einem Song der Gruppe, im Stehen auf zwei Stühlen. Wer von euch zuerst lacht, trinkt.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Musik"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-083",
+    "title": "Der Akzent",
+    "category": "performance",
+    "tags": [
+      "sprache",
+      "dauer"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Sag drei Sätze in einem Akzent deiner Wahl.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Red fünf Minuten lang nur in diesem Akzent.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Zwanzig Minuten Akzent. Jeder Rückfall kostet einen Schluck.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-084",
+    "title": "Die Kälte",
+    "category": "körperlich",
+    "tags": [
+      "hart"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Halt einen Eiswürfel dreißig Sekunden lang in der Hand.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Halt eine Minute lang zwei Eiswürfel, einen pro Hand.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Beide Hände neunzig Sekunden in eine Schüssel mit Eiswasser. Wer rausnimmt, fängt von vorn an.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [
+        "Eiswürfel"
+      ],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-085",
+    "title": "Bodenhaftung",
+    "category": "körperlich",
+    "tags": [
+      "sport",
+      "alkohol"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Mach fünf Liegestütze.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Fünfzehn Liegestütze am Stück.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Dreißig Liegestütze. Nach jeweils zehn ein Schluck, ohne aufzustehen.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  },
+  {
+    "id": "card-086",
+    "title": "Der Hindernislauf",
+    "category": "körperlich",
+    "tags": [
+      "geschick"
+    ],
+    "enabled": true,
+    "levels": {
+      "1": {
+        "text": "Lauf mit einem vollen Glas einmal um den Tisch, ohne zu verschütten.",
+        "timerSec": null
+      },
+      "5": {
+        "text": "Volles Glas auf dem Kopf, einmal um den Tisch.",
+        "timerSec": null
+      },
+      "10": {
+        "text": "Volles Glas auf dem Kopf, einmal ums Haus. Was unterwegs runterfällt, trinkst du danach nach.",
+        "timerSec": null
+      }
+    },
+    "requires": {
+      "props": [],
+      "minPlayers": 1,
+      "targetsOtherPlayer": false
+    },
+    "authoredBy": "Redaktion",
+    "createdAt": "2026-09-12T14:00:00Z"
+  }
+]

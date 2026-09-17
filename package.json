@@ -1,0 +1,46 @@
+{
+  "name": "bbb-party",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline-fähige Party-WebApp für einen Abend: Aufgabenkarten, blinde Risikostufen und Abnahme durch einen zufällig zugewiesenen Beobachter. Läuft als ein Node-Prozess im lokalen WLAN.",
+  "keywords": [
+    "party",
+    "game",
+    "offline",
+    "local-network",
+    "websocket",
+    "react",
+    "event-sourcing"
+  ],
+  "license": "MIT",
+  "author": "Devin Uyan",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c magenta,cyan \"node server/index.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "party": "npm run build && node server/index.js",
+    "probelauf": "node scripts/probelauf.mjs",
+    "assets": "node scripts/fetch-assets.mjs",
+    "test": "node scripts/lint-data.mjs && node scripts/engine-test.mjs && node scripts/smoke-test.mjs",
+    "lint:data": "node scripts/lint-data.mjs",
+    "test:engine": "node scripts/engine-test.mjs",
+    "test:server": "node scripts/smoke-test.mjs",
+    "audit:ui": "node scripts/ui-audit.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^6.0.7"
+  }
+}

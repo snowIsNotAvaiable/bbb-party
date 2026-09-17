@@ -1,0 +1,7 @@
+[
+  { "id": "sp-steal",   "icon": "🥷",  "name": "Punkte-Raub",   "description": "Nimm einem Spieler deiner Wahl 15 Punkte weg. Er erfährt, wer es war.", "requiresTarget": true,  "amount": 15, "enabled": true },
+  { "id": "sp-swap",    "icon": "🔄",  "name": "Rollentausch",  "description": "Tausche deinen Punktestand mit einem beliebigen Spieler. Sofort, ohne Rückfrage.", "requiresTarget": true, "enabled": true },
+  { "id": "sp-king",    "icon": "👑",  "name": "Königsmacher",  "description": "Bestimme, wer die nächste Karte zwingend auf Stufe 10 nehmen muss.", "requiresTarget": true, "enabled": true },
+  { "id": "sp-cat",     "icon": "🐈",  "name": "Katzen-Segen",  "description": "Deine Katze auf der Map sammelt ab jetzt passiv 1 Punkt alle 5 Minuten.", "requiresTarget": false, "intervalMin": 5, "enabled": true },
+  { "id": "sp-joker",   "icon": "🎟️", "name": "Joker",         "description": "Streiche eine Aufgabe komplett. Keine Punkte, keine Kosten, kein Reroll-Zähler.", "requiresTarget": false, "enabled": true }
+]

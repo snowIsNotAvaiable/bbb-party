@@ -1,0 +1,62 @@
+[
+  {
+    "id": "pen-001",
+    "text": "Zehn Minuten Redeverbot. Ab jetzt, sofort.",
+    "enabled": true
+  },
+  {
+    "id": "pen-002",
+    "text": "Ein Shot deiner Wahl, aber die Person rechts von dir sucht ihn aus.",
+    "enabled": true
+  },
+  {
+    "id": "pen-003",
+    "text": "Jeder Satz von dir endet die nächsten fünfzehn Minuten mit „Ajowa“.",
+    "enabled": true
+  },
+  {
+    "id": "pen-004",
+    "text": "Deine nächste Aufgabe machst du ohne Reroll. Egal was kommt.",
+    "enabled": true
+  },
+  {
+    "id": "pen-005",
+    "text": "Zieh Jacke und Schuhe aus. Fünfzehn Minuten ohne beides.",
+    "enabled": true
+  },
+  {
+    "id": "pen-006",
+    "text": "Du darfst zehn Minuten lang nicht „ich“ sagen. Jeder Fehler kostet einen Schluck.",
+    "enabled": true
+  },
+  {
+    "id": "pen-007",
+    "text": "Ex dein aktuelles Getränk. Was drin ist, ist drin.",
+    "enabled": true
+  },
+  {
+    "id": "pen-008",
+    "text": "Du sitzt die nächsten zehn Minuten auf dem Boden.",
+    "enabled": true
+  },
+  {
+    "id": "pen-009",
+    "text": "Die Person links von dir mischt dir ein Getränk. Alles davon ist trinkbar, und du trinkst es.",
+    "enabled": true
+  },
+  {
+    "id": "pen-010",
+    "text": "Zwanzig Hampelmänner. Sofort, vor allen.",
+    "enabled": true
+  },
+  {
+    "id": "pen-011",
+    "text": "Dein Handy liegt fünfzehn Minuten lang mit dem Display nach unten. Nicht anfassen.",
+    "enabled": true
+  },
+  {
+    "id": "pen-012",
+    "text": "Du bedienst die nächsten zehn Minuten das Geburtstagskind. Glas voll, Teller voll, keine Widerrede.",
+    "enabled": true
+  }
+]

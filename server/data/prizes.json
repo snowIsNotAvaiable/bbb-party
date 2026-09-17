@@ -1,0 +1,26 @@
+[
+  {
+    "id": "prize-1",
+    "place": 1,
+    "icon": "🥇",
+    "title": "Der Freundebuch-Eintrag",
+    "text": "Du darfst dich in Bukis Freundebuch eintragen. Da kommen nur Gewinner rein. Obendrauf malt sie dir ein Bild deiner Wahl.",
+    "enabled": true
+  },
+  {
+    "id": "prize-2",
+    "place": 2,
+    "icon": "🥈",
+    "title": "Kuchen nach Ansage",
+    "text": "Buki backt dir einen Kuchen deiner Wahl. Sorte, Größe und Termin bestimmst du.",
+    "enabled": true
+  },
+  {
+    "id": "prize-3",
+    "place": 3,
+    "icon": "🥉",
+    "title": "Der Saufgutschein",
+    "text": "Ein Abend im Rino geht auf Buki. Einlösbar, bis er eingelöst ist.",
+    "enabled": true
+  }
+]

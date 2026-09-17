@@ -1,0 +1,8 @@
+{
+  "//": "Tabellen werden kompakt ohne Randleerzeichen geschrieben, so wie im ganzen Projekt.",
+  "MD060": false,
+  "//2": "Zeilenlänge steuert der Fließtext selbst, Tabellen und Links dürfen länger sein.",
+  "MD013": false,
+  "//3": "Fett als Pseudo-Überschrift ist in den Regel-Dokumenten Absicht.",
+  "MD036": false
+}

@@ -1,0 +1,29 @@
+# Abhängigkeiten und Build
+node_modules/
+client/dist/
+
+# Schriften werden mit `npm run assets` geholt, nicht mitgeliefert.
+# Inter steht unter der SIL Open Font License; der Download hält die
+# Lizenzfrage aus diesem Repository heraus.
+client/public/fonts/
+
+# Laufender Spielstand. Enthält die echten Namen und den kompletten
+# Verlauf einer Party und hat in einem öffentlichen Repo nichts zu suchen.
+server/data/state.json
+server/data/state.backup.json
+server/data/snapshots/
+
+# Vom Admin zur Laufzeit geschriebene Einstellungen
+server/data/config.json
+
+# Enthält die lokale IP-Adresse
+qr-party.png
+
+# Ablage des Probelaufs
+.probelauf/
+
+# Betriebssystem und Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

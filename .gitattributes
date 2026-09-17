@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+# Binärdateien, nicht als Text behandeln
+*.woff2 binary
+*.png binary
+
+# Bei einem Diff auf GitHub uninteressant
+package-lock.json linguist-generated=true
