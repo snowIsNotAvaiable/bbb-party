@@ -385,9 +385,16 @@ async function inspect(label, w) {
   errors = [];
 }
 
+// Gesucht wird das Element, dessen eigener Text exakt die Beschriftung ist,
+// geklickt wird der Knopf darum. Vorher wurde der ganze Knopftext verglichen;
+// sobald ein Tab ein Badge bekam, stand dort „Markt·" statt „Markt", und der
+// Tab wurde stillschweigend übersprungen statt geprüft.
 const clickExact = (label) =>
   ev(
-    `(()=>{const b=[...document.querySelectorAll('button,[role=tab]')].find(x=>x.textContent.trim()===${JSON.stringify(label)}); if(b){b.click();return true} return false})()`,
+    `(()=>{const t=[...document.querySelectorAll('button,[role=tab],button *,[role=tab] *')]` +
+      `.find(x=>x.textContent.trim()===${JSON.stringify(label)});` +
+      `const b=t&&(t.closest('button')||t.closest('[role=tab]'));` +
+      `if(b){b.click();return true} return false})()`,
   );
 const clickMatch = (re) =>
   ev(`[...document.querySelectorAll('button')].find(b=>/${re}/.test(b.textContent))?.click()`);
