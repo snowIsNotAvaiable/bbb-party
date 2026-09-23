@@ -17,12 +17,12 @@
   "author": "Devin Uyan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/REPO.git"
+    "url": "git+https://github.com/snowIsNotAvaiable/bbb-party.git"
   },
   "bugs": {
-    "url": "https://github.com/OWNER/REPO/issues"
+    "url": "https://github.com/snowIsNotAvaiable/bbb-party/issues"
   },
-  "homepage": "https://github.com/OWNER/REPO#readme",
+  "homepage": "https://github.com/snowIsNotAvaiable/bbb-party#readme",
   "engines": {
     "node": ">=20"
   },

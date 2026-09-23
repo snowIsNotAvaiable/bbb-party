@@ -1,7 +1,7 @@
 # BBB · Buki's Birthday Bash
 
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/OWNER/REPO/actions/workflows/codeql.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/codeql.yml)
+[![CI](https://github.com/snowIsNotAvaiable/bbb-party/actions/workflows/ci.yml/badge.svg)](https://github.com/snowIsNotAvaiable/bbb-party/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/snowIsNotAvaiable/bbb-party/actions/workflows/codeql.yml/badge.svg)](https://github.com/snowIsNotAvaiable/bbb-party/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](.nvmrc)
 
