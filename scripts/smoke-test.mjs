@@ -50,10 +50,14 @@ async function startServer() {
   });
   child.stderr.on('data', (d) => process.stderr.write(`[server] ${d}`));
 
+  // Gewartet wird auf /api/health, nicht auf /. Ohne gebauten Client antwortet
+  // die Wurzel mit 503 „Client noch nicht gebaut", und der Test liefe ins
+  // Timeout, obwohl der Server längst da ist. Genau das ist in CI passiert:
+  // client/dist ist gitignoriert und entsteht dort in einem eigenen Job.
   const deadline = Date.now() + 15000;
   for (;;) {
     try {
-      const res = await fetch(`http://127.0.0.1:${PORT}/`);
+      const res = await fetch(`http://127.0.0.1:${PORT}/api/health`);
       if (res.ok) break;
     } catch {
       /* noch nicht oben */

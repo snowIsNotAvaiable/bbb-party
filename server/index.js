@@ -98,11 +98,14 @@ app.get('/rueckblick', (_req, res) => {
   res.type('html').send(recap({ game, config: getConfig() }));
 });
 
+// Auffangroute als Middleware ohne Pfad, nicht als app.get('*'). Express 5
+// lehnt das nackte Sternchen ab und wirft schon beim Start; app.use ohne Pfad
+// bedeutet in Express 4 und 5 dasselbe.
 if (fs.existsSync(CLIENT_DIST)) {
   app.use(express.static(CLIENT_DIST, { index: false, maxAge: '1h' }));
-  app.get('*', (_req, res) => res.sendFile(path.join(CLIENT_DIST, 'index.html')));
+  app.use((_req, res) => res.sendFile(path.join(CLIENT_DIST, 'index.html')));
 } else {
-  app.get('*', (_req, res) =>
+  app.use((_req, res) =>
     res
       .status(503)
       .type('html')
