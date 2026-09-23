@@ -4,28 +4,81 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+# Ein alter Lauf auf demselben Branch wird abgebrochen, sobald ein neuer
+# Commit kommt. Spart Minuten und macht die Statusanzeige eindeutig.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Kein Job hier schreibt irgendwohin. Standardrechte auf Lesen zu setzen ist
+# billig und nimmt einem kompromittierten Paket die Möglichkeit, den Token zu
+# missbrauchen.
+permissions:
+  contents: read
 
 jobs:
-  test:
+  lint:
+    name: Linter und Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
-
       - run: npm ci
+      - run: npm run lint
 
+  inhalte:
+    name: Inhalte
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
       # Prüft die Karten gegen das, was der Code daraus macht.
       - run: npm run lint:data
 
-      # Regeln ohne Server, dann die Verkabelung mit eigenem Server.
-      # Beide arbeiten über BBB_DATA_DIR auf einer Kopie von server/data.
+  test:
+    name: Tests auf Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Die in package.json genannte Untergrenze und die aktuelle LTS.
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      # Regeln ohne Server, dann die Verkabelung mit eigenem Server. Beide
+      # arbeiten über BBB_DATA_DIR auf einer Kopie von server/data.
       - run: npm run test:engine
       - run: npm run test:server
 
-      # Die Schriften liegen nicht im Repository, für den Build reicht das:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # Die Schriften liegen nicht im Repository. Für den Build reicht das:
       # sie werden nur als statische Datei ausgeliefert, nicht importiert.
       - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: client-dist
+          path: client/dist
+          retention-days: 7

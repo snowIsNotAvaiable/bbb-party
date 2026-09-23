@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Frage zur Bedienung am Partyabend
+    url: https://github.com/OWNER/REPO/blob/main/docs/operations.md
+    about: Netz, Notfälle und die Checkliste vor dem ersten Zug stehen dort.
+  - name: Eigene Karten schreiben
+    url: https://github.com/OWNER/REPO/blob/main/docs/content.md
+    about: Format, Regeln und was nicht in den Katalog gehört.

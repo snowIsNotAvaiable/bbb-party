@@ -1,0 +1,41 @@
+name: Idee einbringen
+description: Ein Vorschlag für eine Regel, ein Item oder eine Funktion
+labels: ['idee']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Welches Problem löst das
+      description: Am besten eine Situation von einem echten Abend.
+    validations:
+      required: true
+
+  - type: textarea
+    id: vorschlag
+    attributes:
+      label: Vorschlag
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bereich
+    attributes:
+      label: Was wäre betroffen
+      multiple: true
+      options:
+        - Spielregeln
+        - Karten und Inhalte
+        - Host-Konsole
+        - Oberfläche der Spieler-App
+        - Technik unter der Haube
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: regeln
+    attributes:
+      label: Passt es zum Projekt
+      options:
+        - label: Es funktioniert ohne Internet
+        - label: Die Regel würde serverseitig entschieden
+        - label: Inhalte bleiben in JSON, nicht im Code

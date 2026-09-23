@@ -1,0 +1,54 @@
+name: Fehler melden
+description: Etwas funktioniert nicht wie beschrieben
+labels: ['fehler']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Am nützlichsten sind Berichte von echten Abenden.
+
+        **Bitte keine `state.json` ungefiltert anhängen.** Die Datei enthält die
+        echten Namen und den kompletten Verlauf einer Party.
+
+  - type: textarea
+    id: was
+    attributes:
+      label: Was ist passiert
+      description: Was hast du erwartet, was kam stattdessen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: schritte
+    attributes:
+      label: Wie kommt man dahin
+      placeholder: |
+        1. Karte ziehen
+        2. Stufe 3 wählen
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: geraete
+    attributes:
+      label: Geräte
+      description: Wie viele Leute, welche Handys, welcher Browser?
+      placeholder: 12 Gäste, iPhone 13 und Pixel 7, Safari und Chrome
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Node-Version
+      placeholder: node --version
+    validations:
+      required: true
+
+  - type: textarea
+    id: terminal
+    attributes:
+      label: Ausgabe im Terminal
+      description: Alles, was der Server gemeldet hat. Wird als Code formatiert.
+      render: text
