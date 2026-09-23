@@ -68,23 +68,50 @@ let browser = null;
  * Beenden noch (Spielstand, Chrome-Profil), deshalb erst auf ihr Ende warten.
  */
 const cleanup = async () => {
-  const ends = [];
-  for (const proc of [server, browser]) {
-    if (!proc) continue;
-    ends.push(
-      new Promise((r) => {
-        proc.once('exit', r);
-        setTimeout(r, 3000);
-      }),
-    );
-    proc.kill('SIGTERM');
-  }
+  const procs = [server, browser].filter(Boolean);
   server = null;
   browser = null;
-  await Promise.all(ends);
+
+  await Promise.all(
+    procs.map(
+      (proc) =>
+        new Promise((fertig) => {
+          let raus = false;
+          const sanft = setTimeout(() => {
+            // Chrome überlebt SIGTERM gelegentlich und schreibt weiter in sein
+            // Profil. Dann blockiert unten das Löschen, der Lauf bleibt mitsamt
+            // seinen Hilfsprozessen liegen, und der Lüfter dreht weiter.
+            try {
+              proc.kill('SIGKILL');
+            } catch {
+              /* schon weg */
+            }
+          }, 3000);
+          const schluss = () => {
+            if (raus) return;
+            raus = true;
+            clearTimeout(sanft);
+            clearTimeout(hart);
+            fertig();
+          };
+          // Letzte Reißleine: nach sechs Sekunden wird nicht mehr gewartet.
+          const hart = setTimeout(schluss, 6000);
+          proc.once('exit', schluss);
+          try {
+            proc.kill('SIGTERM');
+          } catch {
+            schluss();
+          }
+        }),
+    ),
+  );
+
   if (SHOTS) return;
   try {
-    fs.rmSync(tmp, { recursive: true, force: true, maxRetries: 20, retryDelay: 100 });
+    // Wenige Versuche reichen: nach dem SIGKILL oben schreibt niemand mehr in
+    // den Ordner. Zwanzig Versuche mit 100 ms waren der zweite Grund, warum
+    // ein Lauf minutenlang nicht zum Ende kam.
+    fs.rmSync(tmp, { recursive: true, force: true, maxRetries: 5, retryDelay: 50 });
   } catch {
     /* Das Betriebssystem räumt /tmp selbst auf */
   }
