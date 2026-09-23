@@ -42,7 +42,7 @@
     "lint:fix": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "qrcode": "^1.5.4",
     "ws": "^8.18.0"
   },
