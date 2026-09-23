@@ -1,0 +1,8 @@
+client/dist/
+node_modules/
+.probelauf/
+package-lock.json
+
+# Handgesetzte Datendateien: Prettier würde die Kartentexte neu umbrechen
+# und die Diffs bei jeder Katalogänderung unlesbar machen.
+server/data/

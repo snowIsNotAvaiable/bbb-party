@@ -1,6 +1,6 @@
 {
   "name": "bbb-party",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "description": "Offline-fähige Party-WebApp für einen Abend: Aufgabenkarten, blinde Risikostufen und Abnahme durch einen zufällig zugewiesenen Beobachter. Läuft als ein Node-Prozess im lokalen WLAN.",
@@ -15,6 +15,14 @@
   ],
   "license": "MIT",
   "author": "Devin Uyan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/REPO.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OWNER/REPO/issues"
+  },
+  "homepage": "https://github.com/OWNER/REPO#readme",
   "engines": {
     "node": ">=20"
   },
@@ -29,7 +37,9 @@
     "lint:data": "node scripts/lint-data.mjs",
     "test:engine": "node scripts/engine-test.mjs",
     "test:server": "node scripts/smoke-test.mjs",
-    "audit:ui": "node scripts/ui-audit.mjs"
+    "audit:ui": "node scripts/ui-audit.mjs",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
     "express": "^4.21.2",
@@ -37,8 +47,15 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.2",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite": "^6.0.7"
