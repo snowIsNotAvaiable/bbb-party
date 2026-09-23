@@ -8,10 +8,27 @@ updates:
     groups:
       # Ein Pull Request pro Gruppe statt fünf einzelne. Das Projekt hat wenige
       # Abhängigkeiten, da lohnt sich kein Einzelverkehr.
+      #
+      # Majors bleiben aber bewusst draußen. Der erste Sammel-PR bündelte
+      # eslint 9 auf 10, react 18 auf 19, vite 6 auf 8, plugin-react 4 auf 6
+      # und concurrently 9 auf 10. So ein PR ist weder prüfbar noch teilbar.
+      # Mit update-types kommt jeder Major einzeln und lässt sich einzeln
+      # testen.
       produktion:
         dependency-type: production
+        update-types: [minor, patch]
       entwicklung:
         dependency-type: development
+        update-types: [minor, patch]
+
+    ignore:
+      # eslint-plugin-react erlaubt laut peerDependencies nur bis eslint 9.
+      # Ein Update auf 10 lässt npm ci abbrechen, siehe PR #6. Erst wieder
+      # freigeben, wenn das Plugin eslint 10 unterstützt.
+      - dependency-name: eslint
+        update-types: [version-update:semver-major]
+      - dependency-name: '@eslint/js'
+        update-types: [version-update:semver-major]
     commit-message:
       prefix: deps
 
