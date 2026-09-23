@@ -38,7 +38,9 @@ export function loadState() {
       const raw = fs.readFileSync(file, 'utf8');
       const parsed = JSON.parse(raw);
       if (parsed && Array.isArray(parsed.players)) {
-        console.log(`[store] Spielstand geladen: ${parsed.players.length} Spieler, ${parsed.events.length} Events`);
+        console.log(
+          `[store] Spielstand geladen: ${parsed.players.length} Spieler, ${parsed.events.length} Events`,
+        );
         return parsed;
       }
     } catch {

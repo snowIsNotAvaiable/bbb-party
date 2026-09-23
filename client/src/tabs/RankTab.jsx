@@ -33,7 +33,10 @@ export default function RankTab({ state }) {
             const p = top[idx];
             const heights = [104, 78, 62];
             return (
-              <div key={p.id} style={{ flex: 1, textAlign: 'center', animation: `bbbSlideUp .5s ${idx * 0.08}s both` }}>
+              <div
+                key={p.id}
+                style={{ flex: 1, textAlign: 'center', animation: `bbbSlideUp .5s ${idx * 0.08}s both` }}
+              >
                 <div
                   style={{
                     width: 54,
@@ -48,7 +51,9 @@ export default function RankTab({ state }) {
                   {p.name}
                   {p.id === meId ? ' (du)' : ''}
                 </div>
-                <div style={{ fontSize: 19, fontWeight: 700, color: MEDAL[idx], marginBottom: 7 }}>{p.score}</div>
+                <div style={{ fontSize: 19, fontWeight: 700, color: MEDAL[idx], marginBottom: 7 }}>
+                  {p.score}
+                </div>
                 <div
                   style={{
                     height: heights[idx],
@@ -104,7 +109,9 @@ export default function RankTab({ state }) {
               </div>
               <div style={{ fontSize: 11.5, color: 'var(--text-dim-2)' }}>{ROLE[p.role] || 'Gast'}</div>
             </div>
-            <div style={{ fontSize: 23, fontWeight: 700, color: p.score < 0 ? 'var(--rose)' : 'var(--text)' }}>
+            <div
+              style={{ fontSize: 23, fontWeight: 700, color: p.score < 0 ? 'var(--rose)' : 'var(--text)' }}
+            >
               {p.score}
             </div>
           </div>

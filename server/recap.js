@@ -14,8 +14,7 @@ import { esc, shell } from './page.js';
 
 const MIN = 60 * 1000;
 
-const fmtTime = (ts) =>
-  new Date(ts).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+const fmtTime = (ts) => new Date(ts).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
 
 const fmtDate = (ts) =>
   new Date(ts).toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -140,7 +139,8 @@ export function recap({ game, config }) {
     }
     const d = e.delta || 0;
     if (pid && d > 0 && (!groessterGewinn || d > groessterGewinn.delta)) groessterGewinn = { ...e, delta: d };
-    if (pid && d < 0 && (!groessterVerlust || d < groessterVerlust.delta)) groessterVerlust = { ...e, delta: d };
+    if (pid && d < 0 && (!groessterVerlust || d < groessterVerlust.delta))
+      groessterVerlust = { ...e, delta: d };
   }
 
   // Wer als Beobachter wie oft bestätigt und wie oft abgelehnt hat.
@@ -158,12 +158,42 @@ export function recap({ game, config }) {
     titel('Arbeitstier', 'die meisten erledigten Aufgaben', kandidaten('erledigt', 'Aufgaben', 'Aufgabe'), 3),
     titel('Angsthase', 'die meisten Rerolls', kandidaten('rerolls', 'Rerolls', 'Reroll'), 2),
     titel('Sicher ist sicher', 'am liebsten Stufe 1', kandidaten('stufe1', '× Stufe 1'), 3),
-    titel('Wort gehalten', 'die meisten angenommenen Sonderaufträge', kandidaten('sonderauftraege', 'Sonderaufträge', 'Sonderauftrag'), 1),
-    titel('Lieber nicht', 'die meisten abgelehnten Sonderaufträge', kandidaten('gekniffen', '× abgelehnt'), 3),
-    titel('Shop-Rekord', 'die meisten Punkte im Shop gelassen', kandidaten('ausgegeben', 'Punkte', 'Punkt'), 10),
-    titel('Strenges Auge', 'als Beobachtung am häufigsten abgelehnt', kandidaten('verweigert', '× abgelehnt'), 1),
-    titel('Mildes Auge', 'als Beobachtung am häufigsten bestätigt', kandidaten('abgenommen', 'Abnahmen', 'Abnahme'), 3),
-    titel('Hartes Los', 'die meisten abgelehnten eigenen Aufgaben', kandidaten('abgelehnt', '× nicht anerkannt'), 2),
+    titel(
+      'Wort gehalten',
+      'die meisten angenommenen Sonderaufträge',
+      kandidaten('sonderauftraege', 'Sonderaufträge', 'Sonderauftrag'),
+      1,
+    ),
+    titel(
+      'Lieber nicht',
+      'die meisten abgelehnten Sonderaufträge',
+      kandidaten('gekniffen', '× abgelehnt'),
+      3,
+    ),
+    titel(
+      'Shop-Rekord',
+      'die meisten Punkte im Shop gelassen',
+      kandidaten('ausgegeben', 'Punkte', 'Punkt'),
+      10,
+    ),
+    titel(
+      'Strenges Auge',
+      'als Beobachtung am häufigsten abgelehnt',
+      kandidaten('verweigert', '× abgelehnt'),
+      1,
+    ),
+    titel(
+      'Mildes Auge',
+      'als Beobachtung am häufigsten bestätigt',
+      kandidaten('abgenommen', 'Abnahmen', 'Abnahme'),
+      3,
+    ),
+    titel(
+      'Hartes Los',
+      'die meisten abgelehnten eigenen Aufgaben',
+      kandidaten('abgelehnt', '× nicht anerkannt'),
+      2,
+    ),
   ].filter(Boolean);
 
   /* ── Verlauf ────────────────────────────────────────────── */

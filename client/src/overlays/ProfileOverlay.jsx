@@ -42,14 +42,17 @@ export default function ProfileOverlay({ me, onSave, onClose }) {
         flexDirection: 'column',
         justifyContent: 'space-between',
         gap: 12,
-        padding: 'max(24px, calc(env(safe-area-inset-top) + 8px)) 16px calc(16px + env(safe-area-inset-bottom))',
+        padding:
+          'max(24px, calc(env(safe-area-inset-top) + 8px)) 16px calc(16px + env(safe-area-inset-bottom))',
         animation: 'bbbPop .3s both',
       }}
     >
       <div style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flex: 1 }}>
           <div className="bbb-kicker">Dein Auftritt</div>
-          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.02em', marginTop: 2 }}>Aussehen ändern</div>
+          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.02em', marginTop: 2 }}>
+            Aussehen ändern
+          </div>
         </div>
         <button
           onClick={onClose}

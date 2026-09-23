@@ -107,8 +107,7 @@ export default function PixelLogo({ size = 1, sparks = true, style }) {
       <div
         style={{
           ...layer(masks.body),
-          backgroundImage:
-            'linear-gradient(100deg,#b5abfc,#e46fa4 26%,#ffca5f 50%,#4fd1a5 72%,#8f7dff)',
+          backgroundImage: 'linear-gradient(100deg,#b5abfc,#e46fa4 26%,#ffca5f 50%,#4fd1a5 72%,#8f7dff)',
           backgroundSize: '260% 100%',
           animation: 'bbbShimmer 4.5s linear infinite',
         }}

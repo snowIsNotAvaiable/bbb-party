@@ -22,8 +22,8 @@ export const DEFAULTS = {
   hostPin: '2409',
 
   // Reroll (docs/rules.md)
-  rerollScaling: 'linear',      // 'linear' = ×n, 'exponential' = ×2^(n-1)
-  rerollLimitPerCard: 3,        // so oft darf man dieselbe Karte wegwerfen
+  rerollScaling: 'linear', // 'linear' = ×n, 'exponential' = ×2^(n-1)
+  rerollLimitPerCard: 3, // so oft darf man dieselbe Karte wegwerfen
 
   // Beobachter (docs/rules.md)
   observerCount: 1,
@@ -36,7 +36,7 @@ export const DEFAULTS = {
   wildcardTimeoutMin: 5,
   wildcardPoints: 25,
   wildcardObserverCount: 2,
-  wildcardBlindAccept: true,    // Variante B
+  wildcardBlindAccept: true, // Variante B
 
   // Black Market (docs/rules.md)
   betsEnabled: true,
@@ -59,7 +59,7 @@ export const DEFAULTS = {
 
   // Auswertung (docs/rules.md)
   podiumSize: 3,
-  loserBucketsOverride: 0,       // 0 = automatisch nach Gruppengröße
+  loserBucketsOverride: 0, // 0 = automatisch nach Gruppengröße
   tieBreak: 'earliest',
 
   // Sonstiges

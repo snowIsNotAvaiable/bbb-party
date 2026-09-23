@@ -46,7 +46,10 @@ tino valeria vito yannick zoe
 /** Wer namentlich drinstehen darf: die Party gehört ihr. */
 const ALLOWED = new Set(['buki', 'bukurije']);
 
-const clean = (s) => String(s || '').trim().toLowerCase();
+const clean = (s) =>
+  String(s || '')
+    .trim()
+    .toLowerCase();
 
 /**
  * Sucht Personennamen in einem Text.

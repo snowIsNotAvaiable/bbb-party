@@ -6,7 +6,16 @@
 
 export const SKIN = ['#f7ddc4', '#f0c9a8', '#e5b48c', '#dba97f', '#c68e5f', '#a9754f', '#8d5a3b', '#6f4a30'];
 export const HAIR = ['#2b2431', '#6b4a3a', '#c98fae', '#d9c08f', '#8f9dc9', '#a9738f', '#e4e7f5', '#8fc9b4'];
-export const OUTFIT = ['#9184d9', '#c98fae', '#8fc9b4', '#d9c08f', '#5d5294', '#b2b6ca', '#c9736b', '#6b8fc9'];
+export const OUTFIT = [
+  '#9184d9',
+  '#c98fae',
+  '#8fc9b4',
+  '#d9c08f',
+  '#5d5294',
+  '#b2b6ca',
+  '#c9736b',
+  '#6b8fc9',
+];
 
 /** Fell: Grundton und Schattenton. Zwölf Varianten statt sechs. */
 export const FUR = [
@@ -107,7 +116,8 @@ function accRows(a) {
   if (a === 1) return { 5: '....aaaaaaaa....', 6: '....a..aa..a....' };
   if (a === 2) return { 1: '..aa............', 2: '.aaaa...........', 3: '..aa............' };
   if (a === 3) return { 0: '...a..a..a..a...', 1: '...aaaaaaaaaa...' };
-  if (a === 4) return { 0: '.......aa.......', 1: '......aaaa......', 2: '.....aaaaaa.....', 3: '....aaaaaaaa....' };
+  if (a === 4)
+    return { 0: '.......aa.......', 1: '......aaaa......', 2: '.....aaaaaa.....', 3: '....aaaaaaaa....' };
   if (a === 5) return { 6: '...aaaaaaaaaa...', 7: '...a.aa..aa.a...' };
   return {};
 }
@@ -140,7 +150,8 @@ export function avatarUrl(rawCfg) {
       if (c === 'a') g[+y][x] = 'a';
     });
   }
-  const accColor = { 1: '#e4e7f5', 2: '#c98fae', 3: '#d9c08f', 4: '#c98fae', 5: '#241f2e' }[cfg.acc] || '#d9c08f';
+  const accColor =
+    { 1: '#e4e7f5', 2: '#c98fae', 3: '#d9c08f', 4: '#c98fae', 5: '#241f2e' }[cfg.acc] || '#d9c08f';
   const pal = {
     s: SKIN[cfg.skin % SKIN.length],
     k: HAIR[cfg.hair % HAIR.length],
@@ -223,8 +234,14 @@ const BODY_ROWS = [
 
 /** Beim Jubeln gehen die Arme über die Schultern, das liegt über dem Kopf. */
 const CHEER_ARMS = [
-  [1, 8], [1, 9], [1, 10], [2, 11],
-  [14, 8], [14, 9], [14, 10], [13, 11],
+  [1, 8],
+  [1, 9],
+  [1, 10],
+  [2, 11],
+  [14, 8],
+  [14, 9],
+  [14, 10],
+  [13, 11],
 ];
 
 const BODY_W = 16;
@@ -265,7 +282,8 @@ export function bodyUrl(rawCfg, frame = BODY_FRAME.IDLE, blink = false) {
     }
   }
 
-  const accColor = { 1: '#e4e7f5', 2: '#c98fae', 3: '#d9c08f', 4: '#c98fae', 5: '#241f2e' }[cfg.acc] || '#d9c08f';
+  const accColor =
+    { 1: '#e4e7f5', 2: '#c98fae', 3: '#d9c08f', 4: '#c98fae', 5: '#241f2e' }[cfg.acc] || '#d9c08f';
   cache[key] = render(
     g,
     {
@@ -383,7 +401,16 @@ function applyPattern(g, pattern) {
     for (const x of [1, 3, 7, 9]) set(8, x, 'w');
     set(4, 3, 'w');
   } else if (pattern === 3) {
-    for (const [y, x] of [[2, 3], [3, 5], [6, 2], [6, 7], [7, 4], [7, 8], [4, 6]]) set(y, x, 'd');
+    for (const [y, x] of [
+      [2, 3],
+      [3, 5],
+      [6, 2],
+      [6, 7],
+      [7, 4],
+      [7, 8],
+      [4, 6],
+    ])
+      set(y, x, 'd');
   } else if (pattern === 4) {
     for (let y = 0; y < g.length; y++) for (let x = 0; x < 6; x++) set(y, x, 'w');
   }
@@ -399,7 +426,12 @@ export function catUrl(fur = 0, frame = 0, pattern = 0) {
     CAT_FRAMES[frame % CAT_FRAMES.length].map((r) => r.split('')),
     pattern,
   );
-  cache[key] = render(grid, { f: f[0], d: f[1], w: pattern === 2 ? '#f3f5fe' : light, e: '#241f2e', p: '#e6a3bb' }, 12, 10);
+  cache[key] = render(
+    grid,
+    { f: f[0], d: f[1], w: pattern === 2 ? '#f3f5fe' : light, e: '#241f2e', p: '#e6a3bb' },
+    12,
+    10,
+  );
   return cache[key];
 }
 
@@ -423,13 +455,37 @@ const PARTY_CAT = [
 ];
 
 /** Die Wunderkerze steckt in der rechten Pfote und sprüht nach oben. */
-const STICK = [[12, 10], [13, 9], [14, 8]];
+const STICK = [
+  [12, 10],
+  [13, 9],
+  [14, 8],
+];
 
 const SPARKS = [
-  [[15, 6], [13, 5], [15, 3], [12, 4]],
-  [[14, 5], [15, 4], [13, 3], [14, 7]],
-  [[13, 6], [15, 5], [14, 3], [12, 5]],
-  [[15, 7], [14, 4], [12, 3], [13, 4]],
+  [
+    [15, 6],
+    [13, 5],
+    [15, 3],
+    [12, 4],
+  ],
+  [
+    [14, 5],
+    [15, 4],
+    [13, 3],
+    [14, 7],
+  ],
+  [
+    [13, 6],
+    [15, 5],
+    [14, 3],
+    [12, 5],
+  ],
+  [
+    [15, 7],
+    [14, 4],
+    [12, 3],
+    [13, 4],
+  ],
 ];
 
 /** Hutfarben, aus denen eine gewählt wird, die sich vom Fell abhebt. */
@@ -588,7 +644,12 @@ export function objectUrl(kind, tint = 0) {
     const colors = ['#c98fae', '#9184d9', '#8fc9b4', '#d9c08f', '#b5abfc', '#e8a06b'];
     pal.b = colors[tint % colors.length];
   }
-  cache[key] = render(def.rows.map((r) => r.split('')), pal, def.w, def.h);
+  cache[key] = render(
+    def.rows.map((r) => r.split('')),
+    pal,
+    def.w,
+    def.h,
+  );
   return cache[key];
 }
 

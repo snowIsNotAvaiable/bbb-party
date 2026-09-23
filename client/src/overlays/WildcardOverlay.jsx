@@ -71,10 +71,16 @@ export default function WildcardOverlay({ wildcard, onAccept, onDecline, onLater
       </div>
       <div
         className="bbb-prose"
-        style={{ fontSize: 16, color: 'var(--text-soft)', lineHeight: 1.5, margin: '10px 0 4px', maxWidth: 290 }}
+        style={{
+          fontSize: 16,
+          color: 'var(--text-soft)',
+          lineHeight: 1.5,
+          margin: '10px 0 4px',
+          maxWidth: 290,
+        }}
       >
-        Eine harte Aufgabe für <b style={{ color: 'var(--gold)' }}>{wildcard.points} Punkte</b>. Sichtbar erst nach
-        deinem Ja.
+        Eine harte Aufgabe für <b style={{ color: 'var(--gold)' }}>{wildcard.points} Punkte</b>. Sichtbar erst
+        nach deinem Ja.
       </div>
 
       <div
@@ -145,7 +151,9 @@ export default function WildcardOverlay({ wildcard, onAccept, onDecline, onLater
         </button>
       </div>
 
-      <div style={{ fontSize: 11.5, color: 'var(--text-dim-2)', marginTop: 14, maxWidth: 300, lineHeight: 1.45 }}>
+      <div
+        style={{ fontSize: 11.5, color: 'var(--text-dim-2)', marginTop: 14, maxWidth: 300, lineHeight: 1.45 }}
+      >
         „Später" legt den Auftrag in den Aufgaben-Tab. Ablehnen kostet nichts, steht aber im Feed.
       </div>
     </div>

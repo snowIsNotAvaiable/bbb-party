@@ -48,8 +48,8 @@ export default class Crash extends Component {
         </div>
         <div style={{ fontSize: 21, fontWeight: 600 }}>Die Anzeige hat sich verschluckt</div>
         <div style={{ fontSize: 14.5, color: '#9a9aa8', maxWidth: 320, lineHeight: 1.5 }}>
-          Deine Punkte und deine laufende Aufgabe liegen auf dem Server, nicht auf deinem Handy.
-          Neu laden kostet dich also nichts.
+          Deine Punkte und deine laufende Aufgabe liegen auf dem Server, nicht auf deinem Handy. Neu laden
+          kostet dich also nichts.
         </div>
         <button
           onClick={() => location.reload()}
@@ -67,7 +67,9 @@ export default class Crash extends Component {
         >
           Neu laden
         </button>
-        <div style={{ fontSize: 11, color: '#5f6375', marginTop: 10, maxWidth: 320, wordBreak: 'break-word' }}>
+        <div
+          style={{ fontSize: 11, color: '#5f6375', marginTop: 10, maxWidth: 320, wordBreak: 'break-word' }}
+        >
           {String(this.state.err?.message || this.state.err)}
         </div>
       </div>

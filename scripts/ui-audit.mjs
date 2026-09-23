@@ -71,10 +71,12 @@ const cleanup = async () => {
   const ends = [];
   for (const proc of [server, browser]) {
     if (!proc) continue;
-    ends.push(new Promise((r) => {
-      proc.once('exit', r);
-      setTimeout(r, 3000);
-    }));
+    ends.push(
+      new Promise((r) => {
+        proc.once('exit', r);
+        setTimeout(r, 3000);
+      }),
+    );
     proc.kill('SIGTERM');
   }
   server = null;
@@ -87,7 +89,11 @@ const cleanup = async () => {
     /* Das Betriebssystem räumt /tmp selbst auf */
   }
 };
-for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, async () => { await cleanup(); process.exit(130); });
+for (const sig of ['SIGINT', 'SIGTERM'])
+  process.on(sig, async () => {
+    await cleanup();
+    process.exit(130);
+  });
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -170,8 +176,28 @@ class Client {
 }
 
 // Lange Namen, große Zahlen, volle Listen: der unbequemste realistische Fall.
-const NAMES = ['Maximiliane-Charlott', 'Ben', 'Cem', 'Dana', 'Emre', 'Finja', 'Gino', 'Hana', 'Ilay', 'Jo', 'Kira'];
-const avatar = (i) => ({ skin: i % 8, hair: (i * 3) % 8, style: i % 6, acc: (i * 2) % 6, outfit: (i * 5) % 8, fur: i % 12, pattern: i % 5 });
+const NAMES = [
+  'Maximiliane-Charlott',
+  'Ben',
+  'Cem',
+  'Dana',
+  'Emre',
+  'Finja',
+  'Gino',
+  'Hana',
+  'Ilay',
+  'Jo',
+  'Kira',
+];
+const avatar = (i) => ({
+  skin: i % 8,
+  hair: (i * 3) % 8,
+  style: i % 6,
+  acc: (i * 2) % 6,
+  outfit: (i * 5) % 8,
+  fur: i % 12,
+  pattern: i % 5,
+});
 
 const players = [];
 for (const [i, name] of NAMES.entries()) {
@@ -216,21 +242,29 @@ await sleep(250);
 
 /* ── Browser ───────────────────────────────────────────────── */
 
-browser = spawn(chrome, [
-  '--headless=new',
-  `--remote-debugging-port=${DEBUG_PORT}`,
-  '--disable-gpu',
-  '--hide-scrollbars',
-  '--no-first-run',
-  '--no-default-browser-check',
-  `--user-data-dir=${path.join(tmp, 'chrome')}`,
-  'about:blank',
-], { stdio: 'ignore' });
+browser = spawn(
+  chrome,
+  [
+    '--headless=new',
+    `--remote-debugging-port=${DEBUG_PORT}`,
+    '--disable-gpu',
+    '--hide-scrollbars',
+    '--no-first-run',
+    '--no-default-browser-check',
+    `--user-data-dir=${path.join(tmp, 'chrome')}`,
+    'about:blank',
+  ],
+  { stdio: 'ignore' },
+);
 
-const target = await waitFor(async () => {
-  const list = await (await fetch(`http://127.0.0.1:${DEBUG_PORT}/json/list`)).json();
-  return list.find((t) => t.type === 'page');
-}, 20000, 'Chrome');
+const target = await waitFor(
+  async () => {
+    const list = await (await fetch(`http://127.0.0.1:${DEBUG_PORT}/json/list`)).json();
+    return list.find((t) => t.type === 'page');
+  },
+  20000,
+  'Chrome',
+);
 
 const cdp = new WebSocket(target.webSocketDebuggerUrl, { maxPayload: 256 * 1024 * 1024 });
 let msgId = 1;
@@ -256,12 +290,14 @@ cdp.on('message', (raw) => {
     errors.push(`CON ${m.params.args.map((a) => a.value || a.description).join(' ')}`);
   }
 });
-const cmd = (method, params = {}) => new Promise((r) => {
-  const i = msgId++;
-  waiting.set(i, r);
-  cdp.send(JSON.stringify({ id: i, method, params }));
-});
-const ev = async (e) => (await cmd('Runtime.evaluate', { expression: e, returnByValue: true })).result.result.value;
+const cmd = (method, params = {}) =>
+  new Promise((r) => {
+    const i = msgId++;
+    waiting.set(i, r);
+    cdp.send(JSON.stringify({ id: i, method, params }));
+  });
+const ev = async (e) =>
+  (await cmd('Runtime.evaluate', { expression: e, returnByValue: true })).result.result.value;
 await cmd('Runtime.enable');
 await cmd('Log.enable');
 await cmd('Page.enable');
@@ -336,16 +372,25 @@ async function inspect(label, w) {
   if (errors.length) bad.push(`Konsole: ${errors.slice(0, 2).join(' | ')}`);
   if (bad.length) problems += 1;
   rows.push({ label, w, ok: bad.length === 0, bad });
-  console.log(`${bad.length ? ' !! ' : ' ok '} ${String(w).padStart(3)}px  ${label.padEnd(28)}${bad.join('  ')}`);
+  console.log(
+    `${bad.length ? ' !! ' : ' ok '} ${String(w).padStart(3)}px  ${label.padEnd(28)}${bad.join('  ')}`,
+  );
   if (SHOTS) {
     const s = await cmd('Page.captureScreenshot', { format: 'png' });
-    fs.writeFileSync(path.join(shotDir, `${w}-${label.replace(/[^\w]+/g, '-')}.png`), Buffer.from(s.result.data, 'base64'));
+    fs.writeFileSync(
+      path.join(shotDir, `${w}-${label.replace(/[^\w]+/g, '-')}.png`),
+      Buffer.from(s.result.data, 'base64'),
+    );
   }
   errors = [];
 }
 
-const clickExact = (label) => ev(`(()=>{const b=[...document.querySelectorAll('button,[role=tab]')].find(x=>x.textContent.trim()===${JSON.stringify(label)}); if(b){b.click();return true} return false})()`);
-const clickMatch = (re) => ev(`[...document.querySelectorAll('button')].find(b=>/${re}/.test(b.textContent))?.click()`);
+const clickExact = (label) =>
+  ev(
+    `(()=>{const b=[...document.querySelectorAll('button,[role=tab]')].find(x=>x.textContent.trim()===${JSON.stringify(label)}); if(b){b.click();return true} return false})()`,
+  );
+const clickMatch = (re) =>
+  ev(`[...document.querySelectorAll('button')].find(b=>/${re}/.test(b.textContent))?.click()`);
 const goto = async (url, ms = 1700) => {
   await cmd('Page.navigate', { url });
   await sleep(ms);
@@ -353,7 +398,12 @@ const goto = async (url, ms = 1700) => {
 
 for (const [w, h, device] of WIDTHS) {
   console.log(`\n── ${device} (${w}×${h}) ${'─'.repeat(Math.max(0, 30 - device.length))}`);
-  await cmd('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: 2, mobile: true });
+  await cmd('Emulation.setDeviceMetricsOverride', {
+    width: w,
+    height: h,
+    deviceScaleFactor: 2,
+    mobile: true,
+  });
 
   // Beitritt, ohne gespeicherten Spieler
   await goto(`http://127.0.0.1:${PORT}/`, 1200);
@@ -404,7 +454,9 @@ for (const [w, h, device] of WIDTHS) {
   // Admin
   await goto(`http://127.0.0.1:${PORT}/admin`, 1600);
   await inspect('Admin: PIN', w);
-  await ev(`(()=>{const i=document.querySelector('input');const s=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;s.call(i,'2409');i.dispatchEvent(new Event('input',{bubbles:true}));})()`);
+  await ev(
+    `(()=>{const i=document.querySelector('input');const s=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;s.call(i,'2409');i.dispatchEvent(new Event('input',{bubbles:true}));})()`,
+  );
   await sleep(250);
   await ev(`[...document.querySelectorAll('button')].at(-1).click()`);
   await sleep(1100);
@@ -434,7 +486,9 @@ for (const [w, h, device] of WIDTHS) {
   await inspect('Seite: Rückblick', w);
 }
 
-console.log(`\n${problems === 0 ? '✅ Kein Layout- oder Konsolenproblem gefunden.' : `❌ ${problems} von ${rows.length} Ansichten auffällig.`}`);
+console.log(
+  `\n${problems === 0 ? '✅ Kein Layout- oder Konsolenproblem gefunden.' : `❌ ${problems} von ${rows.length} Ansichten auffällig.`}`,
+);
 console.log(`   ${rows.length} Ansichten auf ${WIDTHS.length} Breiten geprüft.`);
 if (SHOTS) console.log(`   Screenshots: ${shotDir}`);
 await cleanup();

@@ -77,7 +77,9 @@ export default function FeedTab({ state }) {
             <div style={{ fontSize: 11, color: 'var(--text-faint)', marginTop: 3 }}>{relativeTime(f.ts)}</div>
           </div>
           {!!f.delta && (
-            <div style={{ fontSize: 16, fontWeight: 700, color: FG[f.kind] || FG.neutral, alignSelf: 'center' }}>
+            <div
+              style={{ fontSize: 16, fontWeight: 700, color: FG[f.kind] || FG.neutral, alignSelf: 'center' }}
+            >
               {f.delta > 0 ? `+${f.delta}` : f.delta}
             </div>
           )}
@@ -89,7 +91,10 @@ export default function FeedTab({ state }) {
         <InfoBox
           title="Im Feed steht alles"
           tone="accent"
-          lines={['Käufe, Wetten und abgelehnte Sonderaufträge inklusive.', 'Anonyme Sabotage gibt es hier nicht.']}
+          lines={[
+            'Käufe, Wetten und abgelehnte Sonderaufträge inklusive.',
+            'Anonyme Sabotage gibt es hier nicht.',
+          ]}
         />
       )}
       <div style={{ height: 16 }} />
@@ -108,7 +113,14 @@ export function Pill({ label, value, color }) {
         boxShadow: '0 0 0 1px var(--line-2)',
       }}
     >
-      <div style={{ fontSize: 9, letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--text-dim-2)' }}>
+      <div
+        style={{
+          fontSize: 9,
+          letterSpacing: '.15em',
+          textTransform: 'uppercase',
+          color: 'var(--text-dim-2)',
+        }}
+      >
         {label}
       </div>
       <div style={{ fontSize: 20, fontWeight: 700, color: color || 'var(--text)' }}>{value}</div>
@@ -118,16 +130,36 @@ export function Pill({ label, value, color }) {
 
 /** Hinweiskasten, der als Liste umbricht statt als Textblock. */
 export function InfoBox({ title, lines, tone = 'gold' }) {
-  const c = tone === 'gold'
-    ? { bg: 'rgba(217,192,143,.08)', line: '#4a422c', head: 'var(--gold)', text: '#d3c19a' }
-    : { bg: 'rgba(145,132,217,.08)', line: '#3b3560', head: 'var(--accent-light)', text: '#b7b0d8' };
+  const c =
+    tone === 'gold'
+      ? { bg: 'rgba(217,192,143,.08)', line: '#4a422c', head: 'var(--gold)', text: '#d3c19a' }
+      : { bg: 'rgba(145,132,217,.08)', line: '#3b3560', head: 'var(--accent-light)', text: '#b7b0d8' };
   return (
-    <div style={{ marginTop: 16, padding: '14px 16px', borderRadius: 15, background: c.bg, boxShadow: `0 0 0 1px ${c.line}` }}>
-      <div style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: c.head, marginBottom: 9 }}>
+    <div
+      style={{
+        marginTop: 16,
+        padding: '14px 16px',
+        borderRadius: 15,
+        background: c.bg,
+        boxShadow: `0 0 0 1px ${c.line}`,
+      }}
+    >
+      <div
+        style={{
+          fontSize: 10,
+          letterSpacing: '.16em',
+          textTransform: 'uppercase',
+          color: c.head,
+          marginBottom: 9,
+        }}
+      >
         {title}
       </div>
       {lines.map((l) => (
-        <div key={l} style={{ display: 'flex', gap: 9, fontSize: 13, color: c.text, lineHeight: 1.5, marginBottom: 4 }}>
+        <div
+          key={l}
+          style={{ display: 'flex', gap: 9, fontSize: 13, color: c.text, lineHeight: 1.5, marginBottom: 4 }}
+        >
           <span style={{ color: c.head }}>·</span>
           <span className="bbb-prose">{l}</span>
         </div>

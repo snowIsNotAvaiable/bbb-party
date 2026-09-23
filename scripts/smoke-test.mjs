@@ -220,7 +220,10 @@ async function run() {
   res = await a.act('pickLevel', { level: 5 });
   await wait(60);
   check('Status ist reveal', a.state.turn.status === 'reveal', a.state.turn.status);
-  check('Aufgabentext jetzt da', typeof a.state.turn.revealText === 'string' && a.state.turn.revealText.length > 0);
+  check(
+    'Aufgabentext jetzt da',
+    typeof a.state.turn.revealText === 'string' && a.state.turn.revealText.length > 0,
+  );
 
   await a.act('taskDone');
   await wait(80);
@@ -308,7 +311,11 @@ async function run() {
   // Karte durchziehen: der Zähler startet danach wieder bei drei
   await b.act('taskDone');
   await wait(100);
-  check('Zähler setzt sich nach der Karte zurück', b.state.me.rerollsLeft === 3, String(b.state.me.rerollsLeft));
+  check(
+    'Zähler setzt sich nach der Karte zurück',
+    b.state.me.rerollsLeft === 3,
+    String(b.state.me.rerollsLeft),
+  );
   check('Faktor wieder bei 1', b.state.me.nextRerollFactor === 1, String(b.state.me.nextRerollFactor));
 
   console.log('\n── Black Market: Einsatz und Auflösung ───────────');
@@ -325,17 +332,36 @@ async function run() {
 
   await c.act('acceptBet', { betId });
   await wait(100);
-  check('Einsatz bei A sofort abgezogen', scoreOf(a, a.playerId) === aBefore - 10, String(scoreOf(a, a.playerId)));
-  check('Einsatz bei C sofort abgezogen', scoreOf(c, c.playerId) === cBefore - 10, String(scoreOf(c, c.playerId)));
+  check(
+    'Einsatz bei A sofort abgezogen',
+    scoreOf(a, a.playerId) === aBefore - 10,
+    String(scoreOf(a, a.playerId)),
+  );
+  check(
+    'Einsatz bei C sofort abgezogen',
+    scoreOf(c, c.playerId) === cBefore - 10,
+    String(scoreOf(c, c.playerId)),
+  );
   check('kein Escrow mehr im Snapshot', a.state.me.escrow === undefined, String(a.state.me.escrow));
 
   await a.act('voteBet', { betId, winnerId: a.playerId });
   await wait(60);
-  check('einseitige Stimme löst noch nicht auf', a.state.bets.find((x) => x.id === betId)?.status === 'running');
+  check(
+    'einseitige Stimme löst noch nicht auf',
+    a.state.bets.find((x) => x.id === betId)?.status === 'running',
+  );
   await c.act('voteBet', { betId, winnerId: a.playerId });
   await wait(100);
-  check('Gewinner holt den ganzen Pott', scoreOf(a, a.playerId) === aBefore + 10, String(scoreOf(a, a.playerId)));
-  check('Verlierer bleibt beim Einsatz-Minus', scoreOf(c, c.playerId) === cBefore - 10, String(scoreOf(c, c.playerId)));
+  check(
+    'Gewinner holt den ganzen Pott',
+    scoreOf(a, a.playerId) === aBefore + 10,
+    String(scoreOf(a, a.playerId)),
+  );
+  check(
+    'Verlierer bleibt beim Einsatz-Minus',
+    scoreOf(c, c.playerId) === cBefore - 10,
+    String(scoreOf(c, c.playerId)),
+  );
 
   console.log('\n── Shop: Kauf, Effekt, Stapel-Sperre ─────────────');
   const host = new Client('host');
@@ -354,12 +380,32 @@ async function run() {
   await host.admin('saveCatalog', {
     kind: 'shopItems',
     list: [
-      { id: 'item-forcelevel', icon: '🔟', name: 'Zwangsstufe', description: 'Test',
-        price: 20, requiresTarget: true, targetSelf: false, durationMin: null,
-        consumesOn: 'NEXT_CARD_DRAWN', effect: 'forceLevel10', enabled: true },
-      { id: 'item-rerollblock', icon: '🚫', name: 'Reroll-Sperre', description: 'Test',
-        price: 15, requiresTarget: true, targetSelf: false, durationMin: null,
-        consumesOn: 'TASK_END', effect: 'rerollBlock', enabled: true },
+      {
+        id: 'item-forcelevel',
+        icon: '🔟',
+        name: 'Zwangsstufe',
+        description: 'Test',
+        price: 20,
+        requiresTarget: true,
+        targetSelf: false,
+        durationMin: null,
+        consumesOn: 'NEXT_CARD_DRAWN',
+        effect: 'forceLevel10',
+        enabled: true,
+      },
+      {
+        id: 'item-rerollblock',
+        icon: '🚫',
+        name: 'Reroll-Sperre',
+        description: 'Test',
+        price: 15,
+        requiresTarget: true,
+        targetSelf: false,
+        durationMin: null,
+        consumesOn: 'TASK_END',
+        effect: 'rerollBlock',
+        enabled: true,
+      },
     ],
   });
   await wait(150);
@@ -370,7 +416,10 @@ async function run() {
   await wait(100);
   check('Zwangsstufe gekauft', !buy.error, buy.error);
   check('Preis abgezogen', scoreOf(a, a.playerId) === aPre - 20, String(scoreOf(a, a.playerId)));
-  check('Effekt liegt beim Ziel', c.state.effects.some((e) => e.effect === 'forceLevel10'));
+  check(
+    'Effekt liegt beim Ziel',
+    c.state.effects.some((e) => e.effect === 'forceLevel10'),
+  );
   const stack = await b.act('buyItem', { itemId: 'item-rerollblock', targetId: c.playerId });
   check('nur ein Fremdeffekt gleichzeitig', !!stack.error, stack.error);
   const self = await a.act('buyItem', { itemId: 'item-forcelevel', targetId: a.playerId });
@@ -408,7 +457,11 @@ async function run() {
   await b.act('wildcardAccept');
   await wait(100);
   check('Ruf angenommen, Reveal läuft', b.state.turn.status === 'reveal' && b.state.turn.kind === 'wildcard');
-  check('zwei Beobachter beim Ruf', b.state.turn.observers.length === 2, String(b.state.turn.observers.length));
+  check(
+    'zwei Beobachter beim Ruf',
+    b.state.turn.observers.length === 2,
+    String(b.state.turn.observers.length),
+  );
   const noReroll = await b.act('reroll');
   check('Ruf lässt sich nicht rerollen', !!noReroll.error, noReroll.error);
 
@@ -421,7 +474,11 @@ async function run() {
   check('ein Beobachter reicht nicht', scoreOf(b, b.playerId) === bPre, String(scoreOf(b, b.playerId)));
   await wildObservers[1].act('confirmClaim', { claimId: wildObservers[1].state.observations.at(-1).id });
   await wait(120);
-  check('25 Punkte nach beiden Bestätigungen', scoreOf(b, b.playerId) === bPre + 25, String(scoreOf(b, b.playerId)));
+  check(
+    '25 Punkte nach beiden Bestätigungen',
+    scoreOf(b, b.playerId) === bPre + 25,
+    String(scoreOf(b, b.playerId)),
+  );
 
   const adjPre = scoreOf(host, c.playerId);
   await host.admin('adjust', { targetId: c.playerId, delta: 7, note: 'Test' });
@@ -430,7 +487,11 @@ async function run() {
   const lastAdjust = host.state.events.find((e) => e.type === 'ADMIN_ADJUST');
   await host.admin('voidEvent', { eventId: lastAdjust.id, voided: true });
   await wait(100);
-  check('Entwerten macht die Korrektur rückgängig', scoreOf(host, c.playerId) === adjPre, String(scoreOf(host, c.playerId)));
+  check(
+    'Entwerten macht die Korrektur rückgängig',
+    scoreOf(host, c.playerId) === adjPre,
+    String(scoreOf(host, c.playerId)),
+  );
 
   await restoreShop();
   check('Katalog wieder wie ausgeliefert', host.state.shopItems.length === shopBackup.length);
@@ -443,7 +504,10 @@ async function run() {
   const openBet = a.state.bets.find((x) => x.status === 'open');
   await c.act('acceptBet', { betId: openBet.id });
   await wait(100);
-  check('beide haben eingezahlt', scoreOf(a, a.playerId) === rBefore - 12 && scoreOf(c, c.playerId) === sBefore - 12);
+  check(
+    'beide haben eingezahlt',
+    scoreOf(a, a.playerId) === rBefore - 12 && scoreOf(c, c.playerId) === sBefore - 12,
+  );
   await host.admin('cancelBet', { betId: openBet.id });
   await wait(120);
   check('A bekommt den Einsatz zurück', scoreOf(a, a.playerId) === rBefore, String(scoreOf(a, a.playerId)));
@@ -457,13 +521,23 @@ async function run() {
     category: 'test',
     tags: [],
     enabled: true,
-    levels: { 1: { text: 'A', timerSec: null }, 5: { text: 'B', timerSec: null }, 10: { text: 'C', timerSec: null } },
+    levels: {
+      1: { text: 'A', timerSec: null },
+      5: { text: 'B', timerSec: null },
+      10: { text: 'C', timerSec: null },
+    },
   });
   await host.admin('saveCatalog', { kind: 'cards', list: cards });
   await wait(120);
-  check('Karte gespeichert', host.state.cards.some((x) => x.id === 'card-test'));
+  check(
+    'Karte gespeichert',
+    host.state.cards.some((x) => x.id === 'card-test'),
+  );
   // Testkarte wieder entfernen, damit der echte Katalog sauber bleibt
-  await host.admin('saveCatalog', { kind: 'cards', list: host.state.cards.filter((x) => x.id !== 'card-test') });
+  await host.admin('saveCatalog', {
+    kind: 'cards',
+    list: host.state.cards.filter((x) => x.id !== 'card-test'),
+  });
   await wait(120);
   check('Testkarte wieder entfernt', !host.state.cards.some((x) => x.id === 'card-test'));
 
@@ -486,14 +560,23 @@ async function run() {
 
   const sheetRes = await fetch(`${base}/spickzettel`);
   const sheet = await sheetRes.text();
-  check('Spickzettel kommt als HTML', sheetRes.ok && /text\/html/.test(sheetRes.headers.get('content-type') || ''));
+  check(
+    'Spickzettel kommt als HTML',
+    sheetRes.ok && /text\/html/.test(sheetRes.headers.get('content-type') || ''),
+  );
   check('Spickzettel nennt die PIN', sheet.includes('2409'));
   check('Spickzettel nennt die Adresse', sheet.includes(health.url));
-  check('Spickzettel braucht kein Netz', !/https?:\/\/(?!127\.|10\.|192\.168\.)/.test(sheet.replace(/http:\/\/[0-9.]+:\d+/g, '')));
+  check(
+    'Spickzettel braucht kein Netz',
+    !/https?:\/\/(?!127\.|10\.|192\.168\.)/.test(sheet.replace(/http:\/\/[0-9.]+:\d+/g, '')),
+  );
 
   const recapRes = await fetch(`${base}/rueckblick`);
   const recapHtml = await recapRes.text();
-  check('Rückblick kommt als HTML', recapRes.ok && /text\/html/.test(recapRes.headers.get('content-type') || ''));
+  check(
+    'Rückblick kommt als HTML',
+    recapRes.ok && /text\/html/.test(recapRes.headers.get('content-type') || ''),
+  );
   check('Rückblick nennt den Endstand', recapHtml.includes('Endstand'));
   check('Rückblick zählt die Spieler', recapHtml.includes('Mitgespielt'));
   check('Rückblick nennt einen Namen aus der Runde', recapHtml.includes(host.state.players[0].name));
@@ -503,7 +586,10 @@ async function run() {
   const dump = await fetch(`${base}/api/export/state`);
   const dumpBody = await dump.json();
   check('Spielstand-Download kommt an', dump.ok);
-  check('Download hat einen Dateinamen', /bbb-spielstand-/.test(dump.headers.get('content-disposition') || ''));
+  check(
+    'Download hat einen Dateinamen',
+    /bbb-spielstand-/.test(dump.headers.get('content-disposition') || ''),
+  );
   check('Download enthält die Spieler', Array.isArray(dumpBody.players) && dumpBody.players.length > 0);
   check('Download enthält das Protokoll', Array.isArray(dumpBody.events));
 
@@ -534,7 +620,11 @@ async function run() {
     for (let i = 0; i < 5; i += 1) {
       versuche.push(await knacker.send({ type: 'hello', role: 'admin', pin: String(1000 + i) }));
     }
-    check('Erster Fehlversuch sagt nur „falsch"', /Falsche PIN/.test(versuche[0].error || ''), versuche[0].error);
+    check(
+      'Erster Fehlversuch sagt nur „falsch"',
+      /Falsche PIN/.test(versuche[0].error || ''),
+      versuche[0].error,
+    );
     check('Später wird gebremst', /Zu viele Versuche/.test(versuche[4].error || ''), versuche[4].error);
     check('Die Bremse nennt eine Wartezeit', /\d+ Sekunden/.test(versuche[4].error || ''), versuche[4].error);
 
@@ -611,7 +701,10 @@ async function run() {
   check('Phase beendet', host.state.phase === 'ended', host.state.phase);
   check('Podium gefüllt', host.state.result.podium.length === 3, String(host.state.result?.podium?.length));
   check('Verlierertabelle vorhanden', Array.isArray(host.state.result.losers));
-  check('Podium ist absteigend sortiert', host.state.result.podium[0].score >= host.state.result.podium[1].score);
+  check(
+    'Podium ist absteigend sortiert',
+    host.state.result.podium[0].score >= host.state.result.podium[1].score,
+  );
 
   await host.admin('resetParty');
   await wait(120);
@@ -619,29 +712,29 @@ async function run() {
 
   for (const cl of [b, c, again, host]) cl.close();
 
-  console.log(`\n${failures === 0 ? '✅ Alle Prüfungen bestanden.' : `❌ ${failures} Prüfung(en) fehlgeschlagen.`}\n`);
+  console.log(
+    `\n${failures === 0 ? '✅ Alle Prüfungen bestanden.' : `❌ ${failures} Prüfung(en) fehlgeschlagen.`}\n`,
+  );
   await stopServer();
   process.exit(failures === 0 ? 0 : 1);
 }
 
 const boot = OWN_SERVER ? startServer() : Promise.resolve();
 
-boot
-  .then(run)
-  .catch(async (err) => {
-    console.error(err);
-    // Ein Abbruch darf den echten Katalog nicht mit Testdaten zurücklassen.
-    if (restoreShop) {
-      try {
-        await restoreShop();
-        console.error('[aufräumen] Shop-Katalog wiederhergestellt.');
-      } catch (e) {
-        console.error('[aufräumen] Shop-Katalog NICHT wiederhergestellt:', e.message);
-      }
+boot.then(run).catch(async (err) => {
+  console.error(err);
+  // Ein Abbruch darf den echten Katalog nicht mit Testdaten zurücklassen.
+  if (restoreShop) {
+    try {
+      await restoreShop();
+      console.error('[aufräumen] Shop-Katalog wiederhergestellt.');
+    } catch (e) {
+      console.error('[aufräumen] Shop-Katalog NICHT wiederhergestellt:', e.message);
     }
-    await stopServer();
-    process.exit(1);
-  });
+  }
+  await stopServer();
+  process.exit(1);
+});
 
 for (const sig of ['SIGINT', 'SIGTERM']) {
   process.on(sig, async () => {

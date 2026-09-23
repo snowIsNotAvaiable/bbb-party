@@ -129,9 +129,20 @@ function BlackMarket({ state, run }) {
           <div
             key={b.id}
             className="bbb-card"
-            style={{ marginBottom: 12, padding: 16, animation: `bbbSlideUp .4s ${Math.min(i, 6) * 0.04}s both` }}
+            style={{
+              marginBottom: 12,
+              padding: 16,
+              animation: `bbbSlideUp .4s ${Math.min(i, 6) * 0.04}s both`,
+            }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 10,
+              }}
+            >
               <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>
                 {b.acceptedByName
                   ? `${b.createdByName} ↔ ${b.acceptedByName}`
@@ -155,7 +166,10 @@ function BlackMarket({ state, run }) {
               </div>
             </div>
 
-            <div className="bbb-prose" style={{ fontSize: 17, lineHeight: 1.42, marginBottom: 14, fontWeight: 500 }}>
+            <div
+              className="bbb-prose"
+              style={{ fontSize: 17, lineHeight: 1.42, marginBottom: 14, fontWeight: 500 }}
+            >
               „{b.text}"
             </div>
 
@@ -221,7 +235,12 @@ function BetForm({ form, setForm, cap, others, onSubmit }) {
   return (
     <div
       className="bbb-card"
-      style={{ marginBottom: 14, padding: 17, boxShadow: '0 0 0 1px var(--rose)', animation: 'bbbPop .3s both' }}
+      style={{
+        marginBottom: 14,
+        padding: 17,
+        boxShadow: '0 0 0 1px var(--rose)',
+        animation: 'bbbPop .3s both',
+      }}
     >
       <div className="bbb-label" style={{ marginBottom: 8 }}>
         Worauf wettest du?
@@ -257,7 +276,11 @@ function BetForm({ form, setForm, cap, others, onSubmit }) {
           alle
         </Chip>
         {others.map((p) => (
-          <Chip key={p.id} active={form.opponentId === p.id} onClick={() => setForm({ ...form, opponentId: p.id })}>
+          <Chip
+            key={p.id}
+            active={form.opponentId === p.id}
+            onClick={() => setForm({ ...form, opponentId: p.id })}
+          >
             {p.name}
           </Chip>
         ))}
@@ -336,7 +359,10 @@ function Shop({ state, run }) {
           >
             <div style={{ fontSize: 26 }}>{item.icon}</div>
             <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.2 }}>{item.name}</div>
-            <div className="bbb-prose" style={{ fontSize: 12, color: 'var(--text-dim-2)', lineHeight: 1.4, flex: 1 }}>
+            <div
+              className="bbb-prose"
+              style={{ fontSize: 12, color: 'var(--text-dim-2)', lineHeight: 1.4, flex: 1 }}
+            >
               {item.description}
             </div>
             <div
@@ -413,7 +439,13 @@ function Shop({ state, run }) {
             <button
               className="bbb-btn"
               onClick={() => setTarget(null)}
-              style={{ marginTop: 18, width: '100%', padding: 14, borderRadius: 13, color: 'var(--text-muted)' }}
+              style={{
+                marginTop: 18,
+                width: '100%',
+                padding: 14,
+                borderRadius: 13,
+                color: 'var(--text-muted)',
+              }}
             >
               Abbrechen
             </button>

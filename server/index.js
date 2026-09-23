@@ -52,7 +52,11 @@ app.get('/api/health', (_req, res) => {
 
 app.get('/api/qr.png', async (_req, res) => {
   try {
-    const buf = await QRCode.toBuffer(partyUrl(), { width: 720, margin: 2, color: { dark: '#0f101a', light: '#ffffff' } });
+    const buf = await QRCode.toBuffer(partyUrl(), {
+      width: 720,
+      margin: 2,
+      color: { dark: '#0f101a', light: '#ffffff' },
+    });
     res.type('png').send(buf);
   } catch (err) {
     res.status(500).send(err.message);
@@ -84,7 +88,9 @@ app.get('/api/export/:kind', (req, res) => {
 
 /** Der Spickzettel zum Ausdrucken (siehe server/sheet.js). */
 app.get('/spickzettel', (_req, res) => {
-  res.type('html').send(cheatSheet({ url: partyUrl(), pin: getConfig().hostPin, config: getConfig(), catalog }));
+  res
+    .type('html')
+    .send(cheatSheet({ url: partyUrl(), pin: getConfig().hostPin, config: getConfig(), catalog }));
 });
 
 /** Der Rückblick für den Morgen danach (siehe server/recap.js). */
@@ -100,7 +106,9 @@ if (fs.existsSync(CLIENT_DIST)) {
     res
       .status(503)
       .type('html')
-      .send('<h1>Client noch nicht gebaut</h1><p>Erst <code>npm run build</code> laufen lassen, dann neu starten.</p>'),
+      .send(
+        '<h1>Client noch nicht gebaut</h1><p>Erst <code>npm run build</code> laufen lassen, dann neu starten.</p>',
+      ),
   );
 }
 
@@ -173,7 +181,9 @@ const ADMIN_ACTIONS = {
     return { ok: true };
   },
   saveCatalog: (g, m) => {
-    if (!['cards', 'wildcards', 'shopItems', 'penalties', 'specials', 'prizes', 'punishments'].includes(m.kind)) {
+    if (
+      !['cards', 'wildcards', 'shopItems', 'penalties', 'specials', 'prizes', 'punishments'].includes(m.kind)
+    ) {
       return { error: 'Unbekannter Katalog.' };
     }
     if (!Array.isArray(m.list)) return { error: 'Liste erwartet.' };
@@ -312,10 +322,11 @@ server.listen(PORT, '0.0.0.0', async () => {
   const addresses = lanAddresses();
 
   console.log('');
-  console.log('  🎀  BBB · Buki\'s Birthday Bash');
+  console.log("  🎀  BBB · Buki's Birthday Bash");
   console.log('  ─────────────────────────────────────────');
   console.log(`  Gäste:          ${url}`);
-  for (const a of addresses.slice(1)) console.log(`  auch über:      http://${a.address}:${PORT}  (${a.name})`);
+  for (const a of addresses.slice(1))
+    console.log(`  auch über:      http://${a.address}:${PORT}  (${a.name})`);
   console.log(`  Host-Admin:     ${url}/admin        PIN ${getConfig().hostPin}`);
   console.log('  ─────────────────────────────────────────');
   console.log('  Auf diesem MacBook geht auch http://localhost:' + PORT + '.');
@@ -345,8 +356,14 @@ server.listen(PORT, '0.0.0.0', async () => {
     Preise: catalog.enabled('prizes').length,
     Strafen: catalog.enabled('punishments').length,
   };
-  const leer = Object.entries(counts).filter(([, n]) => n === 0).map(([k]) => k);
-  console.log(`  Katalog: ${Object.entries(counts).map(([k, n]) => `${n} ${k}`).join(', ')}`);
+  const leer = Object.entries(counts)
+    .filter(([, n]) => n === 0)
+    .map(([k]) => k);
+  console.log(
+    `  Katalog: ${Object.entries(counts)
+      .map(([k, n]) => `${n} ${k}`)
+      .join(', ')}`,
+  );
   if (leer.length) console.log(`  ⚠️  Leer und damit wirkungslos: ${leer.join(', ')}`);
   console.log('');
 
@@ -381,7 +398,9 @@ for (const sig of ['SIGINT', 'SIGTERM']) {
  */
 function survive(kind, err) {
   console.error(`\n[bbb] ${kind}:`, err);
-  console.error('[bbb] Der Server läuft weiter. Bitte im Admin prüfen, ob die letzte Aktion angekommen ist.\n');
+  console.error(
+    '[bbb] Der Server läuft weiter. Bitte im Admin prüfen, ob die letzte Aktion angekommen ist.\n',
+  );
   try {
     persistNow(game.state);
   } catch (e) {

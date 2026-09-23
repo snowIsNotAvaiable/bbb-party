@@ -111,7 +111,9 @@ export default function SpecialOverlay({ special, onClose }) {
           Special Card
         </div>
         <div style={{ fontSize: 40, marginBottom: 8 }}>{special.icon}</div>
-        <div style={{ fontSize: 25, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.15 }}>{special.name}</div>
+        <div style={{ fontSize: 25, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.15 }}>
+          {special.name}
+        </div>
         <div
           className="bbb-prose"
           style={{ fontSize: 14, color: 'var(--text-soft)', lineHeight: 1.55, marginTop: 10 }}

@@ -12,7 +12,12 @@ const PODIUM = [
   { height: 58, color: 'var(--rose)', tint: 'rgba(201,143,174,.16)' },
 ];
 
-const BUCKET_TINT = ['rgba(143,201,180,.10)', 'rgba(145,132,217,.10)', 'rgba(201,143,174,.10)', 'rgba(201,143,174,.18)'];
+const BUCKET_TINT = [
+  'rgba(143,201,180,.10)',
+  'rgba(145,132,217,.10)',
+  'rgba(201,143,174,.10)',
+  'rgba(201,143,174,.18)',
+];
 const BUCKET_LINE = ['var(--mint)', 'var(--accent-lighter)', 'var(--rose)', 'var(--rose)'];
 
 export default function ResultOverlay({ result, meId, onClose }) {
@@ -36,7 +41,8 @@ export default function ResultOverlay({ result, meId, onClose }) {
         inset: 0,
         zIndex: 95,
         background: 'radial-gradient(90% 60% at 50% 12%,#2b2741,#100f18 70%)',
-        padding: 'max(46px, calc(env(safe-area-inset-top) + 14px)) 20px calc(28px + env(safe-area-inset-bottom))',
+        padding:
+          'max(46px, calc(env(safe-area-inset-top) + 14px)) 20px calc(28px + env(safe-area-inset-bottom))',
         textAlign: 'center',
       }}
     >
@@ -69,14 +75,23 @@ export default function ResultOverlay({ result, meId, onClose }) {
           const style = PODIUM[idx];
           return (
             <div key={p.id} style={{ flex: 1, maxWidth: 108 }}>
-              <div style={{ width: 52, height: 52, margin: '0 auto 8px', animation: 'bbbFloat 3.4s ease-in-out infinite' }}>
+              <div
+                style={{
+                  width: 52,
+                  height: 52,
+                  margin: '0 auto 8px',
+                  animation: 'bbbFloat 3.4s ease-in-out infinite',
+                }}
+              >
                 <img className="bbb-pixel" src={avatarUrl(p.cfg)} alt="" />
               </div>
               <div style={{ fontSize: 14, fontWeight: 500, marginBottom: 2 }}>
                 {p.name}
                 {p.id === meId ? ' (du)' : ''}
               </div>
-              <div style={{ fontSize: 18, fontWeight: 600, color: style.color, marginBottom: 6 }}>{p.score}</div>
+              <div style={{ fontSize: 18, fontWeight: 600, color: style.color, marginBottom: 6 }}>
+                {p.score}
+              </div>
               <div
                 style={{
                   height: style.height,
@@ -120,11 +135,16 @@ export default function ResultOverlay({ result, meId, onClose }) {
                 >
                   <div style={{ fontSize: 22, flex: 'none', lineHeight: 1.1 }}>{p.prize.icon}</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 15.5, fontWeight: 600, color: PODIUM[i].color }}>{p.prize.title}</div>
+                    <div style={{ fontSize: 15.5, fontWeight: 600, color: PODIUM[i].color }}>
+                      {p.prize.title}
+                    </div>
                     <div style={{ fontSize: 11, color: 'var(--text-dim-2)', margin: '1px 0 6px' }}>
                       Platz {i + 1}: {p.name}
                     </div>
-                    <div className="bbb-prose" style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--text-soft)' }}>
+                    <div
+                      className="bbb-prose"
+                      style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--text-soft)' }}
+                    >
                       {p.prize.text}
                     </div>
                   </div>
@@ -152,7 +172,9 @@ export default function ResultOverlay({ result, meId, onClose }) {
               <div style={{ padding: '13px 15px 11px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                   {g.punishment && <span style={{ fontSize: 18 }}>{g.punishment.icon}</span>}
-                  <span style={{ fontSize: 15.5, fontWeight: 600, color: BUCKET_LINE[g.bucket] }}>{g.label}</span>
+                  <span style={{ fontSize: 15.5, fontWeight: 600, color: BUCKET_LINE[g.bucket] }}>
+                    {g.label}
+                  </span>
                   {g.punishment && <Pips level={g.punishment.severity} color={BUCKET_LINE[g.bucket]} />}
                 </div>
                 {g.punishment && (
@@ -193,7 +215,13 @@ export default function ResultOverlay({ result, meId, onClose }) {
                       {p.name}
                       {p.id === meId ? ' (du)' : ''}
                     </div>
-                    <div style={{ fontSize: 16, fontWeight: 600, color: p.score < 0 ? 'var(--rose)' : 'var(--text)' }}>
+                    <div
+                      style={{
+                        fontSize: 16,
+                        fontWeight: 600,
+                        color: p.score < 0 ? 'var(--rose)' : 'var(--text)',
+                      }}
+                    >
                       {p.score}
                     </div>
                   </div>
@@ -204,7 +232,9 @@ export default function ResultOverlay({ result, meId, onClose }) {
         </>
       )}
 
-      <div style={{ fontSize: 44, margin: '22px 0 6px', animation: 'bbbFloat 3s ease-in-out infinite' }}>🎀</div>
+      <div style={{ fontSize: 44, margin: '22px 0 6px', animation: 'bbbFloat 3s ease-in-out infinite' }}>
+        🎀
+      </div>
       <div style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 20 }}>
         Danke fürs Mitspielen. Die Strafen holt sich der Host persönlich.
       </div>

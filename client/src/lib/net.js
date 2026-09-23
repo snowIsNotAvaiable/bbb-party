@@ -251,9 +251,15 @@ export function useConnection({ role = 'player', pin = null, enabled = true } = 
     };
   }, [role, pin, enabled]);
 
-  const send = useCallback((msg) => ref.current?.send(msg) ?? Promise.resolve({ error: 'Keine Verbindung.' }), []);
+  const send = useCallback(
+    (msg) => ref.current?.send(msg) ?? Promise.resolve({ error: 'Keine Verbindung.' }),
+    [],
+  );
 
-  const action = useCallback((name, payload = {}) => send({ type: 'action', action: name, ...payload }), [send]);
+  const action = useCallback(
+    (name, payload = {}) => send({ type: 'action', action: name, ...payload }),
+    [send],
+  );
 
   return { state, status, send, action, tokenInvalid, setTokenInvalid };
 }

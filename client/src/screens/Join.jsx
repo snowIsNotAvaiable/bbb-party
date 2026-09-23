@@ -54,7 +54,8 @@ export default function Join({ onJoin }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          padding: 'max(20px, calc(env(safe-area-inset-top) + 6px)) 16px calc(16px + env(safe-area-inset-bottom))',
+          padding:
+            'max(20px, calc(env(safe-area-inset-top) + 6px)) 16px calc(16px + env(safe-area-inset-bottom))',
           gap: 12,
         }}
       >
@@ -80,7 +81,10 @@ export default function Join({ onJoin }) {
             style={{ fontSize: 18, padding: '14px 16px', borderRadius: 14, textAlign: 'center' }}
           />
           {error && (
-            <div role="alert" style={{ marginTop: 7, fontSize: 13, color: 'var(--rose)', textAlign: 'center' }}>
+            <div
+              role="alert"
+              style={{ marginTop: 7, fontSize: 13, color: 'var(--rose)', textAlign: 'center' }}
+            >
               {error}
             </div>
           )}

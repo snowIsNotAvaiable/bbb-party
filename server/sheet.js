@@ -17,9 +17,15 @@ function row(a, b) {
 export function cheatSheet({ url, pin, config, catalog }) {
   const cfg = config;
   const cards = catalog.enabled('cards');
-  const prizes = catalog.enabled('prizes').slice().sort((a, b) => a.place - b.place);
+  const prizes = catalog
+    .enabled('prizes')
+    .slice()
+    .sort((a, b) => a.place - b.place);
   const punishments = catalog.enabled('punishments');
-  const shop = catalog.enabled('shopItems').slice().sort((a, b) => a.price - b.price);
+  const shop = catalog
+    .enabled('shopItems')
+    .slice()
+    .sort((a, b) => a.price - b.price);
 
   const heute = new Date().toLocaleDateString('de-DE', {
     weekday: 'long',
@@ -28,7 +34,8 @@ export function cheatSheet({ url, pin, config, catalog }) {
     year: 'numeric',
   });
 
-  const scaling = cfg.rerollScaling === 'exponential' ? 'verdoppelt sich jedes Mal' : 'steigt mit jedem Versuch um eins';
+  const scaling =
+    cfg.rerollScaling === 'exponential' ? 'verdoppelt sich jedes Mal' : 'steigt mit jedem Versuch um eins';
 
   const body = `
 
@@ -145,7 +152,10 @@ export function cheatSheet({ url, pin, config, catalog }) {
         ${punishments
           .slice()
           .sort((a, b) => (a.severity || 0) - (b.severity || 0))
-          .map((p) => `<tr><td class="num">${esc(p.label)}</td><td><b>${esc(p.title || '')}</b><br>${esc(p.text || '')}</td></tr>`)
+          .map(
+            (p) =>
+              `<tr><td class="num">${esc(p.label)}</td><td><b>${esc(p.title || '')}</b><br>${esc(p.text || '')}</td></tr>`,
+          )
           .join('')}
       </table>
     </div>

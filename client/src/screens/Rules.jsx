@@ -91,8 +91,12 @@ export default function Rules({ onDone }) {
           <div className="bbb-kicker" style={{ letterSpacing: '.4em' }}>
             Bevor's losgeht
           </div>
-          <div style={{ fontSize: 40, fontWeight: 800, letterSpacing: '-.04em', marginTop: 6 }}>Die Regeln</div>
-          <div style={{ fontSize: 14, color: 'var(--text-dim-2)', marginTop: 8 }}>Acht Karten, dann geht es los.</div>
+          <div style={{ fontSize: 40, fontWeight: 800, letterSpacing: '-.04em', marginTop: 6 }}>
+            Die Regeln
+          </div>
+          <div style={{ fontSize: 14, color: 'var(--text-dim-2)', marginTop: 8 }}>
+            Acht Karten, dann geht es los.
+          </div>
         </div>
 
         {RULES.map((r) => (
@@ -127,7 +131,9 @@ export default function Rules({ onDone }) {
               >
                 {r.n}
               </div>
-              <div style={{ fontSize: 19, fontWeight: 700, letterSpacing: '-.01em', lineHeight: 1.2 }}>{r.title}</div>
+              <div style={{ fontSize: 19, fontWeight: 700, letterSpacing: '-.01em', lineHeight: 1.2 }}>
+                {r.title}
+              </div>
             </div>
             <div className="bbb-prose" style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--text-muted)' }}>
               {r.body}

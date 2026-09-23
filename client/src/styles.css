@@ -61,9 +61,13 @@
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -75,7 +79,11 @@ body {
   margin: 0;
   background: var(--ground);
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
@@ -86,14 +94,23 @@ button {
   color: inherit;
 }
 
-input, textarea {
+input,
+textarea {
   font-family: inherit;
 }
 
-a { color: var(--accent-light); text-decoration: none; }
-a:hover { color: var(--accent-lighter); }
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-lighter);
+}
 
-::-webkit-scrollbar { width: 0; height: 0; }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -106,37 +123,130 @@ a:hover { color: var(--accent-lighter); }
 
 /* ── Animationen ─────────────────────────────────────────── */
 
-@keyframes bbbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes bbbFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
 @keyframes bbbGlow {
-  0%, 100% { text-shadow: 0 0 18px rgba(145, 132, 217, 0.55), 0 0 42px rgba(201, 143, 174, 0.25); }
-  50% { text-shadow: 0 0 34px rgba(201, 143, 174, 0.7), 0 0 70px rgba(145, 132, 217, 0.4); }
+  0%,
+  100% {
+    text-shadow:
+      0 0 18px rgba(145, 132, 217, 0.55),
+      0 0 42px rgba(201, 143, 174, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 34px rgba(201, 143, 174, 0.7),
+      0 0 70px rgba(145, 132, 217, 0.4);
+  }
 }
 @keyframes bbbPop {
-  0% { transform: scale(0.72); opacity: 0; }
-  60% { transform: scale(1.06); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.72);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
-@keyframes bbbRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-@keyframes bbbSpinIn { from { opacity: 0; transform: rotateY(90deg) scale(0.9); } to { opacity: 1; transform: none; } }
-@keyframes bbbShimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
-@keyframes bbbMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes bbbRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes bbbSpinIn {
+  from {
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes bbbShimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+@keyframes bbbMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 @keyframes bbbPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 143, 174, 0.45); }
-  70% { box-shadow: 0 0 0 14px rgba(201, 143, 174, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 143, 174, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(201, 143, 174, 0);
+  }
 }
 @keyframes bbbDice {
-  0% { transform: rotate(0) scale(1); }
-  25% { transform: rotate(90deg) scale(1.15); }
-  50% { transform: rotate(180deg) scale(0.92); }
-  75% { transform: rotate(270deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
+  0% {
+    transform: rotate(0) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.15);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.92);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
-@keyframes bbbRuleIn { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: none; } }
+@keyframes bbbRuleIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 @keyframes bbbBob {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-4px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
 }
-@keyframes bbbFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bbbFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .bbb-rule {
   animation: bbbRuleIn linear both;
@@ -146,7 +256,9 @@ a:hover { color: var(--accent-lighter); }
 
 /* Browser ohne scroll-driven animations lassen sie einmal beim Mount laufen. */
 @supports not (animation-timeline: view()) {
-  .bbb-rule { animation: bbbRuleIn 0.5s ease both; }
+  .bbb-rule {
+    animation: bbbRuleIn 0.5s ease both;
+  }
 }
 
 .bbb-scroll {
@@ -168,18 +280,18 @@ a:hover { color: var(--accent-lighter); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  [style*="bbbPop"],
-  [style*="bbbRise"],
-  [style*="bbbSpinIn"],
+  [style*='bbbPop'],
+  [style*='bbbRise'],
+  [style*='bbbSpinIn'],
   .bbb-rule {
     animation: bbbFade 0.2s ease both !important;
   }
-  [style*="bbbFloat"],
-  [style*="bbbBob"],
-  [style*="bbbGlow"],
-  [style*="bbbPulse"],
-  [style*="bbbShimmer"],
-  [style*="bbbMarquee"] {
+  [style*='bbbFloat'],
+  [style*='bbbBob'],
+  [style*='bbbGlow'],
+  [style*='bbbPulse'],
+  [style*='bbbShimmer'],
+  [style*='bbbMarquee'] {
     animation: none !important;
   }
 }
@@ -195,8 +307,14 @@ a:hover { color: var(--accent-lighter); }
   border-radius: 10px;
   color: var(--text);
 }
-.bbb-input::placeholder { color: var(--text-faint); }
-.bbb-input:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 1px var(--accent); }
+.bbb-input::placeholder {
+  color: var(--text-faint);
+}
+.bbb-input:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--accent);
+}
 
 .bbb-label {
   font-size: 11px;
@@ -224,11 +342,20 @@ a:hover { color: var(--accent-lighter); }
   background: transparent;
   color: var(--text);
   border-radius: var(--r-md);
-  transition: filter 0.16s ease, transform 0.12s ease;
+  transition:
+    filter 0.16s ease,
+    transform 0.12s ease;
 }
-.bbb-btn:hover:not(:disabled) { filter: brightness(1.14); }
-.bbb-btn:active:not(:disabled) { transform: scale(0.985); }
-.bbb-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.bbb-btn:hover:not(:disabled) {
+  filter: brightness(1.14);
+}
+.bbb-btn:active:not(:disabled) {
+  transform: scale(0.985);
+}
+.bbb-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 
 .bbb-primary {
   border: 1px solid var(--accent);
@@ -269,38 +396,89 @@ a:hover { color: var(--accent-lighter); }
 /* ── Zusätzliche Party-Animationen ───────────────────────── */
 
 @keyframes bbbLogoBreathe {
-  0%, 100% { transform: scale(1) rotate(-.6deg); }
-  50% { transform: scale(1.035) rotate(.6deg); }
+  0%,
+  100% {
+    transform: scale(1) rotate(-0.6deg);
+  }
+  50% {
+    transform: scale(1.035) rotate(0.6deg);
+  }
 }
 @keyframes bbbSpark {
-  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
-  40% { transform: scale(1) rotate(45deg); opacity: 1; }
-  70% { transform: scale(.5) rotate(90deg); opacity: .5; }
+  0%,
+  100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.5) rotate(90deg);
+    opacity: 0.5;
+  }
 }
 @keyframes bbbTabPop {
-  0% { transform: translateY(0) scale(1); }
-  45% { transform: translateY(-5px) scale(1.16); }
-  100% { transform: translateY(-2px) scale(1.06); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-5px) scale(1.16);
+  }
+  100% {
+    transform: translateY(-2px) scale(1.06);
+  }
 }
 @keyframes bbbWiggle {
-  0%, 100% { transform: rotate(-1.5deg); }
-  50% { transform: rotate(1.5deg); }
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
 }
 @keyframes bbbRuleIn3d {
-  from { opacity: 0; transform: perspective(700px) translateY(60px) rotateX(24deg) scale(.9); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: perspective(700px) translateY(60px) rotateX(24deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes bbbSlideUp {
-  from { opacity: 0; transform: translateY(26px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes bbbGlowRing {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,143,174,.5), 0 0 26px rgba(145,132,217,.25); }
-  70% { box-shadow: 0 0 0 16px rgba(201,143,174,0), 0 0 40px rgba(145,132,217,.4); }
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(201, 143, 174, 0.5),
+      0 0 26px rgba(145, 132, 217, 0.25);
+  }
+  70% {
+    box-shadow:
+      0 0 0 16px rgba(201, 143, 174, 0),
+      0 0 40px rgba(145, 132, 217, 0.4);
+  }
 }
 @keyframes bbbSheen {
-  from { transform: translateX(-120%) skewX(-18deg); }
-  to { transform: translateX(320%) skewX(-18deg); }
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
 }
 
 /* Regelkarten: deutlich dramatischer als vorher, scroll-getrieben. */
@@ -310,7 +488,9 @@ a:hover { color: var(--accent-lighter); }
   animation-range: entry 2% cover 34%;
 }
 @supports not (animation-timeline: view()) {
-  .bbb-rule { animation: bbbRuleIn3d .6s cubic-bezier(.2,.9,.3,1) both; }
+  .bbb-rule {
+    animation: bbbRuleIn3d 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  }
 }
 
 /* Seitenwechsel: die Tabs liegen auf einer Schiene und gleiten. */
@@ -318,7 +498,7 @@ a:hover { color: var(--accent-lighter); }
   display: flex;
   width: 600%;
   height: 100%;
-  transition: transform .42s cubic-bezier(.32,.72,.24,1);
+  transition: transform 0.42s cubic-bezier(0.32, 0.72, 0.24, 1);
   will-change: transform;
 }
 .bbb-track > * {
@@ -331,7 +511,10 @@ a:hover { color: var(--accent-lighter); }
 }
 
 /* Ein heller Streifen, der einmal über Primäraktionen läuft. */
-.bbb-sheen { position: relative; overflow: hidden; }
+.bbb-sheen {
+  position: relative;
+  overflow: hidden;
+}
 .bbb-sheen::after {
   content: '';
   position: absolute;
@@ -339,7 +522,7 @@ a:hover { color: var(--accent-lighter); }
   bottom: 0;
   left: 0;
   width: 34%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
   animation: bbbSheen 3.4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -347,15 +530,25 @@ a:hover { color: var(--accent-lighter); }
 /* Karten mit Party-Kante */
 .bbb-card {
   border-radius: 20px;
-  background: linear-gradient(155deg, rgba(37,34,58,.86), rgba(25,26,37,.86));
-  box-shadow: 0 0 0 1px var(--line-2), 0 14px 34px rgba(0,0,0,.4);
+  background: linear-gradient(155deg, rgba(37, 34, 58, 0.86), rgba(25, 26, 37, 0.86));
+  box-shadow:
+    0 0 0 1px var(--line-2),
+    0 14px 34px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bbb-sheen::after { animation: none; display: none; }
-  .bbb-track { transition: none; }
-  [style*="bbbLogoBreathe"], [style*="bbbSpark"], [style*="bbbWiggle"], [style*="bbbGlowRing"] {
+  .bbb-sheen::after {
+    animation: none;
+    display: none;
+  }
+  .bbb-track {
+    transition: none;
+  }
+  [style*='bbbLogoBreathe'],
+  [style*='bbbSpark'],
+  [style*='bbbWiggle'],
+  [style*='bbbGlowRing'] {
     animation: none !important;
   }
 }
@@ -429,7 +622,9 @@ a:hover { color: var(--accent-lighter); }
   padding: 16px 15px 6px;
   border-radius: 20px;
   background: linear-gradient(160deg, rgba(32, 30, 50, 0.82), rgba(23, 24, 35, 0.82));
-  box-shadow: 0 0 0 1px var(--line-2), 0 12px 30px rgba(0, 0, 0, 0.34);
+  box-shadow:
+    0 0 0 1px var(--line-2),
+    0 12px 30px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(6px);
 }
 

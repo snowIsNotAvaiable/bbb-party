@@ -36,17 +36,25 @@ export default function ObserveTab({ state, run }) {
       <Header
         kicker="Deine Rolle"
         title="Beobachten"
-        sub={list.length ? 'Erst dein Haken bringt die Punkte.' : 'Die App lost dich zu fremden Aufgaben dazu.'}
+        sub={
+          list.length ? 'Erst dein Haken bringt die Punkte.' : 'Die App lost dich zu fremden Aufgaben dazu.'
+        }
       />
 
       {list.map((o, i) => (
         <div
           key={o.id}
           className="bbb-card"
-          style={{ marginBottom: 13, padding: 17, animation: `bbbSlideUp .4s ${Math.min(i, 6) * 0.05}s both` }}
+          style={{
+            marginBottom: 13,
+            padding: 17,
+            animation: `bbbSlideUp .4s ${Math.min(i, 6) * 0.05}s both`,
+          }}
         >
           <div style={{ display: 'flex', gap: 13, alignItems: 'center', marginBottom: 13 }}>
-            <div style={{ width: 48, height: 48, flex: 'none', animation: 'bbbFloat 3.4s ease-in-out infinite' }}>
+            <div
+              style={{ width: 48, height: 48, flex: 'none', animation: 'bbbFloat 3.4s ease-in-out infinite' }}
+            >
               <img className="bbb-pixel" src={avatarUrl(o.cfg)} alt="" />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -187,7 +195,9 @@ function Incoming({ state }) {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 15, fontWeight: 600 }}>{r.name}</div>
-            <div style={{ fontSize: 12, color: 'var(--text-dim-2)' }}>{RUNNING_LABEL[r.status] || 'spielt'}</div>
+            <div style={{ fontSize: 12, color: 'var(--text-dim-2)' }}>
+              {RUNNING_LABEL[r.status] || 'spielt'}
+            </div>
           </div>
           {!!r.level && <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--gold)' }}>+{r.level}</div>}
         </div>
@@ -231,7 +241,14 @@ function Tile({ label, value, color }) {
         boxShadow: '0 0 0 1px var(--line)',
       }}
     >
-      <div style={{ fontSize: 9.5, letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--text-dim-2)' }}>
+      <div
+        style={{
+          fontSize: 9.5,
+          letterSpacing: '.15em',
+          textTransform: 'uppercase',
+          color: 'var(--text-dim-2)',
+        }}
+      >
         {label}
       </div>
       <div style={{ fontSize: 24, fontWeight: 700, color }}>{value}</div>

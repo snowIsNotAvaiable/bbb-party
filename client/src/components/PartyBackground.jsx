@@ -245,7 +245,12 @@ export default function PartyBackground({ intensity = 1, garland = true, style }
         // Schnur, die der Bewegung leicht hinterherhängt
         x.beginPath();
         x.moveTo(bx + bw / 2, b.y + bh);
-        x.quadraticCurveTo(bx + bw / 2 - Math.sin(b.sway) * 8, b.y + bh + 14, bx + bw / 2 + Math.sin(b.sway) * 5, b.y + bh + 26);
+        x.quadraticCurveTo(
+          bx + bw / 2 - Math.sin(b.sway) * 8,
+          b.y + bh + 14,
+          bx + bw / 2 + Math.sin(b.sway) * 5,
+          b.y + bh + 26,
+        );
         x.stroke();
 
         const image = img(objectUrl('balloon', b.tint));

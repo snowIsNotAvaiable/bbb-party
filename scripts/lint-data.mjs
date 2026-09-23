@@ -16,7 +16,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DATA = process.env.BBB_DATA_DIR ? path.resolve(process.env.BBB_DATA_DIR) : path.join(ROOT, 'server', 'data');
+const DATA = process.env.BBB_DATA_DIR
+  ? path.resolve(process.env.BBB_DATA_DIR)
+  : path.join(ROOT, 'server', 'data');
 
 const { BUCKET_NAMES, KNOWN_EFFECTS, KNOWN_SPECIALS } = await import('../server/game.js');
 const { findNames } = await import('../client/src/lib/names.js');
@@ -111,9 +113,12 @@ for (const c of cards) {
 const seenText = new Map();
 for (const c of cards) {
   for (const lvl of LEVELS) {
-    const t = String(c.levels?.[lvl]?.text || '').trim().toLowerCase();
+    const t = String(c.levels?.[lvl]?.text || '')
+      .trim()
+      .toLowerCase();
     if (!t) continue;
-    if (seenText.has(t)) hint('cards.json', `Gleicher Text in ${seenText.get(t)} und ${c.id} (Stufe ${lvl}).`);
+    if (seenText.has(t))
+      hint('cards.json', `Gleicher Text in ${seenText.get(t)} und ${c.id} (Stufe ${lvl}).`);
     else seenText.set(t, `${c.id} (Stufe ${lvl})`);
   }
 }
@@ -124,7 +129,9 @@ for (const c of cards) {
 // nie durchgelaufen, deshalb hier nachgeholt. Eine Aufgabe mit Namen trifft
 // entweder die falsche Person oder eine, die gar nicht da ist.
 const nameHits = [];
-for (const t of everyText(cards, 'cards.json', (c) => LEVELS.map((l) => [`Stufe ${l}`, c.levels?.[l]?.text || '']))) {
+for (const t of everyText(cards, 'cards.json', (c) =>
+  LEVELS.map((l) => [`Stufe ${l}`, c.levels?.[l]?.text || '']),
+)) {
   const hits = findNames(t.text, []);
   if (hits.length) nameHits.push({ ...t, hits: hits.map((h) => h.name) });
 }
@@ -148,7 +155,11 @@ for (const w of wildcards) {
   if (w.timerSec != null) {
     const sek = Number(w.timerSec);
     if (!(sek > 0)) fail(where, `timerSec ist ${w.timerSec}. Entweder eine positive Zahl oder null.`);
-    else if (sek > 30 * 60) hint(where, `Die Uhr läuft ${Math.round(sek / 60)} Minuten, das überlebt kaum eine Aufmerksamkeitsspanne.`);
+    else if (sek > 30 * 60)
+      hint(
+        where,
+        `Die Uhr läuft ${Math.round(sek / 60)} Minuten, das überlebt kaum eine Aufmerksamkeitsspanne.`,
+      );
     else if (sek < 30) hint(where, `Die Uhr läuft nur ${sek} Sekunden.`);
   }
 }
@@ -191,7 +202,10 @@ uniqueIds(penalties, 'penalties.json');
 for (const p of penalties) {
   if (!String(p.text || '').trim()) fail(`penalties.json/${p.id}`, 'Kein Text.');
 }
-if (shopItems.some((i) => i.effect === 'penalty' && i.enabled !== false) && !penalties.filter((p) => p.enabled !== false).length) {
+if (
+  shopItems.some((i) => i.effect === 'penalty' && i.enabled !== false) &&
+  !penalties.filter((p) => p.enabled !== false).length
+) {
   fail('penalties.json', 'Es gibt ein Strafkarten-Item im Shop, aber keine einzige Strafkarte.');
 }
 
@@ -238,21 +252,35 @@ const ALL_TEXTS = [
     ...LEVELS.map((l) => [`Stufe ${l}`, c.levels?.[l]?.text || '']),
   ]),
   ...everyText(wildcards, 'wildcards.json', (w) => [['Text', w.text || '']]),
-  ...everyText(specials, 'specials.json', (sp) => [['Name', sp.name || ''], ['Text', sp.text || sp.description || '']]),
-  ...everyText(shopItems, 'shopItems.json', (i) => [['Name', i.name || ''], ['Beschreibung', i.description || '']]),
+  ...everyText(specials, 'specials.json', (sp) => [
+    ['Name', sp.name || ''],
+    ['Text', sp.text || sp.description || ''],
+  ]),
+  ...everyText(shopItems, 'shopItems.json', (i) => [
+    ['Name', i.name || ''],
+    ['Beschreibung', i.description || ''],
+  ]),
   ...everyText(penalties, 'penalties.json', (p) => [['Text', p.text || '']]),
-  ...everyText(prizes, 'prizes.json', (p) => [['Titel', p.title || ''], ['Text', p.text || '']]),
-  ...everyText(punishments, 'punishments.json', (p) => [['Titel', p.title || ''], ['Text', p.text || '']]),
+  ...everyText(prizes, 'prizes.json', (p) => [
+    ['Titel', p.title || ''],
+    ['Text', p.text || ''],
+  ]),
+  ...everyText(punishments, 'punishments.json', (p) => [
+    ['Titel', p.title || ''],
+    ['Text', p.text || ''],
+  ]),
 ];
 
 for (const t of ALL_TEXTS) {
   // Als Escape geschrieben, damit in dieser Datei selbst kein langer Strich steht.
-  if (/[\u2014\u2013\u2015]/.test(t.text)) fail(`${t.file}/${t.id}`, `${t.label} enthält einen langen Strich.`);
+  if (/[\u2014\u2013\u2015]/.test(t.text))
+    fail(`${t.file}/${t.id}`, `${t.label} enthält einen langen Strich.`);
   if (/\s{2,}/.test(t.text)) hint(`${t.file}/${t.id}`, `${t.label} hat doppelte Leerzeichen.`);
   if (t.text !== t.text.trim()) hint(`${t.file}/${t.id}`, `${t.label} hat Leerzeichen am Rand.`);
   // Gerade Anführungszeichen mitten im Satz sind im Deutschen fast immer ein
   // vergessenes typografisches Paar.
-  if (/[^=]"/.test(t.text) && !/[„"]/.test(t.text)) hint(`${t.file}/${t.id}`, `${t.label} nutzt gerade Anführungszeichen.`);
+  if (/[^=]"/.test(t.text) && !/[„"]/.test(t.text))
+    hint(`${t.file}/${t.id}`, `${t.label} nutzt gerade Anführungszeichen.`);
 }
 
 /* ── Ausgabe ──────────────────────────────────────────────── */
@@ -269,7 +297,9 @@ const counts = [
 
 console.log(`\nInhalte in ${path.relative(ROOT, DATA) || DATA}\n`);
 for (const [label, total, on] of counts) {
-  console.log(`  ${label.padEnd(16)} ${String(total).padStart(3)}${on !== total ? `   (${on} freigeschaltet)` : ''}`);
+  console.log(
+    `  ${label.padEnd(16)} ${String(total).padStart(3)}${on !== total ? `   (${on} freigeschaltet)` : ''}`,
+  );
 }
 console.log(`  ${'Aufgabentexte'.padEnd(16)} ${String(cards.length * 3).padStart(3)}`);
 
