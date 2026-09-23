@@ -284,9 +284,7 @@ export class Game {
     if (clean.length < 1 || clean.length > 20) {
       return { error: 'Bitte einen Namen mit 1 bis 20 Zeichen eingeben.' };
     }
-    const taken = this.state.players.some(
-      (p) => p.name.toLowerCase() === clean.toLowerCase(),
-    );
+    const taken = this.state.players.some((p) => p.name.toLowerCase() === clean.toLowerCase());
     if (taken) return { error: 'Den Namen gibt es hier schon. Nimm einen anderen.' };
 
     const player = {
@@ -305,11 +303,17 @@ export class Game {
     };
     this.state.players.push(player);
     this.state.turns[player.id] = emptyTurn();
-    this.log('PLAYER_JOINED', player.id, 0, {}, {
-      icon: '🎂',
-      text: `${player.name} ist der Party beigetreten`,
-      kind: 'neutral',
-    });
+    this.log(
+      'PLAYER_JOINED',
+      player.id,
+      0,
+      {},
+      {
+        icon: '🎂',
+        text: `${player.name} ist der Party beigetreten`,
+        kind: 'neutral',
+      },
+    );
     this.changed();
     return { player };
   }
@@ -365,11 +369,17 @@ export class Game {
       this.state.drawn = this.state.drawn.filter((id) => inPlay.includes(id));
       free = pool.filter((c) => !this.state.drawn.includes(c.id));
       this.state.poolWarning = true;
-      this.log('POOL_RESHUFFLED', null, 0, {}, {
-        icon: '🔀',
-        text: 'Der Kartenpool wurde neu gemischt',
-        kind: 'neutral',
-      });
+      this.log(
+        'POOL_RESHUFFLED',
+        null,
+        0,
+        {},
+        {
+          icon: '🔀',
+          text: 'Der Kartenpool wurde neu gemischt',
+          kind: 'neutral',
+        },
+      );
     }
     if (!free.length) return null;
     const card = pickOne(free);
@@ -417,11 +427,17 @@ export class Game {
       if (special) {
         p.heldSpecials.push(special.id);
         t.pendingSpecial = special.id;
-        this.log('SPECIAL_DRAWN', pid, 0, { specialId: special.id }, {
-          icon: '🐈',
-          text: `${p.name} hat eine Special Card gezogen: ${special.name}`,
-          kind: 'gold',
-        });
+        this.log(
+          'SPECIAL_DRAWN',
+          pid,
+          0,
+          { specialId: special.id },
+          {
+            icon: '🐈',
+            text: `${p.name} hat eine Special Card gezogen: ${special.name}`,
+            kind: 'gold',
+          },
+        );
         this.changed();
         return { ok: true, special: special.id };
       }
@@ -500,7 +516,6 @@ export class Game {
   }
 
   taskDone(pid) {
-    const p = this.player(pid);
     const t = this.turn(pid);
     if (t.status !== 'reveal') return { error: 'Gerade nicht möglich.' };
 
@@ -562,7 +577,9 @@ export class Game {
     }
     const used = this.rerollsThisCard(pid);
     if (used >= cfg.rerollLimitPerCard) {
-      return { error: `Für diese Karte sind ${cfg.rerollLimitPerCard} Rerolls verbraucht. Da musst du durch.` };
+      return {
+        error: `Für diese Karte sind ${cfg.rerollLimitPerCard} Rerolls verbraucht. Da musst du durch.`,
+      };
     }
 
     const dice = 1 + rnd(6);
@@ -570,11 +587,17 @@ export class Game {
     const delta = -(dice * factor);
     this.takeEffect(pid, 'rerollDiscount');
 
-    this.log('REROLL', pid, delta, { cardId: t.cardId, dice, factor }, {
-      icon: '🎲',
-      text: `${this.name(pid)} hat gererollt: ${dice} × ${factor}`,
-      kind: 'bad',
-    });
+    this.log(
+      'REROLL',
+      pid,
+      delta,
+      { cardId: t.cardId, dice, factor },
+      {
+        icon: '🎲',
+        text: `${this.name(pid)} hat gererollt: ${dice} × ${factor}`,
+        kind: 'bad',
+      },
+    );
 
     // Reroll gibt eine neue Karte; die alte ist verbraucht. Der Zähler läuft
     // für diese Karte weiter, bis sie tatsächlich gemacht oder gestrichen wird.
@@ -621,36 +644,48 @@ export class Game {
       const delta = claim.points * (doubled ? 2 : 1);
       claim.awarded = delta;
       const type = claim.kind === 'wildcard' ? 'WILDCARD_CONFIRMED' : 'TASK_CONFIRMED';
-      this.log(type, claim.playerId, delta, {
-        cardId: claim.cardId,
-        level: claim.level,
-        claimId: claim.id,
-        observerIds: claim.observerIds,
-        confirmedBy: byId,
-        doubled: !!doubled,
-        note,
-      }, {
-        icon: claim.kind === 'wildcard' ? '📣' : '🎉',
-        text:
-          claim.kind === 'wildcard'
-            ? `${this.name(claim.playerId)} hat den Sonderauftrag durchgezogen`
-            : `${this.name(claim.playerId)} hat ${claim.levelLabel} gepackt: ${claim.title}`,
-        kind: 'good',
-      });
+      this.log(
+        type,
+        claim.playerId,
+        delta,
+        {
+          cardId: claim.cardId,
+          level: claim.level,
+          claimId: claim.id,
+          observerIds: claim.observerIds,
+          confirmedBy: byId,
+          doubled: !!doubled,
+          note,
+        },
+        {
+          icon: claim.kind === 'wildcard' ? '📣' : '🎉',
+          text:
+            claim.kind === 'wildcard'
+              ? `${this.name(claim.playerId)} hat den Sonderauftrag durchgezogen`
+              : `${this.name(claim.playerId)} hat ${claim.levelLabel} gepackt: ${claim.title}`,
+          kind: 'good',
+        },
+      );
       this.burstFor(claim.playerId);
     } else {
       claim.awarded = 0;
-      this.log('TASK_REJECTED', claim.playerId, 0, {
-        cardId: claim.cardId,
-        level: claim.level,
-        claimId: claim.id,
-        rejectedBy: byId,
-        note,
-      }, {
-        icon: '🙅',
-        text: `${this.name(byId) || 'Der Host'} hat ${this.name(claim.playerId)}s Aufgabe abgelehnt`,
-        kind: 'bad',
-      });
+      this.log(
+        'TASK_REJECTED',
+        claim.playerId,
+        0,
+        {
+          cardId: claim.cardId,
+          level: claim.level,
+          claimId: claim.id,
+          rejectedBy: byId,
+          note,
+        },
+        {
+          icon: '🙅',
+          text: `${this.name(byId) || 'Der Host'} hat ${this.name(claim.playerId)}s Aufgabe abgelehnt`,
+          kind: 'bad',
+        },
+      );
     }
     this.takeEffect(claim.playerId, 'rerollBlock');
     if (t.claimId === claim.id && t.status === 'waiting') {
@@ -724,11 +759,17 @@ export class Game {
     };
     this.state.wildcardSeen.push(target.id);
     this.scheduleWildcard();
-    this.log('WILDCARD_OFFERED', target.id, 0, { wildId: card.id }, {
-      icon: '📣',
-      text: `Sonderauftrag: ${target.name} wurde gezogen`,
-      kind: 'gold',
-    });
+    this.log(
+      'WILDCARD_OFFERED',
+      target.id,
+      0,
+      { wildId: card.id },
+      {
+        icon: '📣',
+        text: `Sonderauftrag: ${target.name} wurde gezogen`,
+        kind: 'gold',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -750,11 +791,17 @@ export class Game {
       revealedAt: now(),
     });
     this.state.wildcard = null;
-    this.log('WILDCARD_ACCEPTED', pid, 0, { wildId: w.cardId, observerIds: t.observerIds }, {
-      icon: '🔥',
-      text: `${this.name(pid)} hat den Sonderauftrag blind angenommen`,
-      kind: 'gold',
-    });
+    this.log(
+      'WILDCARD_ACCEPTED',
+      pid,
+      0,
+      { wildId: w.cardId, observerIds: t.observerIds },
+      {
+        icon: '🔥',
+        text: `${this.name(pid)} hat den Sonderauftrag blind angenommen`,
+        kind: 'gold',
+      },
+    );
     this.burstFor(pid);
     this.changed();
     return { ok: true };
@@ -764,13 +811,19 @@ export class Game {
     const w = this.state.wildcard;
     if (!w || (pid && w.playerId !== pid)) return { error: 'Für dich läuft gerade kein Sonderauftrag.' };
     this.state.wildcard = null;
-    this.log('WILDCARD_DECLINED', w.playerId, 0, { wildId: w.cardId, timedOut }, {
-      icon: '🙀',
-      text: timedOut
-        ? `${this.name(w.playerId)} hat den Sonderauftrag verfallen lassen`
-        : `${this.name(w.playerId)} hat den Sonderauftrag abgelehnt`,
-      kind: 'neutral',
-    });
+    this.log(
+      'WILDCARD_DECLINED',
+      w.playerId,
+      0,
+      { wildId: w.cardId, timedOut },
+      {
+        icon: '🙀',
+        text: timedOut
+          ? `${this.name(w.playerId)} hat den Sonderauftrag verfallen lassen`
+          : `${this.name(w.playerId)} hat den Sonderauftrag abgelehnt`,
+        kind: 'neutral',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -793,22 +846,34 @@ export class Game {
     switch (specialId) {
       case 'sp-steal': {
         const amount = sp.amount || 15;
-        this.log('SPECIAL_PLAYED', target.id, -amount, { specialId, sourcePlayerId: pid }, {
-          icon: '🥷',
-          text: `${p.name} hat ${target.name} ${amount} Punkte geklaut`,
-          kind: 'bad',
-        });
+        this.log(
+          'SPECIAL_PLAYED',
+          target.id,
+          -amount,
+          { specialId, sourcePlayerId: pid },
+          {
+            icon: '🥷',
+            text: `${p.name} hat ${target.name} ${amount} Punkte geklaut`,
+            kind: 'bad',
+          },
+        );
         this.log('SPECIAL_PLAYED', pid, amount, { specialId, targetId: target.id });
         break;
       }
       case 'sp-swap': {
         const a = this.rawScore(pid);
         const b = this.rawScore(target.id);
-        this.log('SPECIAL_PLAYED', pid, b - a, { specialId, targetId: target.id }, {
-          icon: '🔄',
-          text: `${p.name} hat den Punktestand mit ${target.name} getauscht`,
-          kind: 'gold',
-        });
+        this.log(
+          'SPECIAL_PLAYED',
+          pid,
+          b - a,
+          { specialId, targetId: target.id },
+          {
+            icon: '🔄',
+            text: `${p.name} hat den Punktestand mit ${target.name} getauscht`,
+            kind: 'gold',
+          },
+        );
         this.log('SPECIAL_PLAYED', target.id, a - b, { specialId, sourcePlayerId: pid });
         break;
       }
@@ -818,21 +883,33 @@ export class Game {
           name: sp.name,
           consumesOn: 'NEXT_CARD_DRAWN',
         });
-        this.log('SPECIAL_PLAYED', pid, 0, { specialId, targetId: target.id }, {
-          icon: '👑',
-          text: `${p.name} zwingt ${target.name} auf Stufe 10`,
-          kind: 'bad',
-        });
+        this.log(
+          'SPECIAL_PLAYED',
+          pid,
+          0,
+          { specialId, targetId: target.id },
+          {
+            icon: '👑',
+            text: `${p.name} zwingt ${target.name} auf Stufe 10`,
+            kind: 'bad',
+          },
+        );
         break;
       }
       case 'sp-cat': {
         p.catBlessing = true;
         p.lastBlessingAt = now();
-        this.log('SPECIAL_PLAYED', pid, 0, { specialId }, {
-          icon: '🐈',
-          text: `${p.name} hat den Katzen-Segen aktiviert`,
-          kind: 'gold',
-        });
+        this.log(
+          'SPECIAL_PLAYED',
+          pid,
+          0,
+          { specialId },
+          {
+            icon: '🐈',
+            text: `${p.name} hat den Katzen-Segen aktiviert`,
+            kind: 'gold',
+          },
+        );
         break;
       }
       case 'sp-joker': {
@@ -841,11 +918,17 @@ export class Game {
           return { error: 'Du hast gerade keine Aufgabe zum Streichen.' };
         }
         Object.assign(t, emptyTurn());
-        this.log('SPECIAL_PLAYED', pid, 0, { specialId }, {
-          icon: '🎟️',
-          text: `${p.name} hat eine Aufgabe mit dem Joker gestrichen`,
-          kind: 'neutral',
-        });
+        this.log(
+          'SPECIAL_PLAYED',
+          pid,
+          0,
+          { specialId },
+          {
+            icon: '🎟️',
+            text: `${p.name} hat eine Aufgabe mit dem Joker gestrichen`,
+            kind: 'neutral',
+          },
+        );
         break;
       }
       default:
@@ -884,11 +967,17 @@ export class Game {
       resolution: { winnerId: null, votes: {}, resolvedByHost: false, disputed: false },
     };
     this.state.bets.push(bet);
-    this.log('BET_CREATED', pid, 0, { betId: bet.id, stake: amount }, {
-      icon: '🖤',
-      text: `${this.name(pid)} bietet eine Wette an: „${clean}"`,
-      kind: 'neutral',
-    });
+    this.log(
+      'BET_CREATED',
+      pid,
+      0,
+      { betId: bet.id, stake: amount },
+      {
+        icon: '🖤',
+        text: `${this.name(pid)} bietet eine Wette an: „${clean}"`,
+        kind: 'neutral',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -897,17 +986,24 @@ export class Game {
     const bet = this.state.bets.find((b) => b.id === betId);
     if (!bet || bet.status !== 'open') return { error: 'Das Angebot gibt es nicht mehr.' };
     if (bet.createdBy === pid) return { error: 'Deine eigene Wette kannst du nicht annehmen.' };
-    if (bet.opponentId && bet.opponentId !== pid) return { error: 'Diese Wette ist an jemand anderen gerichtet.' };
+    if (bet.opponentId && bet.opponentId !== pid)
+      return { error: 'Diese Wette ist an jemand anderen gerichtet.' };
 
     bet.acceptedBy = pid;
     bet.status = 'running';
     bet.acceptedAt = now();
     // Beide zahlen sofort ein. Der Pott steckt danach in der Wette, nicht im Punktestand.
-    this.log('BET_ACCEPTED', pid, -bet.stake, { betId: bet.id, stake: bet.stake, against: bet.createdBy }, {
-      icon: '🤝',
-      text: `${this.name(bet.createdBy)} und ${this.name(pid)} wetten um je ${bet.stake} Punkte`,
-      kind: 'bad',
-    });
+    this.log(
+      'BET_ACCEPTED',
+      pid,
+      -bet.stake,
+      { betId: bet.id, stake: bet.stake, against: bet.createdBy },
+      {
+        icon: '🤝',
+        text: `${this.name(bet.createdBy)} und ${this.name(pid)} wetten um je ${bet.stake} Punkte`,
+        kind: 'bad',
+      },
+    );
     this.log('BET_ACCEPTED', bet.createdBy, -bet.stake, { betId: bet.id, stake: bet.stake, against: pid });
     this.changed();
     return { ok: true };
@@ -926,11 +1022,17 @@ export class Game {
         this.finishBet(bet, votes[0], false);
       } else {
         bet.resolution.disputed = true;
-        this.log('BET_DISPUTED', pid, 0, { betId: bet.id }, {
-          icon: '⚖️',
-          text: `Streit um eine Wette zwischen ${this.name(bet.createdBy)} und ${this.name(bet.acceptedBy)}, der Host entscheidet`,
-          kind: 'neutral',
-        });
+        this.log(
+          'BET_DISPUTED',
+          pid,
+          0,
+          { betId: bet.id },
+          {
+            icon: '⚖️',
+            text: `Streit um eine Wette zwischen ${this.name(bet.createdBy)} und ${this.name(bet.acceptedBy)}, der Host entscheidet`,
+            kind: 'neutral',
+          },
+        );
       }
     }
     this.changed();
@@ -945,11 +1047,17 @@ export class Game {
     bet.resolution.resolvedByHost = byHost;
     // Beide haben beim Annehmen gezahlt, der Gewinner holt sich den ganzen Pott.
     const pot = bet.stake * 2;
-    this.log('BET_RESOLVED', winnerId, pot, { betId: bet.id, pot, resolvedByHost: byHost }, {
-      icon: '💰',
-      text: `${this.name(winnerId)} holt sich den Pott von ${pot} gegen ${this.name(loserId)}`,
-      kind: 'good',
-    });
+    this.log(
+      'BET_RESOLVED',
+      winnerId,
+      pot,
+      { betId: bet.id, pot, resolvedByHost: byHost },
+      {
+        icon: '💰',
+        text: `${this.name(winnerId)} holt sich den Pott von ${pot} gegen ${this.name(loserId)}`,
+        kind: 'good',
+      },
+    );
   }
 
   cancelBet(pid, betId, byHost = false) {
@@ -960,13 +1068,19 @@ export class Game {
     const wasRunning = bet.status === 'running';
     bet.status = 'cancelled';
     bet.resolvedAt = now();
-    this.log('BET_CANCELLED', bet.createdBy, wasRunning ? bet.stake : 0, { betId: bet.id, byHost }, {
-      icon: '🚪',
-      text: wasRunning
-        ? `Wette zwischen ${this.name(bet.createdBy)} und ${this.name(bet.acceptedBy)} storniert, Einsätze zurück`
-        : `Wettangebot von ${this.name(bet.createdBy)} zurückgezogen`,
-      kind: 'neutral',
-    });
+    this.log(
+      'BET_CANCELLED',
+      bet.createdBy,
+      wasRunning ? bet.stake : 0,
+      { betId: bet.id, byHost },
+      {
+        icon: '🚪',
+        text: wasRunning
+          ? `Wette zwischen ${this.name(bet.createdBy)} und ${this.name(bet.acceptedBy)} storniert, Einsätze zurück`
+          : `Wettangebot von ${this.name(bet.createdBy)} zurückgezogen`,
+        kind: 'neutral',
+      },
+    );
     if (wasRunning) this.log('BET_CANCELLED', bet.acceptedBy, bet.stake, { betId: bet.id, byHost });
     this.changed();
     return { ok: true };
@@ -995,30 +1109,46 @@ export class Game {
       return { error: 'Dafür reichen deine Punkte nicht.' };
     }
 
-    this.log('SHOP_PURCHASE', pid, -item.price, { itemId, targetId: target?.id || null }, {
-      icon: '💸',
-      text: item.requiresTarget
-        ? `${buyer.name} hat „${item.name}" auf ${target.name} gekauft`
-        : `${buyer.name} hat „${item.name}" gekauft`,
-      kind: 'bad',
-    });
+    this.log(
+      'SHOP_PURCHASE',
+      pid,
+      -item.price,
+      { itemId, targetId: target?.id || null },
+      {
+        icon: '💸',
+        text: item.requiresTarget
+          ? `${buyer.name} hat „${item.name}" auf ${target.name} gekauft`
+          : `${buyer.name} hat „${item.name}" gekauft`,
+        kind: 'bad',
+      },
+    );
 
     if (item.effect === 'penalty') {
       const pen = pickOne(catalog.enabled('penalties'));
       this.applyEffect(target.id, 'penalty', pid, item);
       const eff = this.state.effects[this.state.effects.length - 1];
       eff.meta = { text: pen ? pen.text : 'Strafkarte folgt.' };
-      this.log('PENALTY_DRAWN', target.id, 0, { penaltyId: pen?.id || null, sourcePlayerId: pid }, {
-        icon: '☠️',
-        text: `${target.name} hat eine Strafkarte kassiert`,
-        kind: 'bad',
-      });
+      this.log(
+        'PENALTY_DRAWN',
+        target.id,
+        0,
+        { penaltyId: pen?.id || null, sourcePlayerId: pid },
+        {
+          icon: '☠️',
+          text: `${target.name} hat eine Strafkarte kassiert`,
+          kind: 'bad',
+        },
+      );
     } else if (item.effect === 'redirect') {
       const mine = this.foreignEffects(pid)[0];
       if (!mine) return { error: 'Auf dich wirkt gerade kein fremder Effekt.' };
       mine.playerId = target.id;
       mine.sourcePlayerId = pid;
-      this.log('EFFECT_APPLIED', target.id, 0, { effect: mine.effect, sourcePlayerId: pid, redirected: true });
+      this.log('EFFECT_APPLIED', target.id, 0, {
+        effect: mine.effect,
+        sourcePlayerId: pid,
+        redirected: true,
+      });
     } else {
       this.applyEffect(target.id, item.effect, pid, item);
     }
@@ -1077,11 +1207,17 @@ export class Game {
   endGame() {
     this.state.phase = 'ended';
     this.state.result = this.computeResult();
-    this.log('GAME_ENDED', null, 0, {}, {
-      icon: '🏁',
-      text: 'Die Runde ist vorbei. Auswertung steht.',
-      kind: 'gold',
-    });
+    this.log(
+      'GAME_ENDED',
+      null,
+      0,
+      {},
+      {
+        icon: '🏁',
+        text: 'Die Runde ist vorbei. Auswertung steht.',
+        kind: 'gold',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -1092,11 +1228,17 @@ export class Game {
     if (!this.player(targetId)) return { error: 'Unbekannter Spieler.' };
     const amount = Math.round(Number(delta) || 0);
     if (!amount) return { error: 'Delta darf nicht 0 sein.' };
-    this.log('ADMIN_ADJUST', targetId, amount, { note: note || null }, {
-      icon: '🛠️',
-      text: `Host-Korrektur für ${this.name(targetId)}: ${amount > 0 ? '+' : ''}${amount}`,
-      kind: amount > 0 ? 'good' : 'bad',
-    });
+    this.log(
+      'ADMIN_ADJUST',
+      targetId,
+      amount,
+      { note: note || null },
+      {
+        icon: '🛠️',
+        text: `Host-Korrektur für ${this.name(targetId)}: ${amount > 0 ? '+' : ''}${amount}`,
+        kind: amount > 0 ? 'good' : 'bad',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -1163,14 +1305,22 @@ export class Game {
   }
 
   adminReshuffle() {
-    const inPlay = Object.values(this.state.turns).map((t) => t.cardId).filter(Boolean);
+    const inPlay = Object.values(this.state.turns)
+      .map((t) => t.cardId)
+      .filter(Boolean);
     this.state.drawn = this.state.drawn.filter((id) => inPlay.includes(id));
     this.state.poolWarning = false;
-    this.log('POOL_RESHUFFLED', null, 0, { byHost: true }, {
-      icon: '🔀',
-      text: 'Der Host hat den Kartenpool neu gemischt',
-      kind: 'neutral',
-    });
+    this.log(
+      'POOL_RESHUFFLED',
+      null,
+      0,
+      { byHost: true },
+      {
+        icon: '🔀',
+        text: 'Der Host hat den Kartenpool neu gemischt',
+        kind: 'neutral',
+      },
+    );
     this.changed();
     return { ok: true };
   }
@@ -1211,11 +1361,17 @@ export class Game {
       if (bet.status === 'open' && Date.parse(bet.expiresAt) <= t) {
         bet.status = 'cancelled';
         bet.resolvedAt = now();
-        this.log('BET_CANCELLED', bet.createdBy, 0, { betId: bet.id, expired: true }, {
-          icon: '🚪',
-          text: `Wettangebot von ${this.name(bet.createdBy)} ist verfallen`,
-          kind: 'neutral',
-        });
+        this.log(
+          'BET_CANCELLED',
+          bet.createdBy,
+          0,
+          { betId: bet.id, expired: true },
+          {
+            icon: '🚪',
+            text: `Wettangebot von ${this.name(bet.createdBy)} ist verfallen`,
+            kind: 'neutral',
+          },
+        );
         touched = true;
       }
     }
@@ -1237,11 +1393,17 @@ export class Game {
       if (t - last >= step) {
         const ticks = Math.floor((t - last) / step);
         p.lastBlessingAt = new Date(last + ticks * step).toISOString();
-        this.log('SPECIAL_TICK', p.id, ticks, { specialId: 'sp-cat' }, {
-          icon: '🐈',
-          text: `${p.name}s Katze hat ${ticks} Punkt${ticks > 1 ? 'e' : ''} gesammelt`,
-          kind: 'good',
-        });
+        this.log(
+          'SPECIAL_TICK',
+          p.id,
+          ticks,
+          { specialId: 'sp-cat' },
+          {
+            icon: '🐈',
+            text: `${p.name}s Katze hat ${ticks} Punkt${ticks > 1 ? 'e' : ''} gesammelt`,
+            kind: 'good',
+          },
+        );
         touched = true;
       }
     }
@@ -1286,7 +1448,11 @@ export class Game {
       poolTotal: catalog.enabled('cards').length,
       poolWarning: this.state.poolWarning,
       wildcard: this.state.wildcard
-        ? { playerId: this.state.wildcard.playerId, name: this.name(this.state.wildcard.playerId), expiresAt: this.state.wildcard.expiresAt }
+        ? {
+            playerId: this.state.wildcard.playerId,
+            name: this.name(this.state.wildcard.playerId),
+            expiresAt: this.state.wildcard.expiresAt,
+          }
         : null,
       running: Object.entries(this.state.turns)
         .filter(([, t]) => ['observer', 'chooseObserver', 'level', 'reveal', 'waiting'].includes(t.status))
@@ -1326,7 +1492,11 @@ export class Game {
     // Der Aufgabentext geht erst nach der Stufenwahl über die Leitung.
     const revealed = t.status === 'reveal' || t.status === 'waiting';
     const revealText = !revealed ? null : isWild ? card?.text : card?.levels?.[levelKey]?.text;
-    const timerSec = !revealed ? null : isWild ? card?.timerSec ?? null : card?.levels?.[levelKey]?.timerSec ?? null;
+    const timerSec = !revealed
+      ? null
+      : isWild
+        ? (card?.timerSec ?? null)
+        : (card?.levels?.[levelKey]?.timerSec ?? null);
 
     const ranked = base.ranking;
     const billigstes = Math.min(...catalog.enabled('shopItems').map((i) => i.price), Infinity);
@@ -1486,13 +1656,19 @@ export class Game {
       .filter((i) => !KNOWN_EFFECTS.includes(i.effect))
       .map((i) => i.name || i.id);
     if (unknown.length) {
-      warn(`Shop-Item ohne Wirkung: ${unknown.join(', ')}.`, 'Die Wirkung kennt die Engine nicht, der Kauf kostet nur Punkte.');
+      warn(
+        `Shop-Item ohne Wirkung: ${unknown.join(', ')}.`,
+        'Die Wirkung kennt die Engine nicht, der Kauf kostet nur Punkte.',
+      );
     }
 
     // Kartenpool: wenn weniger frei sind als Leute spielen, mischt er gleich.
     const free = this.poolRemaining();
     if (free && active.length && free < active.length) {
-      note(`Nur noch ${free} ungezogene Karten.`, 'Der Stapel mischt sich beim nächsten Zug automatisch neu.');
+      note(
+        `Nur noch ${free} ungezogene Karten.`,
+        'Der Stapel mischt sich beim nächsten Zug automatisch neu.',
+      );
     }
 
     // Abnahmen, auf die seit einer Weile niemand reagiert.
@@ -1500,12 +1676,18 @@ export class Game {
       (c) => c.status === 'open' && Date.now() - new Date(c.createdAt).getTime() > 20 * 60000,
     );
     if (stale.length) {
-      warn(`${stale.length} Abnahme${stale.length === 1 ? '' : 'n'} wartet seit über 20 Minuten.`, 'Unter Freigeben selbst entscheiden.');
+      warn(
+        `${stale.length} Abnahme${stale.length === 1 ? '' : 'n'} wartet seit über 20 Minuten.`,
+        'Unter Freigeben selbst entscheiden.',
+      );
     }
 
     const disputed = this.state.bets.filter((b) => b.resolution.disputed).length;
     if (disputed) {
-      warn(`${disputed} Wette${disputed === 1 ? '' : 'n'} ist strittig.`, 'Unter Freigeben den Sieger festlegen.');
+      warn(
+        `${disputed} Wette${disputed === 1 ? '' : 'n'} ist strittig.`,
+        'Unter Freigeben den Sieger festlegen.',
+      );
     }
 
     // Abgeschaltete Bereiche: das ist erlaubt, soll aber sichtbar sein.
@@ -1514,11 +1696,16 @@ export class Game {
       [!cfg.shopEnabled, 'Shop'],
       [!cfg.betsEnabled, 'Black Market'],
       [!cfg.specialsEnabled, 'Special Cards'],
-    ].filter(([bad]) => bad).map(([, label]) => label);
+    ]
+      .filter(([bad]) => bad)
+      .map(([, label]) => label);
     if (off.length) note(`Abgeschaltet: ${off.join(', ')}.`, 'Unter Spiel wieder anschalten.');
 
     if (this.state.phase === 'ended') {
-      note('Das Spiel ist beendet.', 'Niemand kann mehr ziehen. Phase wieder auf „Läuft" stellen, falls es weitergeht.');
+      note(
+        'Das Spiel ist beendet.',
+        'Niemand kann mehr ziehen. Phase wieder auf „Läuft" stellen, falls es weitergeht.',
+      );
     }
 
     return out;
@@ -1574,14 +1761,17 @@ export class Game {
         source: e.sourcePlayerId ? this.name(e.sourcePlayerId) : null,
         expiresAt: e.expiresAt,
       })),
-      events: this.state.events.slice(-150).reverse().map((e) => ({
-        id: e.id,
-        ts: e.ts,
-        type: e.type,
-        player: e.playerId ? this.name(e.playerId) : 'System',
-        delta: e.delta,
-        voided: e.voided,
-      })),
+      events: this.state.events
+        .slice(-150)
+        .reverse()
+        .map((e) => ({
+          id: e.id,
+          ts: e.ts,
+          type: e.type,
+          player: e.playerId ? this.name(e.playerId) : 'System',
+          delta: e.delta,
+          voided: e.voided,
+        })),
       cards: catalog.all('cards'),
       wildcards: catalog.all('wildcards'),
       shopItems: catalog.all('shopItems'),

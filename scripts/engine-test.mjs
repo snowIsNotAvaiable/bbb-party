@@ -104,10 +104,7 @@ section('Katalog');
     cards.every((c) => ['1', '5', '10'].every((k) => c.levels?.[k]?.text?.trim())),
   );
   check('Karten-IDs eindeutig', new Set(cards.map((c) => c.id)).size === cards.length);
-  check(
-    'keine Platzhalter mehr im Katalog',
-    !JSON.stringify(cards).includes('PLATZHALTER'),
-  );
+  check('keine Platzhalter mehr im Katalog', !JSON.stringify(cards).includes('PLATZHALTER'));
   check(
     'keine Timer auf normalen Karten',
     cards.every((c) => Object.values(c.levels).every((l) => !l.timerSec)),
@@ -125,28 +122,53 @@ section('Katalog');
 
   const wilds = catalog.all('wildcards');
   check('Sonderaufträge vorhanden', wilds.length >= 10, String(wilds.length));
-  check('Sonderaufträge haben zwei Beobachter', wilds.every((w) => w.observerCount === 2));
+  check(
+    'Sonderaufträge haben zwei Beobachter',
+    wilds.every((w) => w.observerCount === 2),
+  );
 
   // Jedes Shop-Item muss eine Wirkung haben, die die Engine auch kennt.
   const IMPLEMENTED = new Set([
-    'forceLevel10', 'rerollBlock', 'penalty', 'chooseObserver', 'rerollDiscount',
-    'doublePoints', 'peek', 'immunity', 'redirect',
+    'forceLevel10',
+    'rerollBlock',
+    'penalty',
+    'chooseObserver',
+    'rerollDiscount',
+    'doublePoints',
+    'peek',
+    'immunity',
+    'redirect',
   ]);
   const shop = catalog.all('shopItems');
   check('Shop-Items vorhanden', shop.length > 0, String(shop.length));
   check(
     'jedes Shop-Item hat eine implementierte Wirkung',
     shop.every((i) => IMPLEMENTED.has(i.effect)),
-    shop.filter((i) => !IMPLEMENTED.has(i.effect)).map((i) => i.effect).join(', '),
+    shop
+      .filter((i) => !IMPLEMENTED.has(i.effect))
+      .map((i) => i.effect)
+      .join(', '),
   );
-  check('jedes Shop-Item hat einen Preis', shop.every((i) => Number.isFinite(i.price) && i.price > 0));
+  check(
+    'jedes Shop-Item hat einen Preis',
+    shop.every((i) => Number.isFinite(i.price) && i.price > 0),
+  );
 
   const prizes = catalog.all('prizes');
-  check('drei Preise, Plätze 1 bis 3', [1, 2, 3].every((n) => prizes.some((p) => p.place === n)));
+  check(
+    'drei Preise, Plätze 1 bis 3',
+    [1, 2, 3].every((n) => prizes.some((p) => p.place === n)),
+  );
   const puns = catalog.all('punishments');
   const TIERS = ['Knapp vorbei', 'Mitläufer', 'Solide enttäuschend', 'Endboss der Schande'];
-  check('für jede Verliererstufe eine Strafe', TIERS.every((t) => puns.some((p) => p.label === t)));
-  check('Härtegrade 1 bis 4 vergeben', [1, 2, 3, 4].every((n) => puns.some((p) => p.severity === n)));
+  check(
+    'für jede Verliererstufe eine Strafe',
+    TIERS.every((t) => puns.some((p) => p.label === t)),
+  );
+  check(
+    'Härtegrade 1 bis 4 vergeben',
+    [1, 2, 3, 4].every((n) => puns.some((p) => p.severity === n)),
+  );
 }
 
 /* ══ Punkte ════════════════════════════════════════════════ */
@@ -205,13 +227,17 @@ section('Reroll: drei pro Karte, Faktor steigt');
   const { g, ids } = party(3);
   const [a] = ids;
   const cfg = getConfig();
-  g.draw(a); g.observerAck(a); g.pickLevel(a, 1);
+  g.draw(a);
+  g.observerAck(a);
+  g.pickLevel(a, 1);
 
   const factors = [];
   for (let i = 0; i < cfg.rerollLimitPerCard; i += 1) {
     const r = g.reroll(a);
     factors.push(r.factor);
-    g.draw(a); g.observerAck(a); g.pickLevel(a, 1);
+    g.draw(a);
+    g.observerAck(a);
+    g.pickLevel(a, 1);
   }
   check('Faktor steigt 1, 2, 3', factors.join(',') === '1,2,3', factors.join(','));
   check('vierter Reroll wird abgelehnt', !!g.reroll(a).error);
@@ -232,13 +258,18 @@ section('Gekaufte Effekte überleben einen Reroll');
   g.adminAdjust(a, 200, 'setup');
 
   g.buyItem(a, 'item-forcelevel', o);
-  g.draw(o); g.observerAck(o);
+  g.draw(o);
+  g.observerAck(o);
   check('Zwangsstufe greift sofort', g.turn(o).forcedLevel === 10);
   g.pickLevel(o, 10);
-  g.reroll(o); g.draw(o); g.observerAck(o);
+  g.reroll(o);
+  g.draw(o);
+  g.observerAck(o);
   check('Zwangsstufe überlebt den Reroll', g.turn(o).forcedLevel === 10, String(g.turn(o).forcedLevel));
   check('andere Stufe bleibt gesperrt', !!g.pickLevel(o, 1).error);
-  g.pickLevel(o, 10); g.taskDone(o); g.draw(o);
+  g.pickLevel(o, 10);
+  g.taskDone(o);
+  g.draw(o);
   check('nach der Karte wieder frei', g.turn(o).forcedLevel === null, String(g.turn(o).forcedLevel));
 
   const { g: g2, ids: ids2 } = party(3);
@@ -247,10 +278,15 @@ section('Gekaufte Effekte überleben einen Reroll');
   g2.buyItem(b, 'item-peek');
   g2.draw(b);
   check('Spickzettel beim ersten Zug da', !!g2.turn(b).peek);
-  g2.observerAck(b); g2.pickLevel(b, 1);
-  g2.reroll(b); g2.draw(b);
+  g2.observerAck(b);
+  g2.pickLevel(b, 1);
+  g2.reroll(b);
+  g2.draw(b);
   check('Spickzettel überlebt den Reroll', !!g2.turn(b).peek);
-  g2.observerAck(b); g2.pickLevel(b, 1); g2.taskDone(b); g2.draw(b);
+  g2.observerAck(b);
+  g2.pickLevel(b, 1);
+  g2.taskDone(b);
+  g2.draw(b);
   check('Spickzettel danach verbraucht', !g2.turn(b).peek);
 
   const { g: g3, ids: ids3 } = party(3);
@@ -259,18 +295,31 @@ section('Gekaufte Effekte überleben einen Reroll');
   g3.buyItem(c, 'item-chooseobserver');
   g3.draw(c);
   check('Beobachter-Wahl beim ersten Zug', g3.turn(c).status === 'chooseObserver');
-  g3.pickObserver(c, other); g3.observerAck(c); g3.pickLevel(c, 1);
-  g3.reroll(c); g3.draw(c);
+  g3.pickObserver(c, other);
+  g3.observerAck(c);
+  g3.pickLevel(c, 1);
+  g3.reroll(c);
+  g3.draw(c);
   check('Beobachter-Wahl überlebt den Reroll', g3.turn(c).status === 'chooseObserver', g3.turn(c).status);
-  g3.pickObserver(c, other); g3.observerAck(c); g3.pickLevel(c, 1); g3.taskDone(c); g3.draw(c);
+  g3.pickObserver(c, other);
+  g3.observerAck(c);
+  g3.pickLevel(c, 1);
+  g3.taskDone(c);
+  g3.draw(c);
   check('Beobachter-Wahl danach verbraucht', g3.turn(c).status === 'observer', g3.turn(c).status);
 
   const { g: g4, ids: ids4 } = party(3);
   const [d] = ids4;
-  g4.draw(d); g4.observerAck(d); g4.pickLevel(d, 1);
-  g4.reroll(d); g4.draw(d);
+  g4.draw(d);
+  g4.observerAck(d);
+  g4.pickLevel(d, 1);
+  g4.reroll(d);
+  g4.draw(d);
   const t = g4.turn(d);
-  check('ohne Kauf kein Zwang und kein Spickzettel', t.forcedLevel === null && !t.peek && t.status === 'observer');
+  check(
+    'ohne Kauf kein Zwang und kein Spickzettel',
+    t.forcedLevel === null && !t.peek && t.status === 'observer',
+  );
 }
 
 /* ══ Shop ══════════════════════════════════════════════════ */
@@ -365,7 +414,11 @@ section('Karten nur für das Geburtstagskind');
   }
   check('Gäste ziehen nie Geburtstagskarten', !guest.has('geburtstagskind'));
   check('Das Geburtstagskind zieht sie', bday.has('geburtstagskind'));
-  check('Das Geburtstagskind zieht auch alles andere', bday.size > guest.size, `${bday.size} vs ${guest.size}`);
+  check(
+    'Das Geburtstagskind zieht auch alles andere',
+    bday.size > guest.size,
+    `${bday.size} vs ${guest.size}`,
+  );
 }
 
 /* ══ Auswertung ════════════════════════════════════════════ */
@@ -377,8 +430,9 @@ section('Auswertung: Podium, Stufen, Preise, Strafen');
     ids.forEach((id, i) => g.adminAdjust(id, (n - i) * 5 + 3, 'setup'));
     const r = g.computeResult();
 
-    const podiumOk = r.podium.length === Math.min(3, n)
-      && r.podium.every((p, i) => i === 0 || r.podium[i - 1].score >= p.score);
+    const podiumOk =
+      r.podium.length === Math.min(3, n) &&
+      r.podium.every((p, i) => i === 0 || r.podium[i - 1].score >= p.score);
     const prizesOk = r.podium.every((p, i) => p.prize && p.prize.place === i + 1);
     const punsOk = r.losers.every((p) => p.punishment && p.punishment.label === p.bucketLabel);
 
@@ -399,13 +453,19 @@ section('Auswertung: Podium, Stufen, Preise, Strafen');
 
 section('Namenserkennung im Karten-Editor');
 {
-  const gaeste = [{ name: 'Robby', role: 'guest' }, { name: 'Buki', role: 'birthday' }];
+  const gaeste = [
+    { name: 'Robby', role: 'guest' },
+    { name: 'Buki', role: 'birthday' },
+  ];
   check('Gast wird erkannt', findNames('Trink Robby das Bier weg.', gaeste).length === 1);
   check('Genitiv wird erkannt', findNames('Robbys Bier gehört dir.', gaeste).length === 1);
   check('Groß- und Kleinschreibung egal', findNames('trink mit ROBBY.', gaeste).length === 1);
   check('Vorname aus der Liste', findNames('Erzähl Devin vom Universum.', []).length === 1);
   check('Geburtstagskind ist ausgenommen', findNames('Trink mit Buki einen Shot.', gaeste).length === 0);
-  check('neutrale Formulierung ist sauber', findNames('Die Person links von dir mixt dir etwas.', gaeste).length === 0);
+  check(
+    'neutrale Formulierung ist sauber',
+    findNames('Die Person links von dir mixt dir etwas.', gaeste).length === 0,
+  );
   check('„Max 5“ ist kein Name', findNames('Ein Shot pro Person. Max 5.', []).length === 0);
   check('leerer Text ist sauber', findNames('', gaeste).length === 0);
 }
@@ -426,7 +486,10 @@ section('Kartenpool');
     for (const oid of cl.observerIds) g.confirmClaim(oid, cl.id);
   }
   check('Pool mischt neu statt auszugehen', g.state.drawn.length <= total, String(g.state.drawn.length));
-  check('Neumischen steht im Protokoll', g.state.events.some((e) => e.type === 'POOL_RESHUFFLED'));
+  check(
+    'Neumischen steht im Protokoll',
+    g.state.events.some((e) => e.type === 'POOL_RESHUFFLED'),
+  );
 }
 
 /* ══ Special Cards ═════════════════════════════════════════ */
@@ -494,7 +557,11 @@ section('Zustand übersteht einen Neustart');
   const snap = JSON.parse(JSON.stringify(g.state));
   const g2 = new Game();
   g2.state = snap;
-  check('Punkte bleiben nach dem Laden gleich', g2.score(a) === g.score(a), `${g2.score(a)} vs ${g.score(a)}`);
+  check(
+    'Punkte bleiben nach dem Laden gleich',
+    g2.score(a) === g.score(a),
+    `${g2.score(a)} vs ${g.score(a)}`,
+  );
   check('Spieler sind wieder da', g2.state.players.length === 3);
   check('Zug-Objekt wird nachgezogen', !!g2.turn('gibt-es-nicht'));
 }
@@ -516,8 +583,16 @@ section('Der Hinweis auf den Markt');
   g.adminAdjust(a, 500, 'setup');
   const item = catalog.enabled('shopItems').find((i) => !i.requiresTarget);
   g.buyItem(a, item.id);
-  check('Nach dem ersten Kauf ist er weg', g.snapshotFor(a).shopHint === false, String(g.snapshotFor(a).shopHint));
-  check('Der Kauf steht in der Bilanz', g.snapshotFor(a).me.stats.purchases === 1, String(g.snapshotFor(a).me.stats.purchases));
+  check(
+    'Nach dem ersten Kauf ist er weg',
+    g.snapshotFor(a).shopHint === false,
+    String(g.snapshotFor(a).shopHint),
+  );
+  check(
+    'Der Kauf steht in der Bilanz',
+    g.snapshotFor(a).me.stats.purchases === 1,
+    String(g.snapshotFor(a).me.stats.purchases),
+  );
 
   // Abgeschalteter Shop schweigt.
   const { g: g2, ids: ids2 } = party(3);
@@ -531,7 +606,11 @@ section('Der Hinweis auf den Markt');
 
 section('Was der Host oben im Admin sieht');
 {
-  const text = (g) => g.hostChecks().map((c) => c.text).join(' | ');
+  const text = (g) =>
+    g
+      .hostChecks()
+      .map((c) => c.text)
+      .join(' | ');
 
   // Rollenkarten ohne passende Rolle: die liegen sonst still im Stapel.
   const { g, ids } = party(3);
@@ -562,10 +641,18 @@ section('Was der Host oben im Admin sieht');
   // Ein Shop-Item mit unbekannter Wirkung kostet Punkte und tut nichts.
   const shop = catalog.all('shopItems');
   const backup = JSON.parse(JSON.stringify(shop));
-  catalog.save('shopItems', [...backup, {
-    id: 'item-kaputt', name: 'Kaputt', description: '', price: 5,
-    requiresTarget: false, effect: 'gibtEsNicht', enabled: true,
-  }]);
+  catalog.save('shopItems', [
+    ...backup,
+    {
+      id: 'item-kaputt',
+      name: 'Kaputt',
+      description: '',
+      price: 5,
+      requiresTarget: false,
+      effect: 'gibtEsNicht',
+      enabled: true,
+    },
+  ]);
   check('Wirkungsloses Shop-Item wird gemeldet', /ohne Wirkung/.test(text(g)), text(g));
   catalog.save('shopItems', backup);
   check('Nach dem Aufräumen wieder still', !/ohne Wirkung/.test(text(g)), text(g));
@@ -578,7 +665,10 @@ section('Was der Host oben im Admin sieht');
 
   // Jeder Eintrag ist anzeigbar: Stufe bekannt, Text vorhanden.
   const shapes = solo.g.hostChecks();
-  check('Jede Zeile hat Stufe und Text', shapes.every((c) => ['warn', 'note'].includes(c.level) && c.text));
+  check(
+    'Jede Zeile hat Stufe und Text',
+    shapes.every((c) => ['warn', 'note'].includes(c.level) && c.text),
+  );
 }
 
 /* ══ Spickzettel ═══════════════════════════════════════════ */
@@ -607,30 +697,49 @@ section('Die Listen stimmen noch mit dem Code überein');
   const src = fs.readFileSync(path.join(HERE, '..', 'server', 'game.js'), 'utf8');
 
   const ausSwitch = [...src.matchAll(/case '(sp-[a-z]+)':/g)].map((m) => m[1]).sort();
-  check('KNOWN_SPECIALS deckt jeden Fall im Code ab', ausSwitch.every((id) => KNOWN_SPECIALS.includes(id)), ausSwitch.join(','));
-  check('KNOWN_SPECIALS erfindet nichts dazu', KNOWN_SPECIALS.every((id) => ausSwitch.includes(id)), KNOWN_SPECIALS.join(','));
+  check(
+    'KNOWN_SPECIALS deckt jeden Fall im Code ab',
+    ausSwitch.every((id) => KNOWN_SPECIALS.includes(id)),
+    ausSwitch.join(','),
+  );
+  check(
+    'KNOWN_SPECIALS erfindet nichts dazu',
+    KNOWN_SPECIALS.every((id) => ausSwitch.includes(id)),
+    KNOWN_SPECIALS.join(','),
+  );
 
-  const ausEffekten = [...src.matchAll(/(?:takeEffect|hasEffect)\([^,]+, '([a-zA-Z0-9]+)'/g)].map((m) => m[1]);
+  const ausEffekten = [...src.matchAll(/(?:takeEffect|hasEffect)\([^,]+, '([a-zA-Z0-9]+)'/g)].map(
+    (m) => m[1],
+  );
   const fehlend = [...new Set(ausEffekten)].filter((e) => !KNOWN_EFFECTS.includes(e));
   check('KNOWN_EFFECTS kennt jede abgefragte Wirkung', fehlend.length === 0, fehlend.join(','));
 
   // Jede Stufenzahl braucht genau so viele Namen, wie sie Stufen hat.
   const stufig = Object.entries(BUCKET_NAMES).every(([n, list]) => list.length === Number(n));
   check('BUCKET_NAMES hat je Stufenzahl die passende Menge Namen', stufig);
-  check('Der letzte Name ist überall derselbe',
-    Object.values(BUCKET_NAMES).every((l) => l[l.length - 1] === 'Endboss der Schande'));
+  check(
+    'Der letzte Name ist überall derselbe',
+    Object.values(BUCKET_NAMES).every((l) => l[l.length - 1] === 'Endboss der Schande'),
+  );
 
   // Die Strafen müssen alle Namen abdecken, sonst bekommt jemand nichts.
   const labels = new Set(catalog.enabled('punishments').map((p) => p.label));
   const alle = [...new Set(Object.values(BUCKET_NAMES).flat())];
-  check('Jede Verlierer-Stufe hat eine Strafe', alle.every((n) => labels.has(n)),
-    alle.filter((n) => !labels.has(n)).join(','));
+  check(
+    'Jede Verlierer-Stufe hat eine Strafe',
+    alle.every((n) => labels.has(n)),
+    alle.filter((n) => !labels.has(n)).join(','),
+  );
 
   // Und die Auswertung muss sie auch wirklich finden.
   const { g } = party(11);
   g.endGame();
   const ohne = (g.state.result.losers || []).filter((l) => !l.punishment);
-  check('Jeder Verlierer bekommt eine Strafe zugeordnet', ohne.length === 0, ohne.map((l) => l.bucketLabel).join(','));
+  check(
+    'Jeder Verlierer bekommt eine Strafe zugeordnet',
+    ohne.length === 0,
+    ohne.map((l) => l.bucketLabel).join(','),
+  );
   const ohnePreis = (g.state.result.podium || []).filter((p) => !p.prize);
   check('Jeder Podiumsplatz bekommt einen Preis', ohnePreis.length === 0, String(ohnePreis.length));
 }
@@ -639,5 +748,7 @@ setConfig({ specialChance: SPECIAL_CHANCE });
 
 /* ══ Ergebnis ══════════════════════════════════════════════ */
 
-console.log(`\n${fail === 0 ? '✅ Alle Prüfungen bestanden.' : `❌ ${fail} Prüfung(en) fehlgeschlagen:\n   ${failed.join('\n   ')}`}\n`);
+console.log(
+  `\n${fail === 0 ? `✅ Alle ${pass} Prüfungen bestanden.` : `❌ ${fail} von ${pass + fail} Prüfungen fehlgeschlagen:\n   ${failed.join('\n   ')}`}\n`,
+);
 process.exit(fail === 0 ? 0 : 1);

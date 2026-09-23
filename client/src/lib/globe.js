@@ -58,7 +58,9 @@ const FIREWORK_COLORS = [
  */
 const SURFACE_OBJECTS = (() => {
   const plan = [
-    ['cake', 8], ['present', 9], ['speaker', 6],
+    ['cake', 8],
+    ['present', 9],
+    ['speaker', 6],
   ];
   const out = [];
   let i = 0;
@@ -110,7 +112,7 @@ export function createGlobe(canvas, opts = {}) {
   let sinYaw = Math.sin(yaw);
   let cosPitch = Math.cos(pitch);
   let sinPitch = Math.sin(pitch);
-  let spin = 0.00006; // Grunddrehung pro Millisekunde
+  const spin = 0.00006; // Grunddrehung pro Millisekunde
   let velYaw = 0;
   let velPitch = 0;
   let dragging = false;
@@ -359,7 +361,7 @@ export function createGlobe(canvas, opts = {}) {
     dpr = Math.min(2, window.devicePixelRatio || 1);
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
-    R = Math.min(w * 0.58, h * 0.40);
+    R = Math.min(w * 0.58, h * 0.4);
     cx = w / 2;
     cy = h * 0.64;
     buildFills();
@@ -400,7 +402,14 @@ export function createGlobe(canvas, opts = {}) {
     fills.body.addColorStop(0.78, '#332c58');
     fills.body.addColorStop(1, '#1e1a33');
 
-    fills.rim = x.createRadialGradient(cx - R * 0.55, cy - R * 0.55, R * 0.2, cx - R * 0.55, cy - R * 0.55, R * 1.15);
+    fills.rim = x.createRadialGradient(
+      cx - R * 0.55,
+      cy - R * 0.55,
+      R * 0.2,
+      cx - R * 0.55,
+      cy - R * 0.55,
+      R * 1.15,
+    );
     fills.rim.addColorStop(0, 'rgba(226,222,253,.30)');
     fills.rim.addColorStop(1, 'rgba(226,222,253,0)');
 
@@ -586,7 +595,7 @@ export function createGlobe(canvas, opts = {}) {
       }
       if (c.action === 'walk') {
         const dLat = c.tLat - c.lat;
-        let dLon = ((c.tLon - c.lon + 540) % 360) - 180;
+        const dLon = ((c.tLon - c.lon + 540) % 360) - 180;
         const d = Math.hypot(dLat, dLon);
         if (d < 1.5) c.timer = 0;
         else {
@@ -658,7 +667,7 @@ export function createGlobe(canvas, opts = {}) {
       }
 
       const dLat = wk.tLat - wk.lat;
-      let dLon = ((wk.tLon - wk.lon + 540) % 360) - 180;
+      const dLon = ((wk.tLon - wk.lon + 540) % 360) - 180;
       const d = Math.hypot(dLat, dLon);
       if (d < 1.5) {
         // Kurz stehen bleiben, sonst laufen alle ununterbrochen im Kreis
@@ -685,36 +694,42 @@ export function createGlobe(canvas, opts = {}) {
     for (const o of SURFACE_OBJECTS) {
       const p = projectPoint(o);
       if (p.depth <= 0.05) continue;
-      items.push({ p, draw: () => {
-        const image = img(objectUrl(o.kind));
-        if (!image.complete) return;
-        const sw = o.w * p.scale;
-        const sh = o.h * p.scale;
-        shadow(x, p, sw * 0.4);
-        x.drawImage(image, p.x - sw / 2, p.y - sh + 4, sw, sh);
-      } });
+      items.push({
+        p,
+        draw: () => {
+          const image = img(objectUrl(o.kind));
+          if (!image.complete) return;
+          const sw = o.w * p.scale;
+          const sh = o.h * p.scale;
+          shadow(x, p, sw * 0.4);
+          x.drawImage(image, p.x - sw / 2, p.y - sh + 4, sw, sh);
+        },
+      });
     }
 
     for (const c of cats) {
       const p = projectPoint(c);
       if (p.depth <= 0.05) continue;
       const frame = catFrame(c, t);
-      items.push({ p, draw: () => {
-        const image = img(catUrl(c.fur, frame, c.pattern));
-        if (!image.complete) return;
-        const sw = 30 * p.scale;
-        const sh = 25 * p.scale;
-        const hop = c.action === 'jump' ? Math.abs(Math.sin(t / 150)) * 7 * p.scale : 0;
-        shadow(x, p, sw * 0.34);
-        if (c.facing < 0) {
-          x.save();
-          x.scale(-1, 1);
-          x.drawImage(image, -p.x - sw / 2, p.y - sh - hop, sw, sh);
-          x.restore();
-        } else {
-          x.drawImage(image, p.x - sw / 2, p.y - sh - hop, sw, sh);
-        }
-      } });
+      items.push({
+        p,
+        draw: () => {
+          const image = img(catUrl(c.fur, frame, c.pattern));
+          if (!image.complete) return;
+          const sw = 30 * p.scale;
+          const sh = 25 * p.scale;
+          const hop = c.action === 'jump' ? Math.abs(Math.sin(t / 150)) * 7 * p.scale : 0;
+          shadow(x, p, sw * 0.34);
+          if (c.facing < 0) {
+            x.save();
+            x.scale(-1, 1);
+            x.drawImage(image, -p.x - sw / 2, p.y - sh - hop, sw, sh);
+            x.restore();
+          } else {
+            x.drawImage(image, p.x - sw / 2, p.y - sh - hop, sw, sh);
+          }
+        },
+      });
     }
 
     hits = [];
@@ -722,59 +737,63 @@ export function createGlobe(canvas, opts = {}) {
       const p = projectPoint(wk);
       if (p.depth <= 0.02) continue;
       const bob = Math.sin(t / 210 + wk.phase) * 1.8 * p.scale;
-      items.push({ p, draw: () => {
-        const frame = wk.cheer > 0
-          ? BODY_FRAME.CHEER
-          : wk.moving
-            ? Math.floor(wk.stride / 7) % 2
-              ? BODY_FRAME.WALK_B
-              : BODY_FRAME.WALK_A
-            : BODY_FRAME.IDLE;
-        const image = img(bodyUrl(wk.person.cfg, frame, wk.blink > 0));
-        if (!image.complete) return;
+      items.push({
+        p,
+        draw: () => {
+          const frame =
+            wk.cheer > 0
+              ? BODY_FRAME.CHEER
+              : wk.moving
+                ? Math.floor(wk.stride / 7) % 2
+                  ? BODY_FRAME.WALK_B
+                  : BODY_FRAME.WALK_A
+                : BODY_FRAME.IDLE;
+          const image = img(bodyUrl(wk.person.cfg, frame, wk.blink > 0));
+          if (!image.complete) return;
 
-        const h = 46 * p.scale;
-        const w2 = h * BODY_ASPECT;
-        const top = p.y - h - bob;
-        shadow(x, p, w2 * 0.38);
+          const h = 46 * p.scale;
+          const w2 = h * BODY_ASPECT;
+          const top = p.y - h - bob;
+          shadow(x, p, w2 * 0.38);
 
-        // Beim Jubeln hüpft die Figur ein Stück
-        const hop = wk.cheer > 0 ? Math.abs(Math.sin(t / 130)) * 5 * p.scale : 0;
+          // Beim Jubeln hüpft die Figur ein Stück
+          const hop = wk.cheer > 0 ? Math.abs(Math.sin(t / 130)) * 5 * p.scale : 0;
 
-        if (wk.facing < 0) {
-          x.save();
-          x.scale(-1, 1);
-          x.drawImage(image, -p.x - w2 / 2, top - hop, w2, h);
-          x.restore();
-        } else {
-          x.drawImage(image, p.x - w2 / 2, top - hop, w2, h);
-        }
+          if (wk.facing < 0) {
+            x.save();
+            x.scale(-1, 1);
+            x.drawImage(image, -p.x - w2 / 2, top - hop, w2, h);
+            x.restore();
+          } else {
+            x.drawImage(image, p.x - w2 / 2, top - hop, w2, h);
+          }
 
-        if (wk.id === state.leaderId) {
-          x.fillStyle = '#d9c08f';
-          const cw = 15 * p.scale;
-          const ct = top - hop - 6 * p.scale;
-          x.fillRect(p.x - cw / 2, ct + 4 * p.scale, cw, 3 * p.scale);
-          x.fillRect(p.x - cw / 2, ct, 3 * p.scale, 5 * p.scale);
-          x.fillRect(p.x - 1.5 * p.scale, ct - 1 * p.scale, 3 * p.scale, 6 * p.scale);
-          x.fillRect(p.x + cw / 2 - 3 * p.scale, ct, 3 * p.scale, 5 * p.scale);
-        }
+          if (wk.id === state.leaderId) {
+            x.fillStyle = '#d9c08f';
+            const cw = 15 * p.scale;
+            const ct = top - hop - 6 * p.scale;
+            x.fillRect(p.x - cw / 2, ct + 4 * p.scale, cw, 3 * p.scale);
+            x.fillRect(p.x - cw / 2, ct, 3 * p.scale, 5 * p.scale);
+            x.fillRect(p.x - 1.5 * p.scale, ct - 1 * p.scale, 3 * p.scale, 6 * p.scale);
+            x.fillRect(p.x + cw / 2 - 3 * p.scale, ct, 3 * p.scale, 5 * p.scale);
+          }
 
-        if (p.depth > 0.3) {
-          const label = wk.person.name;
-          x.font = `500 ${Math.round(11 * p.scale)}px Inter, system-ui, sans-serif`;
-          x.textAlign = 'center';
-          const tw = x.measureText(label).width;
-          const ly = p.y + 5 * p.scale;
-          // Schild innerhalb des Bildrands halten, sonst schneidet es ab
-          const lx = clamp(p.x, tw / 2 + 8, w - tw / 2 - 8);
-          x.fillStyle = 'rgba(13,14,22,.8)';
-          x.fillRect(lx - tw / 2 - 5, ly, tw + 10, 15 * p.scale);
-          x.fillStyle = wk.id === state.meId ? '#d9c08f' : '#e4e7f5';
-          x.fillText(label, lx, ly + 11 * p.scale);
-        }
-        hits.push({ x: p.x, y: p.y - h * 0.5, r: Math.max(24, w2 * 0.9), person: wk.person });
-      } });
+          if (p.depth > 0.3) {
+            const label = wk.person.name;
+            x.font = `500 ${Math.round(11 * p.scale)}px Inter, system-ui, sans-serif`;
+            x.textAlign = 'center';
+            const tw = x.measureText(label).width;
+            const ly = p.y + 5 * p.scale;
+            // Schild innerhalb des Bildrands halten, sonst schneidet es ab
+            const lx = clamp(p.x, tw / 2 + 8, w - tw / 2 - 8);
+            x.fillStyle = 'rgba(13,14,22,.8)';
+            x.fillRect(lx - tw / 2 - 5, ly, tw + 10, 15 * p.scale);
+            x.fillStyle = wk.id === state.meId ? '#d9c08f' : '#e4e7f5';
+            x.fillText(label, lx, ly + 11 * p.scale);
+          }
+          hits.push({ x: p.x, y: p.y - h * 0.5, r: Math.max(24, w2 * 0.9), person: wk.person });
+        },
+      });
     }
 
     for (const b of balloons) {
@@ -782,12 +801,15 @@ export function createGlobe(canvas, opts = {}) {
       b.bob += 0.02;
       const p = projectPoint(b, b.alt + Math.sin(b.bob) * 0.02);
       if (p.depth <= 0.06) continue;
-      items.push({ p, draw: () => {
-        const image = img(objectUrl('balloon', b.tint));
-        if (!image.complete) return;
-        const sw = 17 * p.scale;
-        x.drawImage(image, p.x - sw / 2, p.y - sw * 1.4, sw, sw * 1.4);
-      } });
+      items.push({
+        p,
+        draw: () => {
+          const image = img(objectUrl('balloon', b.tint));
+          if (!image.complete) return;
+          const sw = 17 * p.scale;
+          x.drawImage(image, p.x - sw / 2, p.y - sw * 1.4, sw, sw * 1.4);
+        },
+      });
     }
 
     items.sort((a, b) => a.p.depth - b.p.depth);

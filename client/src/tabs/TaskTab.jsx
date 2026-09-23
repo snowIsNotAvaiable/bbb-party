@@ -136,7 +136,11 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
           }}
         >
           <div style={{ width: 132, height: 110, margin: '0 auto 10px' }}>
-            <img className="bbb-pixel" src={partyCatUrl(me?.cfg?.fur ?? 0, catFrame, me?.cfg?.pattern ?? 0)} alt="" />
+            <img
+              className="bbb-pixel"
+              src={partyCatUrl(me?.cfg?.fur ?? 0, catFrame, me?.cfg?.pattern ?? 0)}
+              alt=""
+            />
           </div>
           <div style={{ fontSize: 17, color: 'var(--text-muted)', marginBottom: 20 }}>
             Deine Katze wartet auf die nächste Karte.
@@ -210,16 +214,35 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
             animation: 'bbbPop .4s both',
           }}
         >
-          <div style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--text-dim)' }}>
+          <div
+            style={{
+              fontSize: 11,
+              letterSpacing: '.2em',
+              textTransform: 'uppercase',
+              color: 'var(--text-dim)',
+            }}
+          >
             {turn.observers?.length > 1 ? 'Deine Beobachter' : 'Dein Beobachter'}
           </div>
-          <div style={{ width: 90, height: 90, margin: '16px auto 10px', animation: 'bbbFloat 2.6s ease-in-out infinite' }}>
+          <div
+            style={{
+              width: 90,
+              height: 90,
+              margin: '16px auto 10px',
+              animation: 'bbbFloat 2.6s ease-in-out infinite',
+            }}
+          >
             <img className="bbb-pixel" src={avatarUrl(turn.observers?.[0]?.cfg)} alt="" />
           </div>
-          <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-.02em', color: 'var(--accent-lighter)' }}>
+          <div
+            style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-.02em', color: 'var(--accent-lighter)' }}
+          >
             {turn.observers?.map((o) => o.name).join(' & ') || 'niemand'}
           </div>
-          <div className="bbb-prose" style={{ fontSize: 14, color: 'var(--text-dim)', marginTop: 10, lineHeight: 1.5 }}>
+          <div
+            className="bbb-prose"
+            style={{ fontSize: 14, color: 'var(--text-dim)', marginTop: 10, lineHeight: 1.5 }}
+          >
             {turn.observers?.length
               ? 'Zufällig gezogen, bevor jemand die Aufgabe kennt.'
               : 'Noch ist niemand sonst da. Diese Aufgabe zählt ohne Abnahme.'}
@@ -246,15 +269,31 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
 
       {turn.status === 'level' && (
         <div className="bbb-card" style={{ padding: 18, animation: 'bbbSpinIn .45s both' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-            <div style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--text-dim-2)' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 6,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 10,
+                letterSpacing: '.16em',
+                textTransform: 'uppercase',
+                color: 'var(--text-dim-2)',
+              }}
+            >
               {turn.category}
             </div>
             <div style={{ fontSize: 12, color: 'var(--rose)' }}>
               👁 {turn.observers?.map((o) => o.name).join(', ') || 'niemand'}
             </div>
           </div>
-          <div style={{ fontSize: 27, fontWeight: 700, letterSpacing: '-.02em', marginBottom: 6 }}>{turn.title}</div>
+          <div style={{ fontSize: 27, fontWeight: 700, letterSpacing: '-.02em', marginBottom: 6 }}>
+            {turn.title}
+          </div>
           <div style={{ fontSize: 13.5, color: 'var(--text-dim)', marginBottom: 18, lineHeight: 1.45 }}>
             {turn.forcedLevel
               ? `Zwangsstufe von ${turn.forcedBy}. Hier geht nur Stufe ${turn.forcedLevel}.`
@@ -300,7 +339,9 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
                 >
                   <span>
                     <span style={{ fontSize: 19, fontWeight: 600 }}>{lv.label}</span>
-                    <span style={{ display: 'block', fontSize: 12.5, color: lv.subColor, marginTop: 2 }}>{lv.sub}</span>
+                    <span style={{ display: 'block', fontSize: 12.5, color: lv.subColor, marginTop: 2 }}>
+                      {lv.sub}
+                    </span>
                   </span>
                   <span style={{ fontSize: 26, fontWeight: 700, color: lv.color }}>{lv.points}</span>
                 </button>
@@ -317,7 +358,14 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
           className="bbb-card"
           style={{ padding: '26px 20px 22px', textAlign: 'center', animation: 'bbbPop .3s both' }}
         >
-          <div style={{ width: 110, height: 92, margin: '0 auto 12px', animation: 'bbbBob 2.6s ease-in-out infinite' }}>
+          <div
+            style={{
+              width: 110,
+              height: 92,
+              margin: '0 auto 12px',
+              animation: 'bbbBob 2.6s ease-in-out infinite',
+            }}
+          >
             <img
               className="bbb-pixel"
               src={catUrl(me?.cfg?.fur ?? 0, CAT_FRAME.SIT, me?.cfg?.pattern ?? 0)}
@@ -325,7 +373,9 @@ export default function TaskTab({ state, run, wildcardPending, onOpenWildcard })
             />
           </div>
           <div style={{ fontSize: 14, color: 'var(--text-dim)' }}>Wartet auf Abnahme von</div>
-          <div style={{ fontSize: 25, fontWeight: 700, color: 'var(--accent-lighter)', margin: '5px 0 12px' }}>
+          <div
+            style={{ fontSize: 25, fontWeight: 700, color: 'var(--accent-lighter)', margin: '5px 0 12px' }}
+          >
             {turn.observers?.map((o) => o.name).join(' & ')}
           </div>
           <div
@@ -404,7 +454,14 @@ function MiniStat({ label, value, color }) {
         boxShadow: '0 0 0 1px var(--line)',
       }}
     >
-      <div style={{ fontSize: 8.5, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--text-dim-2)' }}>
+      <div
+        style={{
+          fontSize: 8.5,
+          letterSpacing: '.14em',
+          textTransform: 'uppercase',
+          color: 'var(--text-dim-2)',
+        }}
+      >
         {label}
       </div>
       <div style={{ fontSize: 17, fontWeight: 700, color: color || 'var(--text)' }}>{value}</div>
@@ -413,19 +470,20 @@ function MiniStat({ label, value, color }) {
 }
 
 function Reveal({ turn, me, busy, go }) {
-  const [left, setLeft] = useState(null);
+  // Nur Sonderaufträge haben eine Uhr. Ohne Uhr läuft gar kein Intervall, und
+  // der gespeicherte Wert wird beim Anzeigen ignoriert statt zurückgesetzt.
+  const hatUhr = !!(turn.timerSec && turn.revealedAt);
+  const [ticks, setTicks] = useState(null);
+  const left = hatUhr ? ticks : null;
 
   useEffect(() => {
-    if (!turn.timerSec || !turn.revealedAt) {
-      setLeft(null);
-      return undefined;
-    }
+    if (!hatUhr) return undefined;
     const end = Date.parse(turn.revealedAt) + turn.timerSec * 1000;
-    const tick = () => setLeft(Math.max(0, Math.round((end - Date.now()) / 1000)));
+    const tick = () => setTicks(Math.max(0, Math.round((end - Date.now()) / 1000)));
     tick();
     const id = setInterval(tick, 500);
     return () => clearInterval(id);
-  }, [turn.timerSec, turn.revealedAt]);
+  }, [hatUhr, turn.timerSec, turn.revealedAt]);
 
   const isWild = turn.kind === 'wildcard';
 
@@ -442,7 +500,9 @@ function Reveal({ turn, me, busy, go }) {
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--rose)' }}>
+        <div
+          style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--rose)' }}
+        >
           {isWild ? 'Sonderauftrag' : `${LEVEL_NAME[turn.level] || `Stufe ${turn.level}`} · +${turn.level}`}
         </div>
         <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>
@@ -450,7 +510,10 @@ function Reveal({ turn, me, busy, go }) {
         </div>
       </div>
 
-      <div className="bbb-prose" style={{ fontSize: 22, lineHeight: 1.42, fontWeight: 500, margin: '16px 0 6px' }}>
+      <div
+        className="bbb-prose"
+        style={{ fontSize: 22, lineHeight: 1.42, fontWeight: 500, margin: '16px 0 6px' }}
+      >
         {turn.revealText}
       </div>
 
@@ -548,7 +611,9 @@ function SpecialHand({ state, go, busy }) {
                 className="bbb-btn"
                 disabled={busy}
                 onClick={() =>
-                  sp.requiresTarget ? setOpen(open === sp.id ? null : sp.id) : go('playSpecial', { specialId: sp.id })
+                  sp.requiresTarget
+                    ? setOpen(open === sp.id ? null : sp.id)
+                    : go('playSpecial', { specialId: sp.id })
                 }
                 style={{
                   padding: '10px 15px',
@@ -562,7 +627,10 @@ function SpecialHand({ state, go, busy }) {
                 {sp.requiresTarget ? 'Ziel' : 'Spielen'}
               </button>
             </div>
-            <div className="bbb-prose" style={{ fontSize: 13, color: 'var(--text-soft)', marginTop: 9, lineHeight: 1.5 }}>
+            <div
+              className="bbb-prose"
+              style={{ fontSize: 13, color: 'var(--text-soft)', marginTop: 9, lineHeight: 1.5 }}
+            >
               {sp.description}
             </div>
             {open === sp.id && (
@@ -715,7 +783,15 @@ function Balance({ me }) {
           <div key={r.label} style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 11 }}>
             <div style={{ width: 74, fontSize: 13.5, color: 'var(--text-muted)' }}>{r.label}</div>
             {/* Der Balken zeigt den Anteil an der stärksten Stufe */}
-            <div style={{ flex: 1, height: 8, borderRadius: 4, background: 'rgba(15,16,26,.6)', overflow: 'hidden' }}>
+            <div
+              style={{
+                flex: 1,
+                height: 8,
+                borderRadius: 4,
+                background: 'rgba(15,16,26,.6)',
+                overflow: 'hidden',
+              }}
+            >
               <div
                 style={{
                   width: `${(r.value / max) * 100}%`,
@@ -726,7 +802,15 @@ function Balance({ me }) {
                 }}
               />
             </div>
-            <div style={{ width: 22, textAlign: 'right', fontSize: 15, fontWeight: 700, color: r.value ? r.color : 'var(--text-faint)' }}>
+            <div
+              style={{
+                width: 22,
+                textAlign: 'right',
+                fontSize: 15,
+                fontWeight: 700,
+                color: r.value ? r.color : 'var(--text-faint)',
+              }}
+            >
               {r.value}
             </div>
           </div>

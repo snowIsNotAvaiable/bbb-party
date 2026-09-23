@@ -28,8 +28,25 @@ export default function Admin() {
   const [pin, setPin] = useState(() => sessionStorage.getItem(PIN_KEY) || '');
   const [armed, setArmed] = useState(() => !!sessionStorage.getItem(PIN_KEY));
 
-  if (!armed) return <PinLock onUnlock={(value) => { setPin(value); setArmed(true); }} />;
-  return <Console pin={pin} onLock={() => { sessionStorage.removeItem(PIN_KEY); setArmed(false); setPin(''); }} />;
+  if (!armed)
+    return (
+      <PinLock
+        onUnlock={(value) => {
+          setPin(value);
+          setArmed(true);
+        }}
+      />
+    );
+  return (
+    <Console
+      pin={pin}
+      onLock={() => {
+        sessionStorage.removeItem(PIN_KEY);
+        setArmed(false);
+        setPin('');
+      }}
+    />
+  );
 }
 
 /* ── PIN-Sperre ─────────────────────────────────────────────── */
@@ -86,7 +103,13 @@ function PinLock({ onUnlock }) {
               setError(null);
             }}
             onKeyDown={(e) => e.key === 'Enter' && check()}
-            style={{ fontSize: 30, textAlign: 'center', letterSpacing: '.4em', padding: '18px 16px', borderRadius: 16 }}
+            style={{
+              fontSize: 30,
+              textAlign: 'center',
+              letterSpacing: '.4em',
+              padding: '18px 16px',
+              borderRadius: 16,
+            }}
           />
           {error && (
             <div role="alert" style={{ marginTop: 10, fontSize: 13.5, color: 'var(--rose)' }}>
@@ -379,9 +402,16 @@ function Checks({ checks }) {
   return (
     <div
       className="bbb-card"
-      style={{ padding: 14, marginBottom: 16, boxShadow: `0 0 0 1px ${tone}`, animation: 'bbbSlideUp .4s both' }}
+      style={{
+        padding: 14,
+        marginBottom: 16,
+        boxShadow: `0 0 0 1px ${tone}`,
+        animation: 'bbbSlideUp .4s both',
+      }}
     >
-      <Label style={{ marginBottom: 9 }}>{warn.length ? 'Kümmert sich nicht von allein' : 'Zur Kenntnis'}</Label>
+      <Label style={{ marginBottom: 9 }}>
+        {warn.length ? 'Kümmert sich nicht von allein' : 'Zur Kenntnis'}
+      </Label>
       {list.map((c, i) => (
         <div
           key={i}
@@ -398,7 +428,9 @@ function Checks({ checks }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13.5, lineHeight: 1.45, color: 'var(--text-muted)' }}>{c.text}</div>
             {c.hint && (
-              <div style={{ fontSize: 12, lineHeight: 1.45, color: 'var(--text-dim-2)', marginTop: 2 }}>{c.hint}</div>
+              <div style={{ fontSize: 12, lineHeight: 1.45, color: 'var(--text-dim-2)', marginTop: 2 }}>
+                {c.hint}
+              </div>
             )}
           </div>
         </div>
@@ -417,7 +449,12 @@ function Players({ state, run }) {
         <div
           key={p.id}
           className="bbb-card"
-          style={{ padding: 16, marginBottom: 12, opacity: p.active ? 1 : 0.55, animation: `bbbSlideUp .4s ${Math.min(i, 8) * 0.03}s both` }}
+          style={{
+            padding: 16,
+            marginBottom: 12,
+            opacity: p.active ? 1 : 0.55,
+            animation: `bbbSlideUp .4s ${Math.min(i, 8) * 0.03}s both`,
+          }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 13 }}>
             <div style={{ width: 46, height: 46, flex: 'none' }}>
@@ -430,7 +467,9 @@ function Players({ state, run }) {
               </div>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 24, fontWeight: 700, color: p.score < 0 ? 'var(--rose)' : 'var(--gold)' }}>
+              <div
+                style={{ fontSize: 24, fontWeight: 700, color: p.score < 0 ? 'var(--rose)' : 'var(--gold)' }}
+              >
                 {p.score}
               </div>
             </div>
@@ -450,7 +489,9 @@ function Players({ state, run }) {
             </Btn>
             <Btn
               flex
-              onClick={() => run('setRole', { targetId: p.id, role: ROLES[(ROLES.indexOf(p.role) + 1) % ROLES.length] })}
+              onClick={() =>
+                run('setRole', { targetId: p.id, role: ROLES[(ROLES.indexOf(p.role) + 1) % ROLES.length] })
+              }
             >
               Rolle wechseln
             </Btn>
@@ -461,7 +502,10 @@ function Players({ state, run }) {
       {!players.length && <Empty text="Noch niemand da. Der QR-Code hängt hoffentlich." />}
       <InfoBox
         title="Punkte korrigieren"
-        lines={['Jede Korrektur landet als Ereignis im Protokoll.', 'Pausierte Spieler werden nicht mehr als Beobachter gezogen.']}
+        lines={[
+          'Jede Korrektur landet als Ereignis im Protokoll.',
+          'Pausierte Spieler werden nicht mehr als Beobachter gezogen.',
+        ]}
       />
     </Screen>
   );
@@ -486,7 +530,10 @@ function Approve({ state, run }) {
           <div style={{ fontSize: 12, color: 'var(--text-dim-2)', marginTop: 2 }}>
             {c.title} · {c.levelLabel} · {relativeTime(c.createdAt)}
           </div>
-          <div className="bbb-prose" style={{ fontSize: 14.5, lineHeight: 1.5, color: 'var(--text-soft)', margin: '11px 0' }}>
+          <div
+            className="bbb-prose"
+            style={{ fontSize: 14.5, lineHeight: 1.5, color: 'var(--text-soft)', margin: '11px 0' }}
+          >
             {c.text}
           </div>
           <div style={{ fontSize: 12, color: 'var(--line-accent-2)', marginBottom: 12 }}>
@@ -571,7 +618,9 @@ function Approve({ state, run }) {
 const FALLBACK_CATEGORIES = ['sozial', 'trinken', 'performance', 'körperlich', 'wissen'];
 
 function Cards({ state, run }) {
-  const cards = state.cards || [];
+  // Ohne useMemo wäre `cards` bei fehlendem Katalog jedes Mal ein neues leeres
+  // Array, und die Ableitungen darunter würden bei jedem Rendern neu laufen.
+  const cards = useMemo(() => state.cards || [], [state.cards]);
   const [filter, setFilter] = useState('');
   const [importing, setImporting] = useState(false);
   const [draft, setDraft] = useState('');
@@ -768,7 +817,7 @@ function Cards({ state, run }) {
             rows={7}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
-            placeholder="[ { &quot;id&quot;: &quot;card-011&quot;, … } ]"
+            placeholder='[ { "id": "card-011", … } ]'
             style={{ marginTop: 8, fontSize: 13, fontFamily: 'ui-monospace, monospace', resize: 'vertical' }}
           />
           {importError && (
@@ -945,7 +994,10 @@ function Game({ state, run, onLock }) {
         <Btn active={cfg.rerollScaling === 'linear'} onClick={() => patch('rerollScaling', 'linear')}>
           Linear ×n
         </Btn>
-        <Btn active={cfg.rerollScaling === 'exponential'} onClick={() => patch('rerollScaling', 'exponential')}>
+        <Btn
+          active={cfg.rerollScaling === 'exponential'}
+          onClick={() => patch('rerollScaling', 'exponential')}
+        >
           Exponentiell
         </Btn>
       </div>
@@ -977,9 +1029,9 @@ function Game({ state, run, onLock }) {
       <Label>Mitnehmen</Label>
       <div className="bbb-card" style={{ padding: 16, marginBottom: 20 }}>
         <div style={{ fontSize: 13.5, color: 'var(--text-dim)', marginBottom: 13, lineHeight: 1.5 }}>
-          Die Sicherung ist eine Datei mit dem kompletten Verlauf. Vor allem vor dem Zurücksetzen
-          einmal ziehen. Der Rückblick rechnet Endstand, Titel und den ganzen Abend aus dem
-          Protokoll; er funktioniert auch schon mittendrin.
+          Die Sicherung ist eine Datei mit dem kompletten Verlauf. Vor allem vor dem Zurücksetzen einmal
+          ziehen. Der Rückblick rechnet Endstand, Titel und den ganzen Abend aus dem Protokoll; er
+          funktioniert auch schon mittendrin.
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <Btn flex onClick={() => window.open('/api/export/state', '_blank')}>
@@ -1008,11 +1060,17 @@ function Game({ state, run, onLock }) {
       </div>
 
       {confirm && (
-        <div className="bbb-card" style={{ padding: 18, boxShadow: '0 0 0 1px var(--rose)', animation: 'bbbPop .28s both' }}>
+        <div
+          className="bbb-card"
+          style={{ padding: 18, boxShadow: '0 0 0 1px var(--rose)', animation: 'bbbPop .28s both' }}
+        >
           <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>
             {confirm === 'end' ? 'Wirklich beenden?' : 'Wirklich alles löschen?'}
           </div>
-          <div className="bbb-prose" style={{ fontSize: 13.5, color: 'var(--text-dim)', marginBottom: 14, lineHeight: 1.5 }}>
+          <div
+            className="bbb-prose"
+            style={{ fontSize: 13.5, color: 'var(--text-dim)', marginBottom: 14, lineHeight: 1.5 }}
+          >
             {confirm === 'end'
               ? 'Die Auswertung wird eingefroren und allen angezeigt.'
               : 'Spieler, Punkte und der ganze Verlauf sind danach weg.'}
@@ -1044,7 +1102,11 @@ function Log({ state, run }) {
   const events = state.events || [];
 
   return (
-    <Screen kicker="Jede Änderung" title="Protokoll" sub="Zurücknehmen streicht das Ereignis aus der Rechnung.">
+    <Screen
+      kicker="Jede Änderung"
+      title="Protokoll"
+      sub="Zurücknehmen streicht das Ereignis aus der Rechnung."
+    >
       {events.map((e) => (
         <div
           key={e.id}
@@ -1061,13 +1123,17 @@ function Log({ state, run }) {
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 500, textDecoration: e.voided ? 'line-through' : 'none' }}>
+            <div
+              style={{ fontSize: 14, fontWeight: 500, textDecoration: e.voided ? 'line-through' : 'none' }}
+            >
               {e.player} · {e.type}
             </div>
             <div style={{ fontSize: 11, color: 'var(--text-faint)' }}>{relativeTime(e.ts)}</div>
           </div>
           {!!e.delta && (
-            <div style={{ fontSize: 15, fontWeight: 700, color: e.delta > 0 ? 'var(--mint)' : 'var(--rose)' }}>
+            <div
+              style={{ fontSize: 15, fontWeight: 700, color: e.delta > 0 ? 'var(--mint)' : 'var(--rose)' }}
+            >
               {e.delta > 0 ? `+${e.delta}` : e.delta}
             </div>
           )}
@@ -1154,8 +1220,8 @@ function NameModal({ hits, onBack, onAnyway }) {
               {listed.length === 1 ? ' klingt' : ' klingen'} nach einem Vornamen.{' '}
             </>
           )}
-          Eine Karte mit Namen ist tot, sobald die Person absagt, schon schläft oder gar nicht
-          gemeint war. Schreib die Rolle statt der Person.
+          Eine Karte mit Namen ist tot, sobald die Person absagt, schon schläft oder gar nicht gemeint war.
+          Schreib die Rolle statt der Person.
         </div>
 
         <div
@@ -1202,7 +1268,10 @@ const LEVEL_FIELDS = [
 
 /** Aus dem ersten Satz einen kurzen Kartennamen bauen. */
 function shortTitle(text) {
-  const words = text.replace(/[.,!?;:]/g, ' ').split(/\s+/).filter(Boolean);
+  const words = text
+    .replace(/[.,!?;:]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
   return words.slice(0, 3).join(' ').slice(0, 40) || 'Neue Karte';
 }
 
@@ -1234,7 +1303,14 @@ function Stat({ label, value }) {
         boxShadow: '0 0 0 1px var(--line-2)',
       }}
     >
-      <div style={{ fontSize: 9, letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--text-dim-2)' }}>
+      <div
+        style={{
+          fontSize: 9,
+          letterSpacing: '.15em',
+          textTransform: 'uppercase',
+          color: 'var(--text-dim-2)',
+        }}
+      >
         {label}
       </div>
       <div style={{ fontSize: 21, fontWeight: 700 }}>{value}</div>

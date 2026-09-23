@@ -12,8 +12,9 @@ export default function DiceOverlay({ roll, onClose }) {
   const [rolling, setRolling] = useState(true);
   const [face, setFace] = useState(roll.dice);
 
+  // Kein Zurücksetzen nötig: PlayerApp gibt der Einblendung pro Wurf einen
+  // eigenen key, sie startet also ohnehin frisch.
   useEffect(() => {
-    setRolling(true);
     const shuffle = setInterval(() => setFace(1 + Math.floor(Math.random() * 6)), 120);
     const done = setTimeout(() => {
       clearInterval(shuffle);
@@ -71,7 +72,15 @@ export default function DiceOverlay({ roll, onClose }) {
         {FACES[face]}
       </div>
 
-      <div style={{ fontSize: 26, fontWeight: 600, letterSpacing: '-.02em', color: 'var(--rose)', minHeight: 32 }}>
+      <div
+        style={{
+          fontSize: 26,
+          fontWeight: 600,
+          letterSpacing: '-.02em',
+          color: 'var(--rose)',
+          minHeight: 32,
+        }}
+      >
         {rolling ? ' ' : `−${roll.total}`}
       </div>
 

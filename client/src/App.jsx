@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useConnection, setToken } from './lib/net.js';
 import Join from './screens/Join.jsx';
 import Rules from './screens/Rules.jsx';
@@ -21,10 +21,16 @@ function Player() {
     return () => clearTimeout(t);
   }, [toast]);
 
+  // Der Server meldet einmal, dass der gespeicherte Token zu niemandem mehr
+  // gehört. Nur diesen Übergang anzeigen, nicht jeden Rendervorgang danach.
+  const warTokenUngueltig = useRef(false);
   useEffect(() => {
-    if (tokenInvalid) {
+    if (tokenInvalid && !warTokenUngueltig.current) {
+      warTokenUngueltig.current = true;
       setToast('Dein Platz wurde zurückgesetzt. Trag dich einfach neu ein.');
       setTokenInvalid(false);
+    } else if (!tokenInvalid) {
+      warTokenUngueltig.current = false;
     }
   }, [tokenInvalid, setTokenInvalid]);
 
@@ -88,10 +94,19 @@ function Splash() {
       }}
     >
       <div className="bbb-kicker">Willkommen bei</div>
-      <div style={{ fontSize: 40, fontWeight: 600, letterSpacing: '-.03em', animation: 'bbbGlow 4s ease-in-out infinite' }}>
+      <div
+        style={{
+          fontSize: 40,
+          fontWeight: 600,
+          letterSpacing: '-.03em',
+          animation: 'bbbGlow 4s ease-in-out infinite',
+        }}
+      >
         BBB
       </div>
-      <div style={{ fontSize: 13, color: 'var(--text-dim-2)' }}>Einen Moment, die Katze sucht die Verbindung …</div>
+      <div style={{ fontSize: 13, color: 'var(--text-dim-2)' }}>
+        Einen Moment, die Katze sucht die Verbindung …
+      </div>
     </div>
   );
 }

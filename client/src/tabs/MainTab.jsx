@@ -19,7 +19,14 @@ export default function MainTab({ state, active, onTab, run }) {
   const [editing, setEditing] = useState(false);
 
   const people = useMemo(
-    () => (state.ranking || []).map((p) => ({ id: p.id, name: p.name, cfg: p.cfg, score: p.score, role: p.role })),
+    () =>
+      (state.ranking || []).map((p) => ({
+        id: p.id,
+        name: p.name,
+        cfg: p.cfg,
+        score: p.score,
+        role: p.role,
+      })),
     [state.ranking],
   );
 
@@ -58,7 +65,6 @@ export default function MainTab({ state, active, onTab, run }) {
   }, [burst]);
 
   const ticker = useMemo(() => buildTicker(state), [state]);
-  const me = state.me;
 
   return (
     <div style={{ flex: 1, position: 'relative', minHeight: 0, overflow: 'hidden' }}>
@@ -118,7 +124,9 @@ export default function MainTab({ state, active, onTab, run }) {
             animation: 'bbbPop .28s both',
           }}
         >
-          <div style={{ width: 56, height: 56, flex: 'none', animation: 'bbbFloat 3.2s ease-in-out infinite' }}>
+          <div
+            style={{ width: 56, height: 56, flex: 'none', animation: 'bbbFloat 3.2s ease-in-out infinite' }}
+          >
             <img className="bbb-pixel" src={avatarUrl(tapped.cfg)} alt="" />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>

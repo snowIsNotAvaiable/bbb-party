@@ -46,8 +46,18 @@ export default function PlayerApp({ state, run }) {
     }
   }, [wildcard?.expiresAt]);
 
+  // Ein Sonderauftrag, der gerade aufgedeckt wurde, holt den Spieler einmal auf
+  // den Aufgaben-Tab. Nur beim Übergang: wer danach bewusst wegblättert, soll
+  // nicht bei jedem Snapshot zurückgerissen werden.
+  const lastReveal = useRef(null);
   useEffect(() => {
-    if (state.turn?.status === 'reveal' && state.turn.kind === 'wildcard') setTab('task');
+    const wild = state.turn?.status === 'reveal' && state.turn.kind === 'wildcard';
+    if (wild && wild !== lastReveal.current) {
+      lastReveal.current = wild;
+      setTab('task');
+    } else {
+      lastReveal.current = wild;
+    }
   }, [state.turn?.status, state.turn?.kind]);
 
   // Offene Wetten sind dringend und zeigen eine Zahl. Der Punkt daneben ist nur
@@ -163,7 +173,9 @@ export default function PlayerApp({ state, run }) {
                   accent={isActive ? '#c98fae' : '#3f424d'}
                 />
               </span>
-              <span style={{ fontSize: 9.5, letterSpacing: '.03em', fontWeight: isActive ? 600 : 400 }}>{t.label}</span>
+              <span style={{ fontSize: 9.5, letterSpacing: '.03em', fontWeight: isActive ? 600 : 400 }}>
+                {t.label}
+              </span>
               {badge && (
                 <span
                   style={{
@@ -190,7 +202,16 @@ export default function PlayerApp({ state, run }) {
         })}
       </nav>
 
-      {roll && <DiceOverlay roll={roll} onClose={() => run('clearRoll')} />}
+      {/* Der key lässt React die Einblendung bei jedem neuen Wurf frisch
+          aufbauen. Ohne ihn müsste der Würfel seinen Zustand im Effekt
+          zurücksetzen, und das erzeugt eine überflüssige zweite Darstellung. */}
+      {roll && (
+        <DiceOverlay
+          key={`${roll.dice}-${roll.factor}-${roll.total}`}
+          roll={roll}
+          onClose={() => run('clearRoll')}
+        />
+      )}
       {wildcard && !minimized && (
         <WildcardOverlay
           wildcard={wildcard}
