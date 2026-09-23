@@ -14,6 +14,14 @@ updates:
       # und concurrently 9 auf 10. So ein PR ist weder prüfbar noch teilbar.
       # Mit update-types kommt jeder Major einzeln und lässt sich einzeln
       # testen.
+      # Zwei Ausnahmen, die auch als Major zusammen kommen muessen. Einzeln
+      # bricht npm ci an der peerDependency: react-dom 19 verlangt react 19,
+      # und vite 8 verlangt ein neueres @vitejs/plugin-react.
+      react:
+        patterns: ['react', 'react-dom']
+      vite:
+        patterns: ['vite', '@vitejs/plugin-react']
+
       produktion:
         dependency-type: production
         update-types: [minor, patch]
