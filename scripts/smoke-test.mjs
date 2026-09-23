@@ -261,14 +261,47 @@ async function run() {
   await wait(60);
 
   console.log('\n── Reroll: Würfel mal Faktor ─────────────────────');
-  if (b.state.turn.pendingSpecial) {
-    await b.act('ackSpecial');
-    await b.act('draw');
-    await wait(60);
-  }
-  await b.act('observerAck');
-  await b.act('pickLevel', { level: 10 });
-  await wait(60);
+
+  /**
+   * Bringt den laufenden Zug auf „reveal", egal wo er gerade steht.
+   *
+   * Vorher wurde eine Special Card genau einmal weggeklickt. Sie kommt aber
+   * mit fünf Prozent Wahrscheinlichkeit statt einer Aufgabe, also auch zweimal
+   * hintereinander. Dann blieb der Zug auf „idle", der Reroll antwortete mit
+   * einem Fehler, und vier Prüfungen kippten als Folgefehler. Das sah nach
+   * einem Node-24-Problem aus und war reiner Zufall.
+   */
+  const toReveal = async (level) => {
+    for (let versuch = 0; versuch < 20; versuch += 1) {
+      if (b.state.turn.pendingSpecial) {
+        await b.act('ackSpecial');
+        await wait(40);
+        continue;
+      }
+      switch (b.state.turn.status) {
+        case 'reveal':
+          return;
+        case 'idle':
+        case 'waiting':
+          await b.act('draw');
+          await wait(80);
+          break;
+        case 'observer':
+          await b.act('observerAck');
+          await wait(40);
+          break;
+        case 'level':
+          await b.act('pickLevel', { level });
+          await wait(60);
+          break;
+        default:
+          await wait(40);
+      }
+    }
+    throw new Error(`Zug kam nicht auf reveal, steht auf ${b.state.turn.status}.`);
+  };
+
+  await toReveal(10);
   const before = scoreOf(b, b.playerId);
   const roll = await b.act('reroll');
   await wait(80);
@@ -287,27 +320,15 @@ async function run() {
   check('noch zwei Rerolls für diese Karte', b.state.me.rerollsLeft === 2, String(b.state.me.rerollsLeft));
 
   // Drei pro Karte, der vierte muss abgelehnt werden
-  const toReveal = async () => {
-    await b.act('draw');
-    await wait(80);
-    if (b.state.turn.pendingSpecial) {
-      await b.act('ackSpecial');
-      await b.act('draw');
-      await wait(80);
-    }
-    await b.act('observerAck');
-    await b.act('pickLevel', { level: 1 });
-    await wait(60);
-  };
   for (const expected of [2, 3]) {
-    await toReveal();
+    await toReveal(1);
     const r = await b.act('reroll');
     await wait(80);
     check(`Faktor steigt auf ${expected}`, r.factor === expected, String(r.factor));
     await b.act('clearRoll');
     await wait(40);
   }
-  await toReveal();
+  await toReveal(1);
   const fourth = await b.act('reroll');
   check('vierter Reroll wird abgelehnt', !!fourth.error, fourth.error);
   check('kein Reroll mehr übrig', b.state.me.rerollsLeft === 0, String(b.state.me.rerollsLeft));
