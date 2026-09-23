@@ -29,9 +29,9 @@ einfach nicht wirken.
   "tags": [],
   "enabled": true,
   "levels": {
-    "1":  { "text": "Harmlos.",        "timerSec": null },
-    "5":  { "text": "Peinlich.",       "timerSec": null },
-    "10": { "text": "Richtig blöd.",   "timerSec": null }
+    "1": { "text": "Harmlos.", "timerSec": null },
+    "5": { "text": "Peinlich.", "timerSec": null },
+    "10": { "text": "Richtig blöd.", "timerSec": null }
   },
   "requires": { "props": [], "minPlayers": 1, "targetsOtherPlayer": false },
   "onlyRole": null,
@@ -40,15 +40,15 @@ einfach nicht wirken.
 }
 ```
 
-| Feld | Regel |
-|---|---|
-| `id` | eindeutig über die ganze Datei |
-| `category` | `trinken`, `sozial`, `performance`, `körperlich`, `wissen`, `geburtstagskind` |
-| `levels` | **genau** die Schlüssel `1`, `5`, `10`; sie sind gleichzeitig die Punktwerte |
-| Textlänge | 5 bis 300 Zeichen, darauf ist das Reveal-Layout ausgelegt |
-| `timerSec` | bei normalen Karten `null`; eine Uhr haben nur Sonderaufträge |
+| Feld       | Regel                                                                             |
+| ---------- | --------------------------------------------------------------------------------- |
+| `id`       | eindeutig über die ganze Datei                                                    |
+| `category` | `trinken`, `sozial`, `performance`, `körperlich`, `wissen`, `geburtstagskind`     |
+| `levels`   | **genau** die Schlüssel `1`, `5`, `10`; sie sind gleichzeitig die Punktwerte      |
+| Textlänge  | 5 bis 300 Zeichen, darauf ist das Reveal-Layout ausgelegt                         |
+| `timerSec` | bei normalen Karten `null`; eine Uhr haben nur Sonderaufträge                     |
 | `onlyRole` | `null` oder `birthday`; solange niemand die Rolle hat, wird die Karte nie gezogen |
-| `enabled` | `false` nimmt die Karte aus dem Spiel, ohne sie zu löschen |
+| `enabled`  | `false` nimmt die Karte aus dem Spiel, ohne sie zu löschen                        |
 
 ### Die drei Stufen müssen sich unterscheiden
 
@@ -142,8 +142,15 @@ Eine neue Wirkung einzubauen ist in
 ```
 
 ```json
-{ "id": "pun-4", "label": "Endboss der Schande", "severity": 4,
-  "icon": "💀", "title": "…", "text": "…", "enabled": true }
+{
+  "id": "pun-4",
+  "label": "Endboss der Schande",
+  "severity": 4,
+  "icon": "💀",
+  "title": "…",
+  "text": "…",
+  "enabled": true
+}
 ```
 
 Zwei Fallen:

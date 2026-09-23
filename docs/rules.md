@@ -27,12 +27,12 @@ Katze im Sack.
 
 ## Punkte und Stufen
 
-| Stufe | Punkte | Charakter |
-|---|---|---|
-| Stufe 1 | +1 | harmlos, in dreißig Sekunden erledigt |
-| Stufe 2 | +5 | leicht peinlich, kostet Überwindung |
-| Stufe 3 | +10 | richtig unangenehm, aufwendig oder laut |
-| Sonderauftrag | +25 | blind angenommen, siehe unten |
+| Stufe         | Punkte | Charakter                               |
+| ------------- | ------ | --------------------------------------- |
+| Stufe 1       | +1     | harmlos, in dreißig Sekunden erledigt   |
+| Stufe 2       | +5     | leicht peinlich, kostet Überwindung     |
+| Stufe 3       | +10    | richtig unangenehm, aufwendig oder laut |
+| Sonderauftrag | +25    | blind angenommen, siehe unten           |
 
 Punkte gibt es **erst nach der Bestätigung** durch den Beobachter. Wird eine
 Aufgabe abgelehnt, kostet sie.
@@ -45,10 +45,10 @@ Eine Karte wegwerfen kostet einen Würfelwurf, multipliziert mit einem Faktor,
 der **innerhalb derselben Karte** steigt.
 
 | Reroll für diese Karte | Faktor | bei Würfel 4 | Schlimmstfall |
-|---|---|---|---|
-| erster | ×1 | −4 | −6 |
-| zweiter | ×2 | −8 | −12 |
-| dritter | ×3 | −12 | −18 |
+| ---------------------- | ------ | ------------ | ------------- |
+| erster                 | ×1     | −4           | −6            |
+| zweiter                | ×2     | −8           | −12           |
+| dritter                | ×3     | −12          | −18           |
 
 Drei Rerolls **pro Karte**, nicht pro Abend. Der Zähler startet bei jeder neuen
 Karte wieder bei null. So bleibt der Reroll eine Notbremse für eine unpassende
@@ -69,13 +69,13 @@ Die Skalierung lässt sich im Admin auf exponentiell umstellen.
 Kein Selbst-Abhaken. Jede Aufgabe braucht einen Beobachter: ihm wird sie
 gezeigt oder gewidmet, und er bestätigt anschließend in seiner eigenen App.
 
-| | |
-|---|---|
-| **Wann** | direkt beim Kartenzug, **vor** dem Reveal |
-| **Wer** | zufällig durch die App, keine freie Wahl, kein Tausch |
-| **Warum zufällig** | sonst sucht man sich den nachsichtigsten Freund aus |
+|                          |                                                         |
+| ------------------------ | ------------------------------------------------------- |
+| **Wann**                 | direkt beim Kartenzug, **vor** dem Reveal               |
+| **Wer**                  | zufällig durch die App, keine freie Wahl, kein Tausch   |
+| **Warum zufällig**       | sonst sucht man sich den nachsichtigsten Freund aus     |
 | **Mehrere gleichzeitig** | ja, als Liste, nie als Fenster über der eigenen Aufgabe |
-| **Reagiert niemand** | der Host entscheidet im Admin unter „Freigeben" |
+| **Reagiert niemand**     | der Host entscheidet im Admin unter „Freigeben"         |
 
 Nebeneffekt, der das Spiel trägt: Die Beobachterrolle zieht Aufmerksamkeit auf
 die Aufgabe. Niemand erledigt seine Aufgabe unbemerkt in einer Ecke.
@@ -106,17 +106,17 @@ Punkte sind nicht nur für die Rangliste da, sondern auch Währung. Ausgegebene
 Punkte sind **weg**, sie gehen nicht an andere. Das hält den Shop teuer und die
 Tabelle aussagekräftig.
 
-| Wirkung | Was sie tut |
-|---|---|
-| `forceLevel10` | Die nächste Karte des Ziels geht zwingend auf Stufe 3 |
-| `rerollBlock` | Das Ziel muss die laufende Aufgabe durchziehen |
-| `penalty` | Das Ziel zieht eine Strafkarte |
-| `redirect` | Ein fremder Effekt auf dir wandert zu jemand anderem |
-| `chooseObserver` | Du suchst dir deinen nächsten Beobachter selbst aus |
-| `rerollDiscount` | Dein nächster Reroll kostet nur ×1 |
-| `doublePoints` | Deine nächste Aufgabe zählt doppelt |
-| `peek` | Du siehst Kategorie und Länge der nächsten Karte vorab |
-| `immunity` | Fremde Effekte prallen an dir ab |
+| Wirkung          | Was sie tut                                            |
+| ---------------- | ------------------------------------------------------ |
+| `forceLevel10`   | Die nächste Karte des Ziels geht zwingend auf Stufe 3  |
+| `rerollBlock`    | Das Ziel muss die laufende Aufgabe durchziehen         |
+| `penalty`        | Das Ziel zieht eine Strafkarte                         |
+| `redirect`       | Ein fremder Effekt auf dir wandert zu jemand anderem   |
+| `chooseObserver` | Du suchst dir deinen nächsten Beobachter selbst aus    |
+| `rerollDiscount` | Dein nächster Reroll kostet nur ×1                     |
+| `doublePoints`   | Deine nächste Aufgabe zählt doppelt                    |
+| `peek`           | Du siehst Kategorie und Länge der nächsten Karte vorab |
+| `immunity`       | Fremde Effekte prallen an dir ab                       |
 
 Schutzschalter gegen Konzentration auf eine Person: `maxForeignEffects`
 begrenzt, wie viele fremde Effekte gleichzeitig auf jemandem liegen, und
@@ -137,13 +137,13 @@ bekommt ihn komplett. Bei Streit entscheidet der Host im Admin.
 Mit niedriger Wahrscheinlichkeit kommt statt einer Aufgabe eine Special Card.
 Sie wird nicht gespielt, sondern gehalten und später eingesetzt.
 
-| Karte | Wirkung |
-|---|---|
-| Joker | streicht eine Aufgabe komplett: keine Punkte, keine Kosten, kein Reroll-Zähler |
-| Punkte-Raub | nimmt einer Person 15 Punkte und gibt sie dir. Sie erfährt, wer es war |
+| Karte        | Wirkung                                                                               |
+| ------------ | ------------------------------------------------------------------------------------- |
+| Joker        | streicht eine Aufgabe komplett: keine Punkte, keine Kosten, kein Reroll-Zähler        |
+| Punkte-Raub  | nimmt einer Person 15 Punkte und gibt sie dir. Sie erfährt, wer es war                |
 | Rollentausch | tauscht deinen Punktestand mit dem einer beliebigen Person, sofort und ohne Rückfrage |
-| Königsmacher | zwingt eine Person auf Stufe 3 bei ihrer nächsten Karte |
-| Katzen-Segen | deine Katze auf der Karte sammelt ab jetzt passiv einen Punkt alle fünf Minuten |
+| Königsmacher | zwingt eine Person auf Stufe 3 bei ihrer nächsten Karte                               |
+| Katzen-Segen | deine Katze auf der Karte sammelt ab jetzt passiv einen Punkt alle fünf Minuten       |
 
 Die Wirkung steht im Code, nicht in der Datendatei, weil sie am Zustand
 arbeitet.
@@ -152,11 +152,11 @@ arbeitet.
 
 ## Rollen
 
-| Rolle | Bedeutung |
-|---|---|
-| `guest` | der Normalfall |
+| Rolle      | Bedeutung                                                                 |
+| ---------- | ------------------------------------------------------------------------- |
+| `guest`    | der Normalfall                                                            |
 | `birthday` | das Geburtstagskind; bekommt Karten, die nur für diese Rolle gedacht sind |
-| `host` | organisatorisch |
+| `host`     | organisatorisch                                                           |
 
 Die Rolle wird **nicht** beim Beitritt vergeben, sondern vom Host im Admin
 gesetzt. Sonst erklärt sich jeder zum Geburtstagskind.
@@ -176,20 +176,20 @@ Der Host beendet das Spiel von Hand. Dann friert die Auswertung ein.
 **Alle anderen** landen in der Verlierertabelle und werden von oben nach unten
 in Stufen geteilt. Je weiter unten, desto härter.
 
-| Stufe | wer |
-|---|---|
-| Knapp vorbei | die besten Verlierer |
-| Mitläufer | |
-| Solide enttäuschend | |
-| Endboss der Schande | der letzte Platz |
+| Stufe               | wer                  |
+| ------------------- | -------------------- |
+| Knapp vorbei        | die besten Verlierer |
+| Mitläufer           |                      |
+| Solide enttäuschend |                      |
+| Endboss der Schande | der letzte Platz     |
 
 Die Anzahl der Stufen passt sich der Gruppengröße an, damit keine leer bleibt:
 
-| Verlierer | Stufen |
-|---|---|
-| 8 oder mehr | 4 |
-| 5 bis 7 | 3 |
-| 3 bis 4 | 2 |
+| Verlierer      | Stufen                        |
+| -------------- | ----------------------------- |
+| 8 oder mehr    | 4                             |
+| 5 bis 7        | 3                             |
+| 3 bis 4        | 2                             |
 | 2 oder weniger | 1, alle bekommen die härteste |
 
 Bei Punktgleichstand entscheidet, wer den Stand **früher** erreicht hat.

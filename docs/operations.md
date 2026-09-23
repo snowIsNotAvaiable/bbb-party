@@ -10,11 +10,11 @@ das MacBook aufklappt.
 Die App braucht kein Internet. Sie braucht ein lokales Netz, in dem MacBook und
 alle Handys hängen. Drei Wege dorthin:
 
-| Weg | Vorgehen | Bewertung |
-|---|---|---|
-| **Handy-Hotspot** (empfohlen) | Ein Handy spannt den Hotspot auf, MacBook **und** Gäste verbinden sich damit. Mobile Daten dürfen aus sein, das lokale Netz funktioniert trotzdem. | Zuverlässigste Variante, iOS und Android machen beide mit |
-| **Vorhandenes WLAN** | Alle im selben Heimnetz | Geht, wenn die Gastgeberwohnung eines hat und keine Client-Isolation aktiv ist |
-| **Reise-Router** | Kleiner Travel-Router, MacBook per Kabel dran | Am stabilsten, braucht aber Hardware |
+| Weg                           | Vorgehen                                                                                                                                           | Bewertung                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **Handy-Hotspot** (empfohlen) | Ein Handy spannt den Hotspot auf, MacBook **und** Gäste verbinden sich damit. Mobile Daten dürfen aus sein, das lokale Netz funktioniert trotzdem. | Zuverlässigste Variante, iOS und Android machen beide mit                      |
+| **Vorhandenes WLAN**          | Alle im selben Heimnetz                                                                                                                            | Geht, wenn die Gastgeberwohnung eines hat und keine Client-Isolation aktiv ist |
+| **Reise-Router**              | Kleiner Travel-Router, MacBook per Kabel dran                                                                                                      | Am stabilsten, braucht aber Hardware                                           |
 
 Ein macOS-Ad-hoc-Netz („Netzwerk erstellen") funktioniert, wird aber von
 manchen Handys schlecht angenommen. Nicht als einzigen Plan einpacken.
@@ -36,10 +36,10 @@ npm run party      # baut den Client und startet den Server
 Der Start druckt die Adressen, die PIN und einen QR-Code ins Terminal und legt
 `qr-party.png` zum Ausdrucken ab.
 
-| Wer | Adresse |
-|---|---|
-| Gäste | `http://<LAN-IP>:3000` |
-| Host | `http://<LAN-IP>:3000/admin` |
+| Wer   | Adresse                      |
+| ----- | ---------------------------- |
+| Gäste | `http://<LAN-IP>:3000`       |
+| Host  | `http://<LAN-IP>:3000/admin` |
 
 `localhost` funktioniert **nur** auf dem MacBook selbst. Die Handys brauchen
 die IP.
@@ -85,17 +85,17 @@ Geprüft werden unter anderem:
 
 ## Wenn etwas hakt
 
-| Problem | Handgriff |
-|---|---|
-| Handy zeigt nichts | Seite neu laden. Der Spielstand liegt auf dem Server, nichts geht verloren. |
-| Kommt nicht rein | Falsches WLAN, oder es wurde `localhost` statt der IP getippt. |
-| Abnahme hängt | Admin, **Freigeben**: selbst bestätigen oder ablehnen. |
-| Wette strittig | Admin, **Freigeben**: Sieger festlegen. |
-| Karte unpassend | Admin, **Karten**: antippen schaltet sie ab. Wirkt sofort für alle. |
-| Punkte falsch | Admin, **Protokoll**: das Ereignis streichen. Die Punkte werden neu gerechnet. |
-| Jemand geht | Admin, **Spieler**: pausieren. Dann wird die Person nicht mehr als Beobachter gezogen. |
-| Server abgestürzt | Im Terminal `npm start`. Der Spielstand wird von der Platte geladen. |
-| Alles kaputt | Admin, **Spiel**: Spielstand sichern. **Erst danach** zurücksetzen. |
+| Problem            | Handgriff                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Handy zeigt nichts | Seite neu laden. Der Spielstand liegt auf dem Server, nichts geht verloren.            |
+| Kommt nicht rein   | Falsches WLAN, oder es wurde `localhost` statt der IP getippt.                         |
+| Abnahme hängt      | Admin, **Freigeben**: selbst bestätigen oder ablehnen.                                 |
+| Wette strittig     | Admin, **Freigeben**: Sieger festlegen.                                                |
+| Karte unpassend    | Admin, **Karten**: antippen schaltet sie ab. Wirkt sofort für alle.                    |
+| Punkte falsch      | Admin, **Protokoll**: das Ereignis streichen. Die Punkte werden neu gerechnet.         |
+| Jemand geht        | Admin, **Spieler**: pausieren. Dann wird die Person nicht mehr als Beobachter gezogen. |
+| Server abgestürzt  | Im Terminal `npm start`. Der Spielstand wird von der Platte geladen.                   |
+| Alles kaputt       | Admin, **Spiel**: Spielstand sichern. **Erst danach** zurücksetzen.                    |
 
 Ein Fehler im Server beendet ihn nicht mehr. Er wird im Terminal gemeldet, der
 Spielstand gesichert, und es läuft weiter. Wenn dort etwas steht, lohnt ein
@@ -105,12 +105,12 @@ Blick ins Admin-Protokoll, ob die letzte Aktion angekommen ist.
 
 ## Sicherungen
 
-| Was | Wo |
-|---|---|
-| laufender Spielstand | `server/data/state.json` |
-| letzte Sicherung | `server/data/state.backup.json`, höchstens eine Minute alt |
-| Stand pro Stunde | `server/data/snapshots/`, die letzten zwölf |
-| Download | Admin, **Spiel**, „Spielstand sichern" |
+| Was                  | Wo                                                         |
+| -------------------- | ---------------------------------------------------------- |
+| laufender Spielstand | `server/data/state.json`                                   |
+| letzte Sicherung     | `server/data/state.backup.json`, höchstens eine Minute alt |
+| Stand pro Stunde     | `server/data/snapshots/`, die letzten zwölf                |
+| Download             | Admin, **Spiel**, „Spielstand sichern"                     |
 
 Zum Zurückspielen: Server stoppen, die gewünschte Datei nach
 `server/data/state.json` kopieren, `npm start`.

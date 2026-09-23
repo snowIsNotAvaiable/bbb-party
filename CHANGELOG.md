@@ -4,6 +4,26 @@ Die Versionsnummern zählen den Stand des Spielkonzepts, nicht ein
 Veröffentlichungsdatum. Die Einträge bis 0.5 beschreiben die Konzeptphase, ab
 0.6 die tatsächliche Umsetzung.
 
+## 0.9 (2026-09-17)
+
+Werkzeuge und Konventionen, wie man sie in einem öffentlichen Repository erwartet.
+
+- **ESLint 9** mit Flat Config, React- und Hooks-Regeln, plus **Prettier** über
+  den gesamten Code. `npm run lint` und `npm run lint:fix`. Dabei behoben: drei
+  ungenutzte Variablen, drei `let` die `const` sein wollten, und vier Effekte,
+  die Zustand synchron gesetzt haben. Der Würfel-Overlay bekommt seinen Zustand
+  jetzt über einen `key` zurückgesetzt statt über einen Effekt.
+- **CI in vier Jobs**: Linter, Inhalte, Tests auf Node 20, 22 und 24, Build.
+  Dazu `permissions: contents: read`, eine `concurrency`-Gruppe und der Build
+  als Artefakt. Neu: **CodeQL** wöchentlich und bei jedem Pull Request.
+- **Dependabot** für npm und GitHub Actions, monatlich und gruppiert.
+- `SECURITY.md` mit dem Bedrohungsmodell und dem, was bewusst fehlt,
+  `CODE_OF_CONDUCT.md`, Issue-Formulare, Pull-Request-Vorlage, `.nvmrc`.
+- Screenshots in `docs/screenshots/`, erzeugt aus `npm run audit:ui -- --shots`.
+- Inhaltshinweis im README: der Beispielkatalog ist ein Trinkspiel für
+  Erwachsene.
+- Zwei moderate Schwachstellen in `qs` über Express 4 behoben.
+
 ## 0.8 (2026-09-17)
 
 Vorbereitung als öffentliches Repository.

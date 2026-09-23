@@ -26,12 +26,12 @@ jeder Schatten-Token mit `0 0 0 1px …`.
 Die Palette sitzt vollständig in `:root` als CSS-Variablen. Vier Akzente tragen
 Bedeutung und werden nicht dekorativ eingesetzt:
 
-| Token | Bedeutung |
-|---|---|
-| `--accent` (Blauviolett) | Primäraktion, Rang, Links |
-| `--rose` | Kicker, Badges, Minuspunkte, die mittlere Stufe |
-| `--gold` | Punkte, Krone, Special Card |
-| `--mint` | Bestätigen, Pluspunkte |
+| Token                    | Bedeutung                                       |
+| ------------------------ | ----------------------------------------------- |
+| `--accent` (Blauviolett) | Primäraktion, Rang, Links                       |
+| `--rose`                 | Kicker, Badges, Minuspunkte, die mittlere Stufe |
+| `--gold`                 | Punkte, Krone, Special Card                     |
+| `--mint`                 | Bestätigen, Pluspunkte                          |
 
 Tint-Füllungen immer als `rgba(...)` über dem Grund, nie deckend. Eine deckende
 Akzentfläche zerstört die Tiefenstaffelung sofort.
@@ -62,19 +62,23 @@ zwischen 5 und 300 Zeichen lang, das Layout muss beides tragen.
 
 ## Pixelgrafik ohne eine einzige Bilddatei
 
-Im Repository liegt kein einziges Bild. Alles entsteht im Code:
+Die App lädt zur Laufzeit keine einzige Bilddatei. Alles entsteht im Code:
 
-| Was | Wie |
-|---|---|
+| Was                | Wie                                                                      |
+| ------------------ | ------------------------------------------------------------------------ |
 | Avatare und Katzen | ASCII-Gitter in `lib/sprites.js` werden zu SVG-Data-URLs zusammengesetzt |
-| Icons | gezeichnete Pixelraster in `components/PixelIcon.jsx` |
-| Logo | `components/PixelLogo.jsx` |
-| Startscreen-Planet | Canvas, `lib/globe.js` |
-| Hintergrund | Canvas, `components/PartyBackground.jsx` |
+| Icons              | gezeichnete Pixelraster in `components/PixelIcon.jsx`                    |
+| Logo               | `components/PixelLogo.jsx`                                               |
+| Startscreen-Planet | Canvas, `lib/globe.js`                                                   |
+| Hintergrund        | Canvas, `components/PartyBackground.jsx`                                 |
 
 Das hält die App klein, macht sie offline-tauglich und erlaubt beliebig viele
 Avatar-Kombinationen, ohne für jede eine Datei zu pflegen. Der Preis ist, dass
 Änderungen am Aussehen Code-Änderungen sind.
+
+Die Screenshots unter `docs/screenshots/` sind die einzigen Bilddateien im
+Repository. Sie werden von `npm run audit:ui -- --shots` erzeugt und nur in der
+Dokumentation verwendet, nie von der App geladen.
 
 Pixelgrafik braucht `image-rendering: pixelated` und ganzzahlige Skalierung,
 sonst matscht sie. Dafür gibt es die Klasse `.bbb-pixel`.

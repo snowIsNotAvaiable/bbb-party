@@ -1,5 +1,10 @@
 # BBB · Buki's Birthday Bash
 
+[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/OWNER/REPO/actions/workflows/codeql.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](.nvmrc)
+
 Eine Party-WebApp für einen einzigen Abend, gebaut für zwölf Leute in einer
 Wohnung ohne Internet.
 
@@ -24,10 +29,10 @@ npm run party      # baut den Client und startet den Server
 Der Start druckt alle erreichbaren Adressen, die Host-PIN und einen QR-Code ins
 Terminal und legt `qr-party.png` zum Ausdrucken ab.
 
-| Wer | Adresse |
-|---|---|
-| Gäste | `http://<LAN-IP>:3000` |
-| Host | `http://<LAN-IP>:3000/admin` |
+| Wer   | Adresse                      |
+| ----- | ---------------------------- |
+| Gäste | `http://<LAN-IP>:3000`       |
+| Host  | `http://<LAN-IP>:3000/admin` |
 
 `localhost` funktioniert nur auf dem Rechner selbst; die Handys brauchen die
 IP-Adresse aus der Startausgabe. Der Server lauscht auf `0.0.0.0`.
@@ -37,14 +42,31 @@ Zum Ausprobieren ohne Party reicht `npm run probelauf`: zweiter Server auf Port
 
 ---
 
+## So sieht es aus
+
+| Startscreen                                                                                           | Die eigene Aufgabe                                                                   |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| ![Der Planet mit allen Gästen darauf](docs/screenshots/start.png)                                     | ![Eine aufgedeckte Aufgabe auf Stufe 3](docs/screenshots/aufgabe.png)                |
+| Jeder Gast steht als Pixel-Avatar auf dem Planeten, mit seiner Katze daneben. Unten läuft der Ticker. | Der Text erscheint erst nach der blinden Stufenwahl. Rechts oben steht, wer abnimmt. |
+
+| Auswertung                                                               | Host-Konsole                                                                                        |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| ![Podium und Verlierertabelle](docs/screenshots/auswertung.png)          | ![Die Spielerliste im Admin](docs/screenshots/admin.png)                                            |
+| Podium mit Preisen, darunter die Verlierer nach Stufen mit ihrer Strafe. | Punkte korrigieren, Rollen setzen, pausieren. Oben steht die Checkliste, wenn etwas im Argen liegt. |
+
+Alle Bilder stammen aus `npm run audit:ui -- --shots`, also aus der echten App
+auf einem 390 Pixel breiten Display.
+
+---
+
 ## Warum es so gebaut ist
 
 Die Umgebung gibt fast alles vor, und daraus folgen vier Entscheidungen, die
 den ganzen Code prägen:
 
-**Kein Internet am Ort.** Keine CDNs, keine externen Schriften, kein einziges
-Bild im Repository. Avatare, Katzen, Icons, der Planet auf dem Startscreen:
-alles entsteht im Code als Pixelgrafik.
+**Kein Internet am Ort.** Keine CDNs, keine externen Schriften, und die App
+lädt zur Laufzeit keine einzige Bilddatei. Avatare, Katzen, Icons, der Planet
+auf dem Startscreen: alles entsteht im Code als Pixelgrafik.
 
 **Der Server entscheidet, der Client zeigt an.** Jede Regel, jeder Zufall und
 jede Punktzahl entsteht serverseitig. Der Client hält keinen Zustand, den er
@@ -66,15 +88,17 @@ Ausführlich in **[docs/architecture.md](docs/architecture.md)**.
 
 ## Dokumentation
 
-| Dokument | Inhalt |
-|---|---|
-| [docs/architecture.md](docs/architecture.md) | Aufbau, Zustandsmodell, Protokoll, Module, Grenzen |
-| [docs/rules.md](docs/rules.md) | Die Spielregeln in Spielbegriffen |
-| [docs/content.md](docs/content.md) | Eigene Karten schreiben |
-| [docs/operations.md](docs/operations.md) | Den Abend betreiben, Netz, Notfälle |
-| [docs/design.md](docs/design.md) | Farben, Schrift, Pixelgrafik, Bedienung im Dunkeln |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Mitarbeiten |
-| [CHANGELOG.md](CHANGELOG.md) | Was sich wann geändert hat |
+| Dokument                                     | Inhalt                                                      |
+| -------------------------------------------- | ----------------------------------------------------------- |
+| [docs/architecture.md](docs/architecture.md) | Aufbau, Zustandsmodell, Protokoll, Module, Grenzen          |
+| [docs/rules.md](docs/rules.md)               | Die Spielregeln in Spielbegriffen                           |
+| [docs/content.md](docs/content.md)           | Eigene Karten schreiben                                     |
+| [docs/operations.md](docs/operations.md)     | Den Abend betreiben, Netz, Notfälle                         |
+| [docs/design.md](docs/design.md)             | Farben, Schrift, Pixelgrafik, Bedienung im Dunkeln          |
+| [CONTRIBUTING.md](CONTRIBUTING.md)           | Mitarbeiten, Codestil, die vier Regeln                      |
+| [SECURITY.md](SECURITY.md)                   | Bedrohungsmodell, was bewusst fehlt, personenbezogene Daten |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)     | Umgang miteinander                                          |
+| [CHANGELOG.md](CHANGELOG.md)                 | Was sich wann geändert hat                                  |
 
 ---
 
@@ -113,6 +137,9 @@ npm start            # nur den Server
 npm run party        # bauen und starten
 npm run probelauf    # zweiter Server auf 3001, eigene Kopie der Karten
 
+npm run lint         # ESLint und Prettier
+npm run lint:fix     # beides, und aufräumen was geht
+
 npm test             # Inhaltsprüfer, Regeln, Verkabelung
 npm run lint:data    # nur die Karten und Kataloge
 npm run test:engine  # nur die Spielregeln, ohne Server
@@ -123,23 +150,23 @@ npm run audit:ui     # jeden Screen auf vier Handybreiten, braucht Chrome
 `npm test` läuft ohne Vorbereitung und **fasst keine echten Daten an**: jeder
 Lauf kopiert `server/data` nach `/tmp` und arbeitet nur auf der Kopie.
 
-| Suite | Prüft |
-|---|---|
-| `lint:data` | Die Inhalte gegen den Code: fehlende Stufen, zu lange Texte, Vornamen in Aufgaben, Shop-Wirkungen, die die Engine nicht kennt, Strafen-Label, die zu keiner Verlierer-Stufe passen. Findet die stummen Fehler, die nichts kaputtmachen und einfach nicht wirken. |
-| `test:engine` | Die Regeln direkt an der Engine, ohne Server. |
-| `test:server` | WebSocket, Aktionen, Snapshots, Reconnect, Admin, Absturzsicherung. Startet sich seinen eigenen Server. |
-| `audit:ui` | 84 Ansichten in headless Chrome auf 320, 360, 390 und 430 Pixeln: Querlauf, zu kleine Tippziele, abgeschnittene Beschriftungen, Konsolenfehler. Ohne Chrome überspringt es sich. |
+| Suite         | Prüft                                                                                                                                                                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lint:data`   | Die Inhalte gegen den Code: fehlende Stufen, zu lange Texte, Vornamen in Aufgaben, Shop-Wirkungen, die die Engine nicht kennt, Strafen-Label, die zu keiner Verlierer-Stufe passen. Findet die stummen Fehler, die nichts kaputtmachen und einfach nicht wirken. |
+| `test:engine` | Die Regeln direkt an der Engine, ohne Server.                                                                                                                                                                                                                    |
+| `test:server` | WebSocket, Aktionen, Snapshots, Reconnect, Admin, Absturzsicherung. Startet sich seinen eigenen Server.                                                                                                                                                          |
+| `audit:ui`    | 84 Ansichten in headless Chrome auf 320, 360, 390 und 430 Pixeln: Querlauf, zu kleine Tippziele, abgeschnittene Beschriftungen, Konsolenfehler. Ohne Chrome überspringt es sich.                                                                                 |
 
 ### Umgebungsvariablen
 
-| Variable | Wirkung |
-|---|---|
-| `PORT` | Port des Servers, sonst 3000 |
-| `BBB_DATA_DIR` | Karten, Katalog und Spielstand komplett woandershin legen |
-| `BBB_STATE_FILE` | nur den Spielstand; `none` hält ihn im Arbeitsspeicher |
-| `BBB_CONFIG_FILE` | Laufzeit-Einstellungen woandershin legen |
-| `BBB_CRASH_TEST` | lässt den Server einmal absichtlich abstürzen, für den Servertest |
-| `CHROME_PATH` | Pfad zu Chrome für `audit:ui` |
+| Variable          | Wirkung                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| `PORT`            | Port des Servers, sonst 3000                                      |
+| `BBB_DATA_DIR`    | Karten, Katalog und Spielstand komplett woandershin legen         |
+| `BBB_STATE_FILE`  | nur den Spielstand; `none` hält ihn im Arbeitsspeicher            |
+| `BBB_CONFIG_FILE` | Laufzeit-Einstellungen woandershin legen                          |
+| `BBB_CRASH_TEST`  | lässt den Server einmal absichtlich abstürzen, für den Servertest |
+| `CHROME_PATH`     | Pfad zu Chrome für `audit:ui`                                     |
 
 ---
 
@@ -149,10 +176,19 @@ Der mitgelieferte Katalog sind die **86 Karten einer tatsächlich gespielten
 Party**: 258 Aufgabentexte auf Deutsch, dazu 15 Sonderaufträge, 12 Strafkarten,
 9 Shop-Items, 5 Special Cards, 3 Preise und 4 Strafen.
 
-Sie sind als Beispiel gedacht, nicht als Vorlage für jede Runde. **Es geht
-reichlich um Alkohol.** Wer sie benutzt, sollte sie vorher lesen; wer sie
-ersetzt, tut genau das Richtige. Wie das geht und welche Aufgaben bei der
-Auswahl gestrichen wurden, steht in [docs/content.md](docs/content.md).
+Sie sind als Beispiel gedacht, nicht als Vorlage für jede Runde. Wer sie
+benutzt, sollte sie vorher lesen; wer sie ersetzt, tut genau das Richtige. Wie
+das geht und welche Aufgaben bei der Auswahl gestrichen wurden, steht in
+[docs/content.md](docs/content.md).
+
+> **Inhaltshinweis.** Der Beispielkatalog ist ein Trinkspiel für Erwachsene. Er
+> enthält Aufgaben rund um Alkohol, derbe Sprache und anzügliche Anspielungen
+> und ist nichts für Minderjährige. Alle Mengenangaben sind gedeckelt, und
+> jede Aufgabe lässt sich ohne Punktverlust liegen lassen. Wie viel getrunken
+> wird, entscheiden trotzdem die Leute im Raum und nicht diese Software.
+>
+> Die Autoren übernehmen keine Verantwortung dafür, was auf eurer Party
+> passiert. Passt aufeinander auf, stellt Wasser hin, und niemand fährt.
 
 Die Preise sind persönlich („Buki backt dir einen Kuchen deiner Wahl"). Das ist
 Absicht: ein echter Katalog zeigt besser, wie das Spiel funktioniert, als leere

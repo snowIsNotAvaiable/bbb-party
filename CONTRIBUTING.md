@@ -14,6 +14,7 @@ als mit einer Mischung.
 ## Loslegen
 
 ```bash
+nvm use            # Node-Version aus .nvmrc
 npm install
 npm run assets     # Inter einmalig lokal ablegen, braucht Internet
 npm run dev        # Server auf 3000, Vite mit Hot Reload auf 5173
@@ -26,10 +27,13 @@ reichen, oder `npm run probelauf` und zwei Handys im selben WLAN.
 ## Vor jedem Pull Request
 
 ```bash
+npm run lint       # ESLint und Prettier
 npm test           # Inhaltsprüfer, Regeln, Verkabelung
 npm run build      # muss durchlaufen
 npm run audit:ui   # wenn du etwas an der Oberfläche geändert hast
 ```
+
+`npm run lint:fix` räumt auf, was sich automatisch aufräumen lässt.
 
 `npm test` läuft ohne Vorbereitung und fasst keine echten Daten an: jeder Lauf
 kopiert `server/data` nach `/tmp` und arbeitet auf der Kopie.
@@ -39,13 +43,13 @@ selbst; mit `CHROME_PATH` lässt sich einer angeben.
 
 ## Wo was hingehört
 
-| Änderung | Datei |
-|---|---|
-| Spielregel | `server/game.js`, sonst nirgends |
-| neue Aktion | Tabelle in `server/index.js` plus Methode in `game.js` |
-| Inhalte | `server/data/*.json`, siehe [docs/content.md](docs/content.md) |
-| Aussehen | `client/src/styles.css` und die betroffene Komponente |
-| neue Stellschraube | `DEFAULTS` in `server/config.js` plus Eintrag im Admin |
+| Änderung           | Datei                                                          |
+| ------------------ | -------------------------------------------------------------- |
+| Spielregel         | `server/game.js`, sonst nirgends                               |
+| neue Aktion        | Tabelle in `server/index.js` plus Methode in `game.js`         |
+| Inhalte            | `server/data/*.json`, siehe [docs/content.md](docs/content.md) |
+| Aussehen           | `client/src/styles.css` und die betroffene Komponente          |
+| neue Stellschraube | `DEFAULTS` in `server/config.js` plus Eintrag im Admin         |
 
 Der ausführliche Überblick steht in
 [docs/architecture.md](docs/architecture.md).
@@ -65,9 +69,21 @@ Der ausführliche Überblick steht in
 
 ## Codestil
 
-Es gibt keinen Formatter im Projekt. Richte dich nach den Dateien drumherum:
-zwei Leerzeichen Einrückung, einfache Anführungszeichen, Semikolons,
-Zeilenlänge ungefähr 110.
+Über Einrückung, Anführungszeichen und Zeilenumbrüche entscheidet **Prettier**,
+nicht der Geschmack. `npm run lint:fix` stellt das her. Die Konfiguration steht
+in `.prettierrc.json`, die Regeln in `eslint.config.js`.
+
+Zwei Eigenheiten sind dort bewusst gesetzt und begründet:
+
+- `no-empty` erlaubt leere `catch`-Blöcke. Ein fehlgeschlagener
+  `localStorage`-Zugriff darf den Abend nicht stoppen; jeder solche Block ist
+  kommentiert.
+- `react/no-unescaped-entities` verbietet nur `>` und `}`. Die Oberfläche ist
+  deutsch, typografische Anführungszeichen sind hier Satzzeichen und keine
+  vergessenen Escapes.
+
+`server/data/` ist von Prettier ausgenommen. Sonst würde jede Katalogänderung
+die Kartentexte neu umbrechen und die Diffs unlesbar machen.
 
 Kommentare erklären **warum**, nicht was. Ein Kommentar, der den Code
 nacherzählt, wird beim nächsten Umbau zur Lüge.
